@@ -38,6 +38,8 @@
 
         <!-- Styles -->
         <link rel="stylesheet" href="{{ asset('css/site.css') }}">
+
+        @include('analytics')
        
     </head>
     <body>
