@@ -39,7 +39,7 @@
         <!-- Styles -->
         <link rel="stylesheet" href="{{ asset('css/site.css') }}" type="text/css">
 
-        @include('analytics')
+        {{-- @include('analytics') --}}
        
     </head>
     <body>
