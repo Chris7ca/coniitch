@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\User;
+use App\Models\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -28,7 +28,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/app';
 
     /**
      * Create a new controller instance.
@@ -42,7 +42,7 @@ class RegisterController extends Controller
 
     public function showRegistrationForm()
     {
-        return view('maintenance');
+        return view('auth.register');
     }
 
     /**
@@ -53,25 +53,58 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
+        $messages = [
+            'regex' => 'La contraseña debe de tener mínimo 8 caracteres, una letra mayúscula, una letra minúscula y un dígito',
+            'unique' => 'Ya existe una cuenta asociada a este correo electrónico'
+        ];
+
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:6', 'confirmed'],
-        ]);
+            'privacy_notice' => ['required','accepted'],
+            'password' => ['required', 'regex:/^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,}$/'],
+        ], $messages);
     }
 
     /**
      * Create a new user instance after a valid registration.
      *
      * @param  array  $data
-     * @return \App\User
+     * @return \App\Models\User
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
+        
+        $full_name = explode(' ', $data['name']);
+        $size_name = sizeof($full_name);
+        $first_name = $full_name[0];
+        $second_name = ($size_name >= 4) ? $full_name[1] : '';
+        $last_name = ($size_name >= 3) ? $full_name[$size_name - 2] : $full_name[$size_name - 1];
+        $second_last_name = ($size_name >= 3) ? $full_name[$size_name - 1] : '';    
+
+        // $congressma_role = Role::select('id')->where('key','congressman')->first();
+
+        $user =  User::create([
+            'first_name' => $first_name,
+            'last_name' => $last_name,
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+
+        // if( $second_name != '' && $second_last_name != '' ) {
+
+        //     $personal_profile = PersonalProfile::create([
+        //         'user_id' => $user->id,
+        //         'second_name' => $second_name,
+        //         'second_last_name' => $second_last_name,
+        //     ]);
+        
+        // }
+
+        // $user->roles()->attach($congressma_role);
+
+        return $user;
+
     }
+
 }
