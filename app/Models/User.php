@@ -1,30 +1,44 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
+use App\Notifications\VerifyEmail;
+use App\Notifications\ResetPassword;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
     use Notifiable;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-    protected $fillable = [
-        'name', 'email', 'password',
+    protected $guarded = ['id'];
+
+    protected $hidden = ['password', 'remember_token'];
+
+    protected $casts = [
+        'has_personal_profile' => 'boolean',
+        'has_academic_profile' => 'boolean',
+        'has_emergency_contact' => 'boolean'
     ];
 
+
     /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
+     * Notificación de confirmación de email
      */
-    protected $hidden = [
-        'password', 'remember_token',
-    ];
+
+    public function sendEmailVerificationNotification()
+    {
+        $this->notify(new VerifyEmail);
+    }
+
+    /**
+     * Notificación de reseteo de contraseña 
+     */
+
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new ResetPassword($token));
+    }
+
 }

@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Auth\Events\Verified;
 use Illuminate\Foundation\Auth\VerifiesEmails;
+use Illuminate\Auth\Access\AuthorizationException;
 
 class VerificationController extends Controller
 {
@@ -25,7 +28,7 @@ class VerificationController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/app';
 
     /**
      * Create a new controller instance.
@@ -38,4 +41,27 @@ class VerificationController extends Controller
         $this->middleware('signed')->only('verify');
         $this->middleware('throttle:6,1')->only('verify', 'resend');
     }
+
+    /**
+     * Sobreescribimos la validación 
+     *      if ($request->route('id') != $request->user()->getKey())
+     *          por
+     *      if ($request->route('token') != $request->user()->getKey())
+     * 
+     * para que no tenga conflictos con el decode del Hash Id
+     */
+    
+    public function verify(Request $request)
+    {
+        if ($request->route('token') != $request->user()->getKey()) {
+            throw new AuthorizationException;
+        }
+
+        if ($request->user()->markEmailAsVerified()) {
+            event(new Verified($request->user()));
+        }
+
+        return redirect($this->redirectPath())->with('verified', true);
+    }
+
 }

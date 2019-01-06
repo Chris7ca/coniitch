@@ -81,8 +81,8 @@
 @alert-primary-background:      lighten(tint(@global-primary-background, 40%), 20%);
 @alert-primary-color:           @global-primary-background;
 
-@alert-success-background:      rgba(224, 224, 39,0.30);
-@alert-success-color:           #c3c31c;
+@alert-success-background:      rgba(100,221,23 ,.5);
+@alert-success-color:           #777;
 
 @alert-warning-background:      lighten(tint(@global-warning-background, 45%), 15%);
 @alert-warning-color:           @global-warning-background;
@@ -304,7 +304,6 @@
 
 label {
 	letter-spacing: 1.5px;
-	font-weight: bold;
     font-family: "Quicksand", sans-serif;
 	color: #ababab !important;
 }
@@ -322,7 +321,7 @@ label {
 .hook-form() {
 	border-radius: .25rem;
 	color: #444 !important;
-	font-weight: bold;
+	font-weight: 400;
 }
 
 /*
@@ -413,10 +412,10 @@ label {
 -------------------------------------------------------
 */
 
-@notification-message-primary-color:            #333;
-@notification-message-success-color:            #333;
-@notification-message-warning-color:            #333;
-@notification-message-danger-color:  			#333;
+@notification-message-primary-color:            #777;
+@notification-message-success-color:            #777;
+@notification-message-warning-color:            #777;
+@notification-message-danger-color:  			#777;
 
 .hook-notification-message(){
 	border-radius: .25rem;
