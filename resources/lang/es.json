@@ -24,5 +24,17 @@
     "A fresh verification link has been sent to your email address.": "Un nuevo link de verificación ha sido enviado a tu correo electrónico.",
     "Before proceeding, please check your email for a verification link.": "Antes de poder continuar, por favor, confirma tu correo electrónico con el enlace que te hemos enviado.",
     "If you did not receive the email": "Si no has recibido el email",
-    "click here to request another": "pulsa aquí para que te enviemos otro"
+    "click here to request another": "pulsa aquí para que te enviemos otro",
+    "Invalid signature.": "El token ha caducado o es inválido.",
+    "Forbidden": "Prohibido",
+    "Sorry, you are forbidden from accessing this page.": "Lo sentimos, está prohibido acceder a esta página.",
+    "Too Many Requests": "Demasiadas solicitudes",
+    "Sorry, you are making too many requests to our servers.": "Disculpe, ha realizado demasidas solicitudes al servidor.",
+    "Page Expired": "Página expirada",
+    "Sorry, your session has expired. Please refresh and try again.": "Disculpe, su sesión ha caducado. Por favor acceda nuevamente.",
+    "Whoops, something went wrong on our servers.": "Lo sentimos, ocurrio un error en el servidor.",
+    "Page Not Found": "Página no encontrada",
+    "Sorry, the page you are looking for could not be found.": "Lo sientimos, la página a la cual desea acceder no se ha encontrado.",
+    "Unauthorized": "Sin autorización",
+    "Sorry, you are not authorized to access this page.": "Disculpe, no está autorizado para acceder a esta página"
 }
