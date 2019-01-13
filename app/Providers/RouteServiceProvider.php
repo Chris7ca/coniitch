@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Vinkla\Hashids\Facades\Hashids;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 
@@ -23,7 +24,16 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        
+        Route::bind("id", function ($value) {
+            $id = Hashids::decode($value);
+            return  $id[0];
+        });
+
+        Route::bind("ID", function ($value) {
+            $id = Hashids::decode($value);
+            return  $id[0];
+        });
 
         parent::boot();
     }
@@ -67,7 +77,7 @@ class RouteServiceProvider extends ServiceProvider
     {
         Route::prefix('app')
             ->name('app.')
-            ->middleware(['web','auth','verified'])
+            ->middleware(['web','auth','verified','hasProfiles'])
             ->namespace($this->namespace)
             ->group(base_path('routes/app.php'));
     }
