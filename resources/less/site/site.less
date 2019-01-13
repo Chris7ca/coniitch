@@ -236,6 +236,10 @@
 	letter-spacing: 2.5px;
 }
 
+.hook-navbar-dropdown() {
+	border-radius: .25rem;
+}
+
 .hook-navbar-dropdown-nav-header() {
 	letter-spacing: 2px;
 	text-transform: uppercase;
@@ -412,7 +416,10 @@ label {
 -------------------------------------------------------
 */
 
-@notification-message-primary-color:            #777;
+@notification-width:							400px;
+@notification-message-font-size: 				@global-small-font-size;
+
+@notification-message-primary-color:            #eee;
 @notification-message-success-color:            #777;
 @notification-message-warning-color:            #777;
 @notification-message-danger-color:  			#777;
@@ -422,7 +429,7 @@ label {
 }
 
 .hook-notification-message-primary(){
-	background: #565c70 !important;
+	background: #3A6073 !important;
 }
 
 .hook-notification-message-warning() {
