@@ -21,7 +21,7 @@ class CreateUsersTable extends Migration
             $table->boolean('has_personal_profile')->default(false);
             $table->boolean('has_academic_profile')->default(false);
             $table->boolean('has_emergency_contact')->default(false);
-            $table->enum('method_to_register',['Traditional','Facebook','Google'])->default('Traditional');
+            $table->enum('method_to_register',['Traditional','Facebook','Google'])->nullable();
             $table->string('avatar')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password')->nullable();
