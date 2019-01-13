@@ -44,17 +44,95 @@
             html, body {
                 background-color: #f9f9fb !important;
             }
+            #preloader-page{
+                position: absolute;
+                height: 100vh;
+                background-color: #f9f9fb;
+                top: 0;
+                left: 0;
+                bottom: 0;
+                right: 0;
+                width: 100%;
+                z-index: 1000 !important;
+            }
         </style>
     </head>
     <body>
+
+        <div id="preloader-page" class="uk-flex uk-flex-center uk-flex-middle">
+            <div class="uk-text-center">
+                <h6>Cargando</h6>
+                <img src="{{ asset('svg/spinner.svg') }}" width="100">
+            </div>
+        </div>
         
         <main id="app">
         
             <header class="uk-background-fixed uk-background-cover uk-background-top-center uk-light" data-src="{{ asset('images/image-hero-app.jpg') }}" uk-img>
                 
                 <div class="gradient-background-top">
+                    
+                    <nav class="uk-container uk-navbar-container uk-navbar-transparent" uk-navbar="mode: click">
+        
+                        <div class="uk-navbar-left">
+                            <ul class="uk-navbar-nav">
+                                <li class="uk-hidden@m">
+                                    <a href="#menu-mobile" uk-icon="icon: menu; ratio: 1.5" uk-toggle></a>
+                                </li>
+                                <li class="uk-visible@m">
+                                    <a href="{{ route('app.index') }}">Inicio</a>
+                                </li>
+                                @if ( Auth::user()->isRoot() )
+                                    <li class="uk-visible@m">
+                                        <a href="{{ route('app.users.view') }}">Usuarios</a>
+                                    </li>
+                                    <li class="uk-visible@m">
+                                        <a href="{{ route('app.roles.view') }}">Roles</a>
+                                    </li>
+                                @endif
+                            </ul>
+                        </div>
+                
+                        <div class="uk-navbar-right">
+                            <ul class="uk-navbar-nav">
+                                <!-- notificaciones -->
+                                <li>
+                                    <a role="button"> 
 
-                    <menu-app :user="{{ json_encode(Auth::user()) }}"></menu-app>
+                                        @if ( starts_with(Auth::user()->avatar, 'https') )
+                                            <img src="{{ Auth::user()->avatar }}"  class="uk-margin-small-right avatar-navbar"> 
+                                        @elseif ( Auth::user()->avatar != null && !starts_with(Auth::user()->avatar, 'http') )
+                                            <img src="{{ Storage::url(Auth::user()->avatar) }}"  class="uk-margin-small-right avatar-navbar"> 
+                                        @else
+                                            <img src="/images/avatar.png"  class="uk-margin-small-right avatar-navbar"> 
+                                        @endif
+
+                                        {{ Auth::user()->first_name . ' ' . Auth::user()->last_name }}
+                                        
+                                        <span uk-icon="triangle-down"></span>
+                                    </a>
+                                    <div class="uk-navbar-dropdown">
+                                        <ul class="uk-nav uk-navbar-dropdown-nav">
+                                            <li class="uk-nav-header">
+                                                <small>Opciones</small>
+                                            </li>
+                                            <li>
+                                                <a href="{{ route('app.profiles.view') }}">
+                                                    <span class="uk-margin-small-right" uk-icon="icon: user"></span> Editar Perfil
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a role="button" @click="logout">
+                                                    <span class="uk-margin-small-right" uk-icon="icon: sign-out"></span> Cerrar Sesión
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                
+                    </nav>
 
                     <section class="uk-container uk-light uk-margin-large uk-padding">
                         <div class="uk-grid uk-grid-divider" uk-grid>
@@ -64,7 +142,7 @@
                                 </a>
                             </div>
                             <div>
-                                <h1 class="light-text">@yield('subtitle')</h1>
+                                <h1 class="light-text">@yield('hero')</h1>
                             </div>
                         </div>
                     </section>
@@ -74,6 +152,40 @@
             @yield('content') 
             
             @yield('modals')
+
+            <div id="menu-mobile" class="uk-modal-full" uk-modal>
+                <div class="uk-modal-dialog">
+                    <button class="uk-modal-close-full uk-close-large" type="button" uk-close></button>
+                    
+                    <div class="uk-flex uk-flex-center uk-flex-middle uk-padding" uk-height-viewport>
+        
+                        <div>
+        
+                            <h2 class="uk-h1">MENÚ</h2>
+                            <hr>
+        
+                            <ul class="uk-nav uk-nav-default uk-text-center">
+                               
+                                <li>
+                                    <a href="{{ route('app.index') }}">Inicio</a>
+                                </li>
+                                @if ( Auth::user()->isRoot() )
+                                    <li>
+                                        <a href="{{ route('app.users.view') }}">Usuarios</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ route('app.roles.view') }}">Roles</a>
+                                    </li>
+                                @endif
+
+                            </ul>
+        
+                        </div>
+        
+                    </div>
+        
+                </div>
+            </div>
     
         </main>
 
