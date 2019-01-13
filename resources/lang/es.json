@@ -36,5 +36,6 @@
     "Page Not Found": "Página no encontrada",
     "Sorry, the page you are looking for could not be found.": "Lo sientimos, la página a la cual desea acceder no se ha encontrado.",
     "Unauthorized": "Sin autorización",
-    "Sorry, you are not authorized to access this page.": "Disculpe, no está autorizado para acceder a esta página"
+    "Sorry, you are not authorized to access this page.": "Disculpe, no está autorizado para acceder a esta página",
+    "The given data was invalid.": "Los datos son inválidos."
 }
