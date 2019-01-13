@@ -12,4 +12,12 @@ class AppController extends Controller
         return view('app.index');
     }
 
+    public function password(Password $request)
+    {
+        Auth()->user()->password = Hash::make($request->password);
+        Auth()->user()->save();
+        
+        return response()->json(['message' => 'Contraseña actualizada']);
+    }
+
 }
