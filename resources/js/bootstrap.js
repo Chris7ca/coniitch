@@ -23,6 +23,69 @@ if (token) {
 }
 
 /**
+ * Custom error messages 
+ */
+
+window.showAxiosErrorMessage = (error) => {
+
+    let errorMessage = `<p class="uk-margin-remove uk-text-break">${ error.response.data.message }</p>`;
+
+    if (error.response.data.errors) {
+
+        let listOfErrors = `<ul class="uk-margin-small">`;
+
+        for (let field in error.response.data.errors) {
+            if (error.response.data.errors.hasOwnProperty(field)) {
+              listOfErrors += `<li>${error.response.data.errors[field]}</li>`;
+            }
+        }
+
+        listOfErrors += `</ul>`;
+        errorMessage += listOfErrors;
+    }
+
+    return UIkit.notification(errorMessage, 'danger');
+}
+
+/**
+ * Delete preloader page with promise after loading animation
+ */
+
+let hidePreloaderPage = new Promise((resolve, reject) => {
+
+    let preloaderPage = document.getElementById('preloader-page'); 
+
+    preloaderPage.classList.add('uk-animation-fade', 'uk-animation-reverse');
+
+    resolve(preloaderPage);
+})
+
+window.addEventListener("load", function(event) {
+    
+    hidePreloaderPage.then((preloaderPage) => {
+
+        setTimeout( () =>  preloaderPage.setAttribute("hidden", true) , 600);
+
+    }, () => {});
+});
+
+/**
+ * Load Vue.js and set route (ziggy) method in globals methods
+ */
+
+window.Vue = require('vue');
+
+// Vue.config.devtools = false
+// Vue.config.debug = false
+// Vue.config.silent = true
+
+Vue.mixin({
+    methods: {
+        route: route,
+    }
+});
+
+/**
  * Echo exposes an expressive API for subscribing to channels and listening
  * for events that are broadcast by Laravel. Echo and event broadcasting
  * allows your team to easily build robust real-time web applications.
