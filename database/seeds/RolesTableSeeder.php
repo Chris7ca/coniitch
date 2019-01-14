@@ -38,6 +38,9 @@ class RolesTableSeeder extends Seeder
             [
                 'key' => 'student', 'display_name' => 'Estudiante', 'description' => 'lorem ipsum dolor is attem' // 8
             ],
+            [
+                'key' => 'public-relations', 'display_name' => 'Relaciones públicas', 'description' => 'lorem ipsum dolor is attem' // 9
+            ],
 
         ];
 
