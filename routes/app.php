@@ -71,3 +71,14 @@ Route::post('contacto/emergencia/editar',       'Congressman\EmergencyContactCon
 Route::post('contacto/emergencia/actualizar',   'Congressman\EmergencyContactController@update')->name('emergency.contact.update');
 
 Route::post('perfil/contrasena/actualizar',     'AppController@password')->name('user.password.update');
+
+/**
+ * Sponsors
+ */
+
+Route::get('patrocionadores',                   'PublicRelations\Sponsors@view')->name('sponsors.view');
+Route::post('patrocionadores',                  'PublicRelations\Sponsors@index')->name('sponsors.index');
+Route::post('patrocionadores/guardar',          'PublicRelations\Sponsors@store')->name('sponsors.store');
+Route::post('patrocionadores/{id}/editar',      'PublicRelations\Sponsors@edit')->name('sponsors.edit');
+Route::post('patrocionadores/{id}/actualizar',  'PublicRelations\Sponsors@update')->name('sponsors.update');
+Route::delete('patrocionadores/{id}/eliminiar', 'PublicRelations\Sponsors@delete')->name('sponsors.delete');
