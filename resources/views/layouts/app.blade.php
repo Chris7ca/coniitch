@@ -76,6 +76,7 @@
         
                         <div class="uk-navbar-left">
                             <ul class="uk-navbar-nav">
+
                                 <li class="uk-hidden@m">
                                     <a href="#menu-mobile" uk-icon="icon: menu; ratio: 1.5" uk-toggle></a>
                                 </li>
@@ -90,6 +91,12 @@
                                         <a href="{{ route('app.roles.view') }}">Roles</a>
                                     </li>
                                 @endif
+                                @if ( Auth::user()->isPublicRelations() )
+                                    <li class="uk-visible@m">
+                                        <a href="{{ route('app.sponsors.view') }}">Patrocinadores</a>
+                                    </li>
+                                @endif
+
                             </ul>
                         </div>
                 
@@ -175,6 +182,11 @@
                                     </li>
                                     <li>
                                         <a href="{{ route('app.roles.view') }}">Roles</a>
+                                    </li>
+                                @endif
+                                @if ( Auth::user()->isPublicRelations() )
+                                    <li>
+                                        <a href="{{ route('app.sponsors.view') }}">Patrocinadores</a>
                                     </li>
                                 @endif
 

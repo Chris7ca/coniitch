@@ -162,5 +162,19 @@ class UsersTableSeeder extends Seeder
 
         }
 
+        $user = User::create([
+            'first_name' => 'Carlos',
+            'last_name' => 'Carrillo',
+            'email' => 'carlos@mail.com',
+            'email_verified_at' => now(),
+            'has_personal_profile' => true,
+            'has_academic_profile' => true,
+            'has_emergency_contact' => true,
+            'password' => Hash::make('secret'),
+        ]);
+
+        $user->personal_profile()->save(factory(App\Models\PersonalProfile::class)->make());
+        $user->roles()->attach(9);
+
     }
 }

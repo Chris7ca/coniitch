@@ -15,6 +15,11 @@ trait VerifyRoles
         return Auth()->user()->keyRoles->contains('key', 'congressman');
     }
 
+    public function isPublicRelations()
+    {
+        return Auth()->user()->keyRoles->contains('key', 'public-relations');
+    }
+
     public function hasRole($role)
     {
 
