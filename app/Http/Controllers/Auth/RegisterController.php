@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Models\Role;
 use App\Models\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
@@ -74,35 +75,19 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        
-        $full_name = explode(' ', $data['name']);
-        $size_name = sizeof($full_name);
-        $first_name = $full_name[0];
-        $second_name = ($size_name >= 4) ? $full_name[1] : '';
-        $last_name = ($size_name >= 3) ? $full_name[$size_name - 2] : $full_name[$size_name - 1];
-        $second_last_name = ($size_name >= 3) ? $full_name[$size_name - 1] : '';    
+        $name = explode(' ', $data['name']);
 
-        // $congressma_role = Role::select('id')->where('key','congressman')->first();
+        $congressma_role = Role::select('id')->where('key','congressman')->first();
 
         $user =  User::create([
-            'first_name' => $first_name,
-            'last_name' => $last_name,
+            'first_name' => $name[0],
+            'last_name' => $name[1],
             'email' => $data['email'],
             'method_to_register' => 'Traditional',
             'password' => Hash::make($data['password']),
         ]);
 
-        // if( $second_name != '' && $second_last_name != '' ) {
-
-        //     $personal_profile = PersonalProfile::create([
-        //         'user_id' => $user->id,
-        //         'second_name' => $second_name,
-        //         'second_last_name' => $second_last_name,
-        //     ]);
-        
-        // }
-
-        // $user->roles()->attach($congressma_role);
+        $user->roles()->attach($congressma_role);
 
         return $user;
 
