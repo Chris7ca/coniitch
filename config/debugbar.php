@@ -111,7 +111,7 @@ return [
         'views'           => true,  // Views with their data
         'route'           => true,  // Current route information
         'auth'            => true, // Display Laravel authentication status
-        'gate'            => true, // Display Laravel Gate checks
+        'gate'            => false, // Display Laravel Gate checks
         'session'         => true,  // Display session data
         'symfony_request' => true,  // Only one can be enabled..
         'mail'            => false,  // Catch mail messages
@@ -139,7 +139,7 @@ return [
         ],
         'db' => [
             'with_params'       => true,   // Render SQL with the parameters substituted
-            'backtrace'         => true,   // Use a backtrace to find the origin of the query in your files.
+            'backtrace'         => false,   // Use a backtrace to find the origin of the query in your files.
             'timeline'          => false,  // Add the queries to the timeline
             'explain' => [                 // Show EXPLAIN output on queries
                 'enabled' => false,
