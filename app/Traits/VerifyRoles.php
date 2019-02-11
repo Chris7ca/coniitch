@@ -20,6 +20,16 @@ trait VerifyRoles
         return Auth()->user()->keyRoles->contains('key', 'public-relations');
     }
 
+    public function isAdmin()
+    {
+        return Auth()->user()->keyRoles->contains('key', 'admin');
+    }
+
+    public function isRevisor()
+    {
+        return Auth()->user()->keyRoles->contains('key', 'revisor');
+    }
+
     public function hasRole($role)
     {
 
