@@ -30,7 +30,7 @@ class User extends Authenticatable implements MustVerifyEmail
      * Mutators
      */
 
-    
+
 
     /**
      * Relationships
@@ -65,6 +65,18 @@ class User extends Authenticatable implements MustVerifyEmail
     public function emergency_contact()
     {
         return $this->hasOne('App\Models\EmergencyContact');
+    }
+
+    public function work()
+    {
+        return $this->hasOne('App\Models\Work');
+    }
+
+    public function assigned_works()
+    {
+        return $this->belongsToMany('App\Models\Work', 'revisors')
+        ->withPivot('status')
+        ->as('confirmation');
     }
 
     /**
