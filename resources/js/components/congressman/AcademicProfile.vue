@@ -2,9 +2,10 @@
 
     <div>
 
+        <p class="uk-text-meta">Grado actual o último grado de estudios.</p>
         <p class="uk-text-meta"><b>NOTA:</b> Si actualmente estas estudiando y acretidas tu estatus académico con algun documento (creadencial vigente, 
         historial académico, constancia, etc.) recibirás un descuento al momento de realizar tu pago para asistir al congreso. Una vez que adjuntes 
-        el documento escanedo se realizará la verificación y te notificaremos si se te otorgará dicho descuento.</p>
+        el documento escanedo se realizará la verificación del mismo y te notificaremos si se te otorgará dicho descuento.</p>
 
         <content-placeholders v-if="!dataLoaded">
             <content-placeholders-heading/>

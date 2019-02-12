@@ -33,7 +33,7 @@ class UsersTableSeeder extends Seeder
 
         /** Seeds */
 
-        for ($i=0; $i < 3; $i++) { 
+        for ($i=0; $i < 3; $i++) { # usuarios no verificados
             
             $unverified_users = User::create([
                 'first_name' => $faker->name,
@@ -47,7 +47,7 @@ class UsersTableSeeder extends Seeder
 
         }
 
-        for ($i=0; $i < 5; $i++) { 
+        for ($i=0; $i < 5; $i++) { # congresistas estudiantes
 
             $congressman = User::create([
                 'first_name' => $faker->name,
@@ -68,7 +68,7 @@ class UsersTableSeeder extends Seeder
 
         }
 
-        for ($i=0; $i < 5; $i++) { 
+        for ($i=0; $i < 5; $i++) { # congresistas no estudiantes
 
             $bussinesman = User::create([
                 'first_name' => $faker->name,
@@ -86,11 +86,12 @@ class UsersTableSeeder extends Seeder
             $bussinesman->academic_profile()->save(factory(App\Models\AcademicProfile::class)->make());
             $bussinesman->emergency_contact()->save(factory(App\Models\EmergencyContact::class)->make());
             $bussinesman->professional_profile()->save(factory(App\Models\ProfessionalProfile::class)->make());
+            $bussinesman->work()->save(factory(App\Models\Work::class)->make());
             $bussinesman->roles()->attach(6);
             
         }
 
-        for ($i=0; $i < 15; $i++) { 
+        for ($i=0; $i < 15; $i++) { # revisores
             
             $revisors = User::create([
                 'first_name' => $faker->name,
@@ -108,7 +109,7 @@ class UsersTableSeeder extends Seeder
 
         }
 
-        for ($i=0; $i < 2; $i++) { 
+        for ($i=0; $i < 2; $i++) { # administadores
             
             $admin = User::create([
                 'first_name' => $faker->name,
@@ -126,7 +127,7 @@ class UsersTableSeeder extends Seeder
 
         }
 
-        for ($i=0; $i < 2; $i++) { 
+        for ($i=0; $i < 2; $i++) { # finanzas
             
             $finances = User::create([
                 'first_name' => $faker->name,
@@ -140,11 +141,11 @@ class UsersTableSeeder extends Seeder
             ]);
             
             $finances->personal_profile()->save(factory(App\Models\PersonalProfile::class)->make());
-            $finances->roles()->attach(2);
+            $finances->roles()->attach(4);
 
         }
 
-        for ($i=0; $i < 2; $i++) { 
+        for ($i=0; $i < 2; $i++) { # staff
             
             $helpers = User::create([
                 'first_name' => $faker->name,
@@ -158,11 +159,11 @@ class UsersTableSeeder extends Seeder
             ]);
             
             $helpers->personal_profile()->save(factory(App\Models\PersonalProfile::class)->make());
-            $helpers->roles()->attach(2);
+            $helpers->roles()->attach(5);
 
         }
 
-        $user = User::create([
+        $user = User::create([ 
             'first_name' => 'Carlos',
             'last_name' => 'Carrillo',
             'email' => 'carlos@mail.com',

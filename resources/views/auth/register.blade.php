@@ -12,13 +12,13 @@
         @csrf
 
         <div class="uk-margin-medium">
-            <label class="uk-form-label">Nombre completo</label>
-            <input type="text" class="uk-input" name="name" value="{{ old('name') }}" required autofocus placeholder="Campo requerido...">
+            <label class="uk-form-label">Nombre</label>
+            <input type="text" class="uk-input" name="name" value="{{ old('name') }}" required autofocus placeholder="Primer nombre y primer apellido">
         </div>
 
         <div class="uk-margin-medium">
             <label class="uk-form-label">Correo electrónico</label>
-            <input type="email" class="uk-input" name="email" value="{{ old('email') }}" required placeholder="Campo requerido...">
+            <input type="email" class="uk-input" name="email" value="{{ old('email') }}" required placeholder="ejemplo@dominio.com">
             @if ($errors->has('email'))
                 <span class="uk-text-danger uk-text-bold">
                     <small>{{ $errors->first('email') }}</small>

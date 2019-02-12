@@ -18,7 +18,7 @@
 
             <div class="uk-width-expand@m">
 
-                <h2>Mi información personal</h2>
+                <h2>Información Personal</h2>
 
                 <hr class="uk-divider-small">
 

@@ -1,3 +1,12 @@
 {
-    "/js/sponsors.js": "/js/sponsors.js"
+    "/js/admin.js": "/js/admin.js",
+    "/js/announcement.js": "/js/announcement.js",
+    "/js/app.js": "/js/app.js",
+    "/js/auth.js": "/js/auth.js",
+    "/js/notifications.js": "/js/notifications.js",
+    "/js/profiles.js": "/js/profiles.js",
+    "/js/revisors.js": "/js/revisors.js",
+    "/js/roles.js": "/js/roles.js",
+    "/js/sponsors.js": "/js/sponsors.js",
+    "/js/users.js": "/js/users.js"
 }

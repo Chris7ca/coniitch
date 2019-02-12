@@ -36,7 +36,7 @@ class HasProfiles
         if (!in_array($request->route()->getName(), $exept_routes) && !$has_profiles) {
             
             return redirect('app/perfil/editar')
-                    ->with('doesntHaveProfiles', 'Por favor completa la siguiente información.');
+                    ->with('doesntHaveProfiles', 'Por favor, antes de continuar, completa la información correspondiente a cada uno de los perfiles que a continuación se muestran.');
         }
 
         return $next($request);

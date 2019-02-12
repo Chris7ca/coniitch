@@ -125,13 +125,8 @@
         },
         created () {
 
-            if (this.user.avatar != null && this.user.avatar.startsWith('https')) {
-                this.avatar = this.user.avatar;
-                this.orgAvatar = this.user.avatar;
-            } else if (this.user.avatar != null && !this.user.avatar.startsWith('https')) {
-                this.avatar = this.user.avatar.replace('public','/storage');
-                this.orgAvatar = this.user.avatar.replace('public','/storage');
-            } 
+            this.avatar = this.getAvatar(this.user.avatar);
+            this.orgAvatar = this.getAvatar(this.user.avatar);
 
         },
         mounted () {

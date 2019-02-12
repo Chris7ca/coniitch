@@ -68,7 +68,7 @@
         
         <main id="app">
         
-            <header class="uk-background-fixed uk-background-cover uk-background-top-center uk-light" data-src="{{ asset('images/image-hero-app.jpg') }}" uk-img>
+            <header class="uk-background-fixed uk-background-cover uk-background-top-center" data-src="{{ asset('images/image-hero-app.jpg') }}" uk-img>
                 
                 <div class="gradient-background-top">
                     
@@ -77,42 +77,56 @@
                         <div class="uk-navbar-left">
                             <ul class="uk-navbar-nav">
 
-                                <li class="uk-hidden@m">
+                                <li class="uk-hidden@m item-light">
                                     <a href="#menu-mobile" uk-icon="icon: menu; ratio: 1.5" uk-toggle></a>
                                 </li>
-                                <li class="uk-visible@m">
+
+                                <li class="uk-visible@m item-light">
                                     <a href="{{ route('app.index') }}">Inicio</a>
                                 </li>
+
                                 @if ( Auth::user()->isRoot() )
-                                    <li class="uk-visible@m">
+                                    <li class="uk-visible@m item-light">
                                         <a href="{{ route('app.users.view') }}">Usuarios</a>
                                     </li>
-                                    <li class="uk-visible@m">
+                                    <li class="uk-visible@m item-light">
                                         <a href="{{ route('app.roles.view') }}">Roles</a>
                                     </li>
-                                @endif
-                                @if ( Auth::user()->isPublicRelations() )
-                                    <li class="uk-visible@m">
+
+                                @elseif ( Auth::user()->isPublicRelations() )
+                                    <li class="uk-visible@m item-light">
                                         <a href="{{ route('app.sponsors.view') }}">Patrocinadores</a>
                                     </li>
-                                @endif
+
+                                @elseif ( Auth::user()->isAdmin() )
+                                    <li class="uk-visible@m item-light">
+                                        <a href="{{ route('app.criterias.view') }}">Criterios</a>
+                                    </li>
+                                    <li class="uk-visible@m item-light">
+                                        <a href="{{ route('app.admin.works.view') }}">Trabajos</a>
+                                    </li>
+
+                                @elseif ( Auth::user()->isCongressman() )
+                                    <li class="uk-visible@m item-light">
+                                        <a href="{{ route('app.announcement.view') }}">Convocatoria</a>
+                                    </li>
+                                
+                                @elseif ( Auth::user()->isRevisor() )
+                                    <li class="uk-visible@m item-light">
+                                        <a href="{{ route('app.revisors.works.view') }}">Trabajos</a>
+                                    </li>
+                                @endif    
 
                             </ul>
                         </div>
                 
                         <div class="uk-navbar-right">
                             <ul class="uk-navbar-nav">
-                                <!-- notificaciones -->
-                                <li>
+                                <widget-notifications></widget-notifications>
+                                <li class="item-light">
                                     <a role="button"> 
 
-                                        @if ( starts_with(Auth::user()->avatar, 'https') )
-                                            <img src="{{ Auth::user()->avatar }}"  class="uk-margin-small-right avatar-navbar"> 
-                                        @elseif ( Auth::user()->avatar != null && !starts_with(Auth::user()->avatar, 'http') )
-                                            <img src="{{ Storage::url(Auth::user()->avatar) }}"  class="uk-margin-small-right avatar-navbar"> 
-                                        @else
-                                            <img src="/images/avatar.png"  class="uk-margin-small-right avatar-navbar"> 
-                                        @endif
+                                        <img data-src="{{ avatar(Auth::user()->avatar) }}" class="avatar-xs uk-preserve-width uk-margin-small-right" uk-img>
 
                                         {{ Auth::user()->first_name . ' ' . Auth::user()->last_name }}
                                         
@@ -176,6 +190,7 @@
                                 <li>
                                     <a href="{{ route('app.index') }}">Inicio</a>
                                 </li>
+
                                 @if ( Auth::user()->isRoot() )
                                     <li>
                                         <a href="{{ route('app.users.view') }}">Usuarios</a>
@@ -183,12 +198,30 @@
                                     <li>
                                         <a href="{{ route('app.roles.view') }}">Roles</a>
                                     </li>
-                                @endif
-                                @if ( Auth::user()->isPublicRelations() )
+
+                                @elseif ( Auth::user()->isPublicRelations() )
                                     <li>
                                         <a href="{{ route('app.sponsors.view') }}">Patrocinadores</a>
                                     </li>
-                                @endif
+
+                                @elseif ( Auth::user()->isAdmin() )
+                                    <li>
+                                        <a href="{{ route('app.criterias.view') }}">Criterios</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ route('app.admin.works.view') }}">Trabajos</a>
+                                    </li>
+
+                                @elseif ( Auth::user()->isCongressman() )
+                                    <li>
+                                        <a href="{{ route('app.announcement.view') }}">Convocatoria</a>
+                                    </li>
+
+                                @elseif ( Auth::user()->isRevisor() )
+                                    <li>
+                                        <a href="{{ route('app.revisors.works.view') }}">Trabajos</a>
+                                    </li>
+                                @endif   
 
                             </ul>
         

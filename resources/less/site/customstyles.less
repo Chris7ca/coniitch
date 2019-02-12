@@ -46,6 +46,14 @@
     border-radius: 50%;
 }
 
+.avatar-xs {
+    width: 25px;
+    height: 25px;
+    object-fit: cover;
+    border: 2px solid #3a6073;
+    border-radius: 50%;
+}
+
 .avatar-container {
     border: solid 2px rgb(58, 96, 115);
     border-radius: 50%;
@@ -291,8 +299,17 @@
     border-radius: 0px 0.25rem 0.25rem 0px;
 }
 
+table tfoot tr {
+    border: none !important;
+}
+
 .card-default {
     background-color: #FFF;
+    border: 1px solid #eee;
+}
+
+.card-default:hover {
+    border: 1px solid #fafafa;
 }
 
 .ck.ck-editor__editable_inline {
@@ -307,6 +324,51 @@
 
 .ck-balloon-panel_visible {
     z-index: 100000 !important;
+}
+
+.item-notification {
+    text-decoration: none !important;
+}
+
+.item-notification-readed {
+    background-color: #eee;
+}
+
+.uk-list.notifications-list > li.item-notification:nth-child(n+2) {
+    margin-top: 0px !important;
+    padding-top: 0px !important;
+}
+
+.icon-notification {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: 1.5px solid #3A6073;
+    background-color: #3A6073;
+}
+
+.item-notification.item-notification-readed .icon-notification {
+    background-color: transparent !important;
+}
+
+.item-light > a {
+    color: rgba(255, 255, 255, 0.5) !important;
+}
+
+.item-light > a:hover, .item-light > a:active {
+    color: #fff !important;
+}
+
+.badge-success {
+    background-color: rgba(100,221,23 ,.5) !important;
+}
+
+.badge-warning {
+    background-color: #FF9800 !important;
+}
+
+.badge-danger {
+    background-color: #f44336 !important;
 }
 
 @media screen and (max-width: 768px) {
