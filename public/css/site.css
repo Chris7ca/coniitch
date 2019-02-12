@@ -4269,6 +4269,7 @@ ul.uk-nav-sub {
   text-transform: uppercase;
   transition: 0.1s ease-in-out;
   transition-property: color, background-color;
+  text-transform: none !important;
 }
 /* Hover + Focus */
 .uk-subnav > * > a:hover,
@@ -5004,7 +5005,6 @@ ul.uk-nav-sub {
   /* 6 */
   opacity: 0;
   transition: opacity 0.15s linear;
-  border-radius: 0.25rem !important;
 }
 /* Phone landscape and bigger */
 @media (min-width: 640px) {
@@ -5062,6 +5062,8 @@ ul.uk-nav-sub {
   transition-property: opacity, -webkit-transform;
   transition-property: opacity, transform;
   transition-property: opacity, transform, -webkit-transform;
+  overflow: hidden;
+  border-radius: 0.25rem !important;
 }
 /*
  * Open
@@ -12241,6 +12243,14 @@ iframe.uk-cover {
   border: 2px solid #3a6073;
   border-radius: 50%;
 }
+.avatar-xs {
+  width: 25px;
+  height: 25px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border: 2px solid #3a6073;
+  border-radius: 50%;
+}
 .avatar-container {
   border: solid 2px #3a6073;
   border-radius: 50%;
@@ -12442,8 +12452,15 @@ iframe.uk-cover {
   border-right-width: 1px;
   border-radius: 0px 0.25rem 0.25rem 0px;
 }
+table tfoot tr {
+  border: none !important;
+}
 .card-default {
   background-color: #FFF;
+  border: 1px solid #eee;
+}
+.card-default:hover {
+  border: 1px solid #fafafa;
 }
 .ck.ck-editor__editable_inline {
   min-height: 400px;
@@ -12455,6 +12472,42 @@ iframe.uk-cover {
 }
 .ck-balloon-panel_visible {
   z-index: 100000 !important;
+}
+.item-notification {
+  text-decoration: none !important;
+}
+.item-notification-readed {
+  background-color: #eee;
+}
+.uk-list.notifications-list > li.item-notification:nth-child(n+2) {
+  margin-top: 0px !important;
+  padding-top: 0px !important;
+}
+.icon-notification {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 1.5px solid #3A6073;
+  background-color: #3A6073;
+}
+.item-notification.item-notification-readed .icon-notification {
+  background-color: transparent !important;
+}
+.item-light > a {
+  color: rgba(255, 255, 255, 0.5) !important;
+}
+.item-light > a:hover,
+.item-light > a:active {
+  color: #fff !important;
+}
+.badge-success {
+  background-color: rgba(100, 221, 23, 0.5) !important;
+}
+.badge-warning {
+  background-color: #FF9800 !important;
+}
+.badge-danger {
+  background-color: #f44336 !important;
 }
 @media screen and (max-width: 768px) {
   .switcher-icons {
