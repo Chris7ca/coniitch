@@ -51,22 +51,23 @@ window.showAxiosErrorMessage = (error) => {
  * Delete preloader page with promise after loading animation
  */
 
-let hidePreloaderPage = new Promise((resolve, reject) => {
+function hidePreloaderPage () {
+    return new Promise((resolve, reject) => {
+        
+        let preloaderPage = document.getElementById('preloader-page'); 
 
-    let preloaderPage = document.getElementById('preloader-page'); 
-
-    preloaderPage.classList.add('uk-animation-fade', 'uk-animation-reverse');
-
-    resolve(preloaderPage);
-})
+        preloaderPage.classList.add('uk-animation-fade', 'uk-animation-reverse');
+    
+        resolve(preloaderPage);
+    });
+}
 
 window.addEventListener("load", function(event) {
     
-    hidePreloaderPage.then((preloaderPage) => {
-
-        setTimeout( () =>  preloaderPage.setAttribute("hidden", true) , 600);
-
-    }, () => {});
+    hidePreloaderPage()
+        .then((preloaderPage) => {
+            setTimeout( () =>  preloaderPage.setAttribute("hidden", true) , 400);
+        });
 });
 
 /**
@@ -82,8 +83,19 @@ window.Vue = require('vue');
 Vue.mixin({
     methods: {
         route: route,
+        getAvatar: function (avatar) {
+            if (avatar && avatar.startsWith('https')) {
+                return avatar;
+            } else if (avatar && !avatar.startsWith('https')) {
+                return avatar.replace('public','/storage');
+            } else {
+                return '/images/avatar.png';
+            }
+        }
     }
 });
+
+Vue.component('widget-notifications',   require('./components/helpers/WidgetNotification.vue').default);
 
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
