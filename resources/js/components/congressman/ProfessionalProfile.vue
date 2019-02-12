@@ -2,7 +2,7 @@
 
     <div>
 
-        <p class="uk-text-meta">En caso de que actualmente te encuentres trabajando, completa la siguiente información.</p>
+        <p class="uk-text-meta"><b>NOTA.</b> Este pefil no es requerido, solo en caso de que actualmente te encuentres trabajando, puedes completar la siguiente información.</p>
 
         <content-placeholders v-if="!dataLoaded">
             <content-placeholders-heading/>

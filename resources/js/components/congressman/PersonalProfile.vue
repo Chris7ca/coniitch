@@ -2,7 +2,7 @@
     
     <div>
 
-        <p class="uk-text-meta">Completa la siguiente información por favor.</p>
+        <p class="uk-text-meta">Completa tu información personal, es muy importante que conozcamos los siguientes datos.</p>
 
         <content-placeholders v-if="!dataLoaded">
             <content-placeholders-heading/>
@@ -31,7 +31,7 @@
             <div class="uk-width-1-2@m">
                 <label class="uk-form-label">Segundo Apellido</label>
                 <div class="uk-form-controls">
-                    <input type="text" class="uk-input" v-model="secondLastName" placeholder="Requerido">
+                    <input type="text" class="uk-input" v-model="secondLastName" placeholder="Opcional">
                 </div>
             </div>
             <div class="uk-width-1-2@m">
