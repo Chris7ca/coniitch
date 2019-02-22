@@ -25,7 +25,7 @@ class NewWorkRegister extends Mailable implements ShouldQueue
             ->with([
                 'notification' => 'Se recibió un nuevo trabajo',
                 'subject' => '"'. $this->work->title .'"',
-                'url' => route('app.announcement.works.show', ['id' => encode_id($this->work->id)])
+                'url' => route('app.congressman.announcement.works.show', ['id' => encode_id($this->work->id)])
             ]);
     }
 }
