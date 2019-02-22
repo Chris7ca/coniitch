@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Congressman;
+namespace App\Http\Controllers\Users;
 
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -13,7 +13,7 @@ class PersonalProfileController extends Controller
     
     public function avatar(Avatar $request)
     {
-        Auth()->user()->avatar = $request->avatar->store('public/avatars');
+        Auth()->user()->avatar = $request->avatar->store('public/images/avatars');
         Auth()->user()->save();
 
         return response()->json(['message' => 'Imagen de perfil actualizada']);
@@ -27,7 +27,8 @@ class PersonalProfileController extends Controller
 
     public function update(PersonalProfile $request)
     {
-        $user = User::with('personal_profile')->where('id', Auth()->user()->id)->first();
+        $user = User::select(['id','email','last_name','first_name','has_personal_profile'])
+            ->with('personal_profile')->where('id', Auth()->user()->id)->first();
 
         $user->has_personal_profile = 1;
         $user->first_name = $request->first_name;
