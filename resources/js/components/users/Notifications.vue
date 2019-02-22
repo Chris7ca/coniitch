@@ -51,7 +51,7 @@
         methods: {
             getRoute: function (id, url) {
 
-                let uri = route('app.notifications.read', { uuid : id });
+                let uri = route('app.users.notifications.read', { uuid : id });
 
                 axios.post(uri)
                 .then( response => {
@@ -79,7 +79,7 @@
         },
         created () {
 
-            let url = route('app.notifications.index');
+            let url = route('app.users.notifications.index');
 
             axios.post(url)
             .then( response => {

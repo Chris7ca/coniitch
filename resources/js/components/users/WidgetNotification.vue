@@ -38,7 +38,7 @@
             </ul>
 
             <div class="uk-width-1-1 uk-background-primary uk-light uk-text-center" style="padding: 5px 0px;" v-if="notifications.length > 0">
-                <a :href="route('app.notifications.view')" class="uk-link-reset uk-text-small">Ver todas</a>
+                <a :href="route('app.users.notifications.view')" class="uk-link-reset uk-text-small">Ver todas</a>
             </div>
             
         </div>
@@ -63,7 +63,7 @@
         methods: {
             getRoute: function (id, url) {
                 
-                let uri = route('app.notifications.read', { uuid : id });
+                let uri = route('app.users.notifications.read', { uuid : id });
 
                 axios.post(uri)
                 .then( response => {
@@ -91,7 +91,7 @@
         },
         created () {
 
-            let url = route('app.notifications.widget');
+            let url = route('app.users.notifications.widget');
 
             axios.post(url)
             .then( response => {
