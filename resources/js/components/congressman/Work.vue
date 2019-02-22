@@ -99,7 +99,7 @@
         </div>
 
         <div class="uk-width-1-1">
-            <label class="uk-form-label">Resumen <span uk-icon="info" uk-tooltip="Para habilitar la edición especial, da doble click sobre cualquier palabra."></span></label>
+            <label class="uk-form-label">Resumen <span uk-icon="info" uk-tooltip="Para habilitar la edición especial, solo selecciona el texto."></span></label>
             <editor :id="'editor_register_work'" v-model="content" :value="''" :count-words="true" :limit-words="300" @limit-words="limitWordsReached"></editor>
         </div>
 
@@ -246,7 +246,7 @@
             saveWork: function () {
 
                 let data            = this.getData();
-                let url             = route('app.announcement.save');
+                let url             = route('app.congressman.announcement.save');
                 this.loading        = true;
                 this.loadingSave    = true;
 
@@ -271,7 +271,7 @@
                 UIkit.modal.confirm('¿Estás seguro que deseas confirmar todos los cambios en tu trabajo? Una vez hecho esto, no podrás modificar la información contenida en él.')
                 .then( () => {
 
-                    let url                     = route('app.announcement.confirm', { id : this.work.public_id });
+                    let url                     = route('app.congressman.announcement.confirm', { id : this.work.public_id });
                     this.loading                = true;
                     this.loadingConfirmation    = true;
 
@@ -282,7 +282,7 @@
                         this.loadingConfirmation    = false;
                         UIkit.notification(response.data.message, 'success');
                         setTimeout(() => {
-                            window.location = route('app.announcement.view');
+                            window.location = route('app.congressman.announcement.view');
                         }, 600);
                     }) 
                     .catch( error => {
