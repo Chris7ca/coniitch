@@ -5,20 +5,25 @@ namespace App\Http\Controllers\Congressman;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Mail;
 use App\Http\Requests\AcademicProfile;
+use Illuminate\Support\Facades\Notification;
+use App\Notifications\UploadedAcademicDocument;
+use App\Mail\UploadedAcademicDocument as UploadedAcademicDocumentMail;
 
 class AcademicProfileController extends Controller
 {
     
     public function edit()
     {
-        $user = User::with('academic_profile')->where('id', Auth()->user()->id)->first();
+        $user = User::select('id')->with('academic_profile')->where('id', Auth()->user()->id)->first();
         return $user;
     }
 
     public function update(AcademicProfile $request)
     {
-        $user = User::with('academic_profile')->where('id', Auth()->user()->id)->first();
+        $user = User::select(['id','first_name','last_name','has_academic_profile'])
+            ->with('academic_profile')->where('id', Auth()->user()->id)->first();
         
         
         if ($user->academic_profile != null)
@@ -28,7 +33,7 @@ class AcademicProfileController extends Controller
             $user->academic_profile->faculty = $request->faculty;
             $user->academic_profile->country = $request->country;
             $user->academic_profile->state = $request->state;
-            $user->academic_profile->document = ($request->hasFile('document')) ? $request->document->store('public/files/students') : null;
+            $user->academic_profile->document = ($request->hasFile('document')) ? $request->document->store('public/files/academicdocuments') : null;
             $user->academic_profile->save();
         } 
         else 
@@ -44,6 +49,15 @@ class AcademicProfileController extends Controller
                 'state' => $request->state,
                 'document' => $document,
             ]);
+        }
+        
+        if ( $request->hasFile('document') ) {
+
+            $notifiables_user = getUsersByRole('finances');
+
+            Notification::send($notifiables_user, new UploadedAcademicDocument($user));
+            Mail::to('finanzas.coniitch@uaem.mx')->queue(new UploadedAcademicDocumentMail($user));
+
         }
         
         return response()->json(['message' => 'Información académica actualizada']);
