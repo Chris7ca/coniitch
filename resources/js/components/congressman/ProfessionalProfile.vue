@@ -61,7 +61,7 @@
                 let data = this.getData();
                 this.dataLoaded = false;
 
-                axios.post(route('app.profiles.professional.update', data))
+                axios.post(route('app.congressman.profile.professional.update', data))
                 .then( response => {
                     this.dataLoaded = true;
                     UIkit.notification(response.data.message, 'success');
@@ -74,7 +74,7 @@
         },
         created() {
 
-            axios.post(route('app.profiles.professional.edit'))
+            axios.post(route('app.congressman.profile.professional.edit'))
             .then( information => {
                 let data =          information.data;
                 this.jobTitle =     (data.professional_profile) ? data.professional_profile.job_title : '';

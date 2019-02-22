@@ -45,11 +45,22 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function map()
     {
-        $this->mapApiRoutes();
+        // $this->mapApiRoutes();
 
         $this->mapWebRoutes();
 
-        $this->mapAppRoutes();
+        $this->mapUsersRoutes();
+
+        $this->mapCongressmanRoutes();
+
+        $this->mapRootRoutes();
+
+        $this->mapAdminRoutes();
+        
+        $this->mapRevisorsRoutes();
+
+        $this->mapFinancesRoutes();
+
     }
 
     /**
@@ -66,20 +77,58 @@ class RouteServiceProvider extends ServiceProvider
              ->group(base_path('routes/web.php'));
     }
 
-    /**
-     * Define the "app" routes for the application.
-     *
-     * These routes all receive session state, CSRF protection, etc.
-     *
-     * @return void
-     */
-    protected function mapAppRoutes()
+    protected function mapUsersRoutes()
     {
-        Route::prefix('app')
-            ->name('app.')
+        Route::prefix('app/usuarios')
+            ->name('app.users.')
             ->middleware(['web','auth','verified','hasProfiles'])
             ->namespace($this->namespace)
-            ->group(base_path('routes/app.php'));
+            ->group(base_path('routes/users.php'));
+    }
+
+    protected function mapCongressmanRoutes()
+    {
+        Route::prefix('app/congresistas')
+            ->name('app.congressman.')
+            ->middleware(['web','auth','verified','hasProfiles'])
+            ->namespace($this->namespace)
+            ->group(base_path('routes/congressman.php'));
+    }
+
+    protected function mapRootRoutes()
+    {
+        Route::prefix('app/root')
+            ->name('app.root.')
+            ->middleware(['web','auth','verified','hasProfiles'])
+            ->namespace($this->namespace)
+            ->group(base_path('routes/root.php'));
+    }
+
+    protected function mapAdminRoutes()
+    {
+        Route::prefix('app/admin')
+            ->name('app.admin.')
+            ->middleware(['web','auth','verified','hasProfiles'])
+            ->namespace($this->namespace)
+            ->group(base_path('routes/admin.php'));
+    }
+
+    protected function mapRevisorsRoutes()
+    {
+        Route::prefix('app/revisores')
+            ->name('app.revisors.')
+            ->middleware(['web','auth','verified','hasProfiles'])
+            ->namespace($this->namespace)
+            ->group(base_path('routes/revisors.php'));
+    }
+
+    protected function mapFinancesRoutes()
+    {
+        Route::prefix('app/finanzas')
+            ->name('app.finances.')
+            ->middleware(['web','auth','verified','hasProfiles'])
+            ->namespace($this->namespace)
+            ->group(base_path('routes/finances.php'));
     }
 
     /**
@@ -89,11 +138,11 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    protected function mapApiRoutes()
-    {
-        Route::prefix('api')
-             ->middleware('api')
-             ->namespace($this->namespace)
-             ->group(base_path('routes/api.php'));
-    }
+    // protected function mapApiRoutes()
+    // {
+    //     Route::prefix('api')
+    //          ->middleware('api')
+    //          ->namespace($this->namespace)
+    //          ->group(base_path('routes/api.php'));
+    // }
 }

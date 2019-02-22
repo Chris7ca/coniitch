@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Congressman;
+namespace App\Http\Controllers\Users;
 
 use App\Models\User;
 use Illuminate\Http\Request;

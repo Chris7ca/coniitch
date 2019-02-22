@@ -129,7 +129,7 @@
                 let data = this.getData();
                 this.dataLoaded = false;
 
-                axios.post(route('app.profiles.personal.update'), data)
+                axios.post(route('app.users.profile.personal.update'), data)
                 .then( response => {
                     this.dataLoaded = true;
                     UIkit.notification(response.data.message, 'success');
@@ -142,7 +142,7 @@
         },
         created() {
 
-            axios.post(route('app.profiles.personal.edit'))
+            axios.post(route('app.users.profile.personal.edit'))
             .then( information => {
 
                 let data =              information.data;

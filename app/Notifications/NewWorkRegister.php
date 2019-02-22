@@ -33,7 +33,7 @@ class NewWorkRegister extends Notification implements ShouldQueue
             'title' => 'Se ha recibido un nuevo trabajo',
             'description' => $this->user->first_name . ' ' . $this->user->last_name . ' ha registrado un trabajo llamado "' . $this->work->title .  '". Por favor
             asigna a dos revisores para su evaluación.',
-            'route' => route('app.announcement.works.show', ['id' => $this->work->public_id])
+            'route' => route('app.congressman.announcement.works.show', ['id' => $this->work->public_id])
         ];
     }
 }

@@ -87,10 +87,10 @@
 
                                 @if ( Auth::user()->isRoot() )
                                     <li class="uk-visible@m item-light">
-                                        <a href="{{ route('app.users.view') }}">Usuarios</a>
+                                        <a href="{{ route('app.root.users.view') }}">Usuarios</a>
                                     </li>
                                     <li class="uk-visible@m item-light">
-                                        <a href="{{ route('app.roles.view') }}">Roles</a>
+                                        <a href="{{ route('app.root.roles.view') }}">Roles</a>
                                     </li>
 
                                 @elseif ( Auth::user()->isPublicRelations() )
@@ -100,7 +100,7 @@
 
                                 @elseif ( Auth::user()->isAdmin() )
                                     <li class="uk-visible@m item-light">
-                                        <a href="{{ route('app.criterias.view') }}">Criterios</a>
+                                        <a href="{{ route('app.admin.criterias.view') }}">Criterios</a>
                                     </li>
                                     <li class="uk-visible@m item-light">
                                         <a href="{{ route('app.admin.works.view') }}">Trabajos</a>
@@ -108,14 +108,28 @@
 
                                 @elseif ( Auth::user()->isCongressman() )
                                     <li class="uk-visible@m item-light">
-                                        <a href="{{ route('app.announcement.view') }}">Convocatoria</a>
+                                        <a href="{{ route('app.congressman.announcement.view') }}">Convocatoria</a>
+                                    </li>
+                                    <li class="uk-visible@m item-light">
+                                        <a href="{{ route('app.congressman.payments.view') }}">Pagos</a>
                                     </li>
                                 
                                 @elseif ( Auth::user()->isRevisor() )
                                     <li class="uk-visible@m item-light">
                                         <a href="{{ route('app.revisors.works.view') }}">Trabajos</a>
+                                    </li>   
+                                
+                                @elseif ( Auth::user()->isFinances() )
+                                    <li class="uk-visible@m item-light">
+                                        <a href="{{ route('app.finances.records.view') }}">Registros</a>
                                     </li>
-                                @endif    
+                                    <li class="uk-visible@m item-light">
+                                        <a href="{{ route('app.finances.services.view') }}">Servicios</a>
+                                    </li>
+                                    <li class="uk-visible@m item-light">
+                                        <a href="{{ route('app.finances.payments.view') }}">Pagos</a>
+                                    </li>
+                                @endif
 
                             </ul>
                         </div>
@@ -138,7 +152,7 @@
                                                 <small>Opciones</small>
                                             </li>
                                             <li>
-                                                <a href="{{ route('app.profiles.view') }}">
+                                                <a href="{{ route('app.users.profile.edit') }}">
                                                     <span class="uk-margin-small-right" uk-icon="icon: user"></span> Editar Perfil
                                                 </a>
                                             </li>
@@ -170,7 +184,7 @@
                 </div>
             </header>
             
-            @yield('content') 
+            @yield('content')
             
             @yield('modals')
 
@@ -193,10 +207,10 @@
 
                                 @if ( Auth::user()->isRoot() )
                                     <li>
-                                        <a href="{{ route('app.users.view') }}">Usuarios</a>
+                                        <a href="{{ route('app.root.users.view') }}">Usuarios</a>
                                     </li>
                                     <li>
-                                        <a href="{{ route('app.roles.view') }}">Roles</a>
+                                        <a href="{{ route('app.root.roles.view') }}">Roles</a>
                                     </li>
 
                                 @elseif ( Auth::user()->isPublicRelations() )
@@ -206,7 +220,7 @@
 
                                 @elseif ( Auth::user()->isAdmin() )
                                     <li>
-                                        <a href="{{ route('app.criterias.view') }}">Criterios</a>
+                                        <a href="{{ route('app.admin.criterias.view') }}">Criterios</a>
                                     </li>
                                     <li>
                                         <a href="{{ route('app.admin.works.view') }}">Trabajos</a>
@@ -214,12 +228,26 @@
 
                                 @elseif ( Auth::user()->isCongressman() )
                                     <li>
-                                        <a href="{{ route('app.announcement.view') }}">Convocatoria</a>
+                                        <a href="{{ route('app.congressman.announcement.view') }}">Convocatoria</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ route('app.congressman.payments.view') }}">Pagos</a>
                                     </li>
 
                                 @elseif ( Auth::user()->isRevisor() )
                                     <li>
                                         <a href="{{ route('app.revisors.works.view') }}">Trabajos</a>
+                                    </li>
+
+                                @elseif ( Auth::user()->isFinances() )
+                                    <li>
+                                        <a href="{{ route('app.finances.records.view') }}">Registros</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ route('app.finances.services.view') }}">Servicios</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ route('app.finances.payments.view') }}">Pagos</a>
                                     </li>
                                 @endif   
 

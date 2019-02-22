@@ -21,4 +21,6 @@ mix.js('resources/js/users.js', 'public/js')
 mix.js('resources/js/roles.js', 'public/js')
 mix.js('resources/js/sponsors.js', 'public/js')
 mix.js('resources/js/revisors.js', 'public/js')
+mix.js('resources/js/finances.js', 'public/js')
+mix.js('resources/js/payments.js', 'public/js')
 // mix.less('resources/less/site/site.less', 'public/css');

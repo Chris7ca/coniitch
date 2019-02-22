@@ -28,10 +28,10 @@
                     <p>En cualquier momento puedes editar tu información personal.</p>
                 @endif
 
-                <ul class="switcher-icons uk-flex uk-flex-middle" uk-switcher style="padding:0;">
+                <ul class="switcher-icons uk-flex uk-flex-middle uk-margin-medium" uk-switcher style="padding:0;">
 
                     <li>
-                        <a role="button" class="uk-flex uk-flex-center uk-flex-middle uk-flex-column uk-h6 uk-link-reset" role="button"> 
+                        <a role="button" class="uk-flex uk-flex-center uk-flex-middle uk-flex-column uk-h6 uk-link-reset"> 
                             <span class="uk-margin-small" uk-icon="icon: user; ratio: 1.3"></span> Personal
                         </a>
                     </li>
@@ -39,17 +39,25 @@
                     @if ( Auth::user()->isCongressman() )
                         
                         <li>
-                            <a role="button" class="uk-flex uk-flex-center uk-flex-middle uk-flex-column uk-h6 uk-link-reset" role="button"> 
+                            <a role="button" class="uk-flex uk-flex-center uk-flex-middle uk-flex-column uk-h6 uk-link-reset"> 
                                 <span class="uk-margin-small" uk-icon="graduation-cap"></span> Académico
                             </a>
                         </li>
+
                         <li>
-                            <a role="button" class="uk-flex uk-flex-center uk-flex-middle uk-flex-column uk-h6 uk-link-reset" role="button"> 
+                            <a role="button" class="uk-flex uk-flex-center uk-flex-middle uk-flex-column uk-h6 uk-link-reset"> 
                                 <span class="uk-margin-small" uk-icon="briefcase"></span> Profesional
                             </a>
                         </li>
+
                         <li>
-                            <a role="button" class="uk-flex uk-flex-center uk-flex-middle uk-flex-column uk-h6 uk-link-reset" role="button"> 
+                            <a role="button" class="uk-flex uk-flex-center uk-flex-middle uk-flex-column uk-h6 uk-link-reset">
+                                <span class="uk-margin-small" uk-icon="credit-card"></span> Facturación
+                            </a>
+                        </li>
+
+                        <li>
+                            <a role="button" class="uk-flex uk-flex-center uk-flex-middle uk-flex-column uk-h6 uk-link-reset"> 
                                 <span class="uk-margin-small" uk-icon="emergency"></span>  Emergencias
                             </a>
                         </li>
@@ -57,36 +65,40 @@
                     @endif
 
                     <li>
-                        <a role="button" class="uk-flex uk-flex-center uk-flex-middle uk-flex-column uk-h6 uk-link-reset" role="button"> 
+                        <a role="button" class="uk-flex uk-flex-center uk-flex-middle uk-flex-column uk-h6 uk-link-reset"> 
                             <span class="uk-margin-small" uk-icon="fingerprint"></span>  Crédenciales
                         </a>
                     </li>
                     
                 </ul>
 
-                <ul class="tabs-pointing uk-switcher">
+                <ul class="uk-switcher uk-margin-medium-top">
 
-                    <li class="uk-card uk-card-body uk-box-shadow-small">
+                    <li>
                         <personal-profile></personal-profile>
                     </li>
 
                     @if ( Auth::user()->isCongressman() )
                     
-                        <li class="uk-card uk-card-body uk-box-shadow-small">
+                        <li>
                             <academic-profile></academic-profile>
                         </li>
     
-                        <li class="uk-card uk-card-body uk-box-shadow-small">
+                        <li>
                             <professional-profile></professional-profile>
                         </li>
+
+                        <li>
+                            <invoicing-data></invoicing-data>
+                        </li>
     
-                        <li class="uk-card uk-card-body uk-box-shadow-small">
+                        <li>
                             <emergency-contact></emergency-contact>
                         </li>
 
                     @endif
 
-                    <li class="uk-card uk-card-body uk-box-shadow-small">
+                    <li>
                         <password></password>
                     </li>
 

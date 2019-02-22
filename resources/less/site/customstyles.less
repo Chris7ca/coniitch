@@ -1,3 +1,8 @@
+
+/*=============================================
+=            Background´s and filter´s            =
+=============================================*/
+
 .gradient-background-left {
     background: rgba(58, 96, 115, 0.5);
     background: linear-gradient(
@@ -34,9 +39,69 @@
     );
 }
 
+.background-white {
+    background-color: #fff !important;
+}
+
+.filter {
+    transition: all 500ms ease-in;
+    background-color: rgba(58, 96, 115, 0.5);
+}
+
+.filter:hover {
+    transition: all 500ms ease-in;
+    background-color: rgba(58, 96, 115, 0.1);
+}
+
+.gradient-primary-left {
+    background: rgba(58, 96, 115, 0.5);
+    background: linear-gradient(
+        to left,
+        rgba(63, 105, 126, 1),
+        rgba(22, 34, 42, 1)
+    );
+}
+
+.gradient-primary-right {
+    background: rgba(58, 96, 115, 0.5);
+    background: linear-gradient(
+        to right,
+        rgba(63, 105, 126, 1),
+        rgba(22, 34, 42, 1)
+    );
+}
+
+/*=====  End of Background´s and filter´s  ======*/
+
+
+
+
+
+/*=============================================
+=            Text            =
+=============================================*/
+
 .light-text {
     font-weight: 300 !important;
 }
+
+.text-secondary {
+    color: #ff8f00 !important;
+}
+
+.text-white {
+    color: #fff !important;
+}
+
+/*=====  End of Text  ======*/
+
+
+
+
+
+/*=============================================
+=            Images            =
+=============================================*/
 
 .avatar-small {
     width: 50px;
@@ -73,95 +138,11 @@
     border-radius: 50%;
 }
 
-.rounded-button-icon-light {
-    border: 1px solid #999;
-    color: #999;
-    padding: 2px 10px;
-    border-radius: 999px;
-    -webkit-border-radius: 999px;
-    -moz-border-radius: 999px;
-    -ms-border-radius: 999px;
-    -o-border-radius: 999px;
-}
-
-.rounded-button-icon-light:hover {
-    color: #eee !important;
-    border: 1px solid #eee;
-}
-
-.to-top {
-    transform: translateY(-30%);
-    -webkit-transform: translateY(-30%);
-    -moz-transform: translateY(-30%);
-    -ms-transform: translateY(-30%);
-    -o-transform: translateY(-30%);
-}
-
-.sticky-header {
-    background-color: #fff;
-    box-shadow: 0 1px 2px 0 rgba(34, 36, 38, 0.15);
-}
-
-.min-height {
-    min-height: 450px;
-}
-
-.filter {
-    transition: all 500ms ease-in;
-    background-color: rgba(58, 96, 115, 0.5);
-}
-
-.filter:hover {
-    transition: all 500ms ease-in;
-    background-color: rgba(58, 96, 115, 0.1);
-}
-
-.gradient-primary-left {
-    background: rgba(58, 96, 115, 0.5);
-    background: linear-gradient(
-        to left,
-        rgba(63, 105, 126, 1),
-        rgba(22, 34, 42, 1)
-    );
-}
-
-.gradient-primary-right {
-    background: rgba(58, 96, 115, 0.5);
-    background: linear-gradient(
-        to right,
-        rgba(63, 105, 126, 1),
-        rgba(22, 34, 42, 1)
-    );
-}
-
-.text-secondary {
-    color: #ff8f00 !important;
-}
-
-.text-white {
-    color: #fff !important;
-}
-
-.background-white {
-    background-color: #fff !important;
-}
-
-.video-invitacion {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    padding-bottom: 53.4%; /* 16:9 */
-    padding-top: 25px;
-    height: 0;
-}
-
-.video-invitacion iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    min-width: 100%;
-    min-height: 100%;
+.avatar-navbar {
+    width: 30px;
+    height: 30px;
+    border: 2px solid #fff;
+    border-radius: 50%;
 }
 
 .button-google,
@@ -200,72 +181,117 @@
     transition: all 500ms ease-in;
 }
 
-.avatar-navbar {
-    width: 30px;
-    height: 30px;
-    border: 2px solid #fff;
-    border-radius: 50%;
+/*=====  End of Images  ======*/
+
+
+
+
+
+/*=============================================
+=            Button´s            =
+=============================================*/
+
+.rounded-button-icon-light {
+    border: 1px solid #999;
+    color: #999;
+    padding: 2px 10px;
+    border-radius: 999px;
+    -webkit-border-radius: 999px;
+    -moz-border-radius: 999px;
+    -ms-border-radius: 999px;
+    -o-border-radius: 999px;
 }
 
-.switcher-icons {
-    display: flex;
-    overflow-x: auto;
-}
-
-.switcher-icons li {
-    width: 20%;
-    align-content: center;
-    list-style: none;
-    order: 1;
-}
-
-.switcher-icons li.uk-active {
-    color: #3a6073 !important;
-}
-
-.switcher-icons li a {
-    padding: 10px 20px;
-}
-
-.tabs-pointing > li {
+.rounded-button-icon-light:hover {
+    color: #eee !important;
     border: 1px solid #eee;
+}
+
+.button-text {
+    line-height: initial !important;
+}
+
+/*=====  End of Button´s  ======*/
+
+
+
+
+
+/*=============================================
+=            Helper´s            =
+=============================================*/
+
+.to-top {
+    transform: translateY(-30%);
+    -webkit-transform: translateY(-30%);
+    -moz-transform: translateY(-30%);
+    -ms-transform: translateY(-30%);
+    -o-transform: translateY(-30%);
+}
+
+.sticky-header {
     background-color: #fff;
-    border-radius: 0.25rem;
-    position: relative;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 1px 2px 0 rgba(34, 36, 38, 0.15);
 }
 
-.tabs-pointing > li::before {
-    position: absolute;
-    width: 20px;
-    height: 20px;
-    top: -10px;
-    border-left: 1px solid #eee;
-    border-top: 1px solid #eee;
-    transform: rotate(45deg);
-    background-color: #fff;
-    content: "";
+.min-height {
+    min-height: 450px;
 }
 
-.tabs-pointing > li:nth-child(1)::before {
-    left: 8.5%;
+.badge-success {
+    background-color: rgba(100,221,23 ,.5) !important;
 }
 
-.tabs-pointing > li:nth-child(2)::before {
-    left: 28.5%;
+.badge-warning {
+    background-color: #FF9800 !important;
 }
 
-.tabs-pointing > li:nth-child(3)::before {
-    left: 48.5%;
+.badge-danger {
+    background-color: #f44336 !important;
 }
 
-.tabs-pointing > li:nth-child(4)::before {
-    left: 68.5%;
+.item-notification {
+    text-decoration: none !important;
 }
 
-.tabs-pointing > li:nth-child(5)::before {
-    left: 88.5%;
+.item-notification-readed {
+    background-color: #eee;
 }
+
+.uk-list.notifications-list > li.item-notification:nth-child(n+2) {
+    margin-top: 0px !important;
+    padding-top: 0px !important;
+}
+
+.icon-notification {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: 1.5px solid #3A6073;
+    background-color: #3A6073;
+}
+
+.item-notification.item-notification-readed .icon-notification {
+    background-color: transparent !important;
+}
+
+.item-light > a {
+    color: rgba(255, 255, 255, 0.5) !important;
+}
+
+.item-light > a:hover, .item-light > a:active {
+    color: #fff !important;
+}
+
+/*=====  End of Helper´s  ======*/
+
+
+
+
+
+/*=============================================
+=            Tables            =
+=============================================*/
 
 .table-cards {
     border-collapse: separate !important;
@@ -303,6 +329,52 @@ table tfoot tr {
     border: none !important;
 }
 
+/*=====  End of Tables  ======*/
+
+
+
+
+
+/*=============================================
+=            Swichers and tabs            =
+=============================================*/
+
+.switcher-icons {
+    display: flex;
+    overflow-x: auto;
+}
+
+.switcher-icons li {
+    width: 16.6666667%;
+    align-content: center;
+    list-style: none;
+    order: 1;
+}
+
+.switcher-icons li.uk-active {
+    color: #3a6073 !important;
+    border-bottom: 2px solid #3a6073;
+}
+
+.switcher-icons li a {
+    padding: 10px 20px;
+}
+
+.profile-tab {
+    background-color: #fff;
+}
+
+/*=====  End of Swichers and tabs  ======*/
+
+
+
+
+
+
+/*=============================================
+=            Cards            =
+=============================================*/
+
 .card-default {
     background-color: #FFF;
     border: 1px solid #eee;
@@ -311,6 +383,16 @@ table tfoot tr {
 .card-default:hover {
     border: 1px solid #fafafa;
 }
+
+/*=====  End of Cards  ======*/
+
+
+
+
+
+/*=============================================
+=            CKeditor            =
+=============================================*/
 
 .ck.ck-editor__editable_inline {
     min-height: 400px;
@@ -326,50 +408,8 @@ table tfoot tr {
     z-index: 100000 !important;
 }
 
-.item-notification {
-    text-decoration: none !important;
-}
+/*=====  End of CKeditor  ======*/
 
-.item-notification-readed {
-    background-color: #eee;
-}
-
-.uk-list.notifications-list > li.item-notification:nth-child(n+2) {
-    margin-top: 0px !important;
-    padding-top: 0px !important;
-}
-
-.icon-notification {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    border: 1.5px solid #3A6073;
-    background-color: #3A6073;
-}
-
-.item-notification.item-notification-readed .icon-notification {
-    background-color: transparent !important;
-}
-
-.item-light > a {
-    color: rgba(255, 255, 255, 0.5) !important;
-}
-
-.item-light > a:hover, .item-light > a:active {
-    color: #fff !important;
-}
-
-.badge-success {
-    background-color: rgba(100,221,23 ,.5) !important;
-}
-
-.badge-warning {
-    background-color: #FF9800 !important;
-}
-
-.badge-danger {
-    background-color: #f44336 !important;
-}
 
 @media screen and (max-width: 768px) {
     .switcher-icons {
@@ -377,9 +417,6 @@ table tfoot tr {
     }
     .switcher-icons li.uk-active {
         order: 2 !important;
-    }
-    .tabs-pointing > li::before {
-        left: 48% !important;
     }
 }
 

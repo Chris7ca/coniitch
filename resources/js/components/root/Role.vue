@@ -79,7 +79,7 @@
                 }
             },
             storeRole: function(data) {
-                axios.post(route('app.roles.store'), data)
+                axios.post(route('app.root.roles.store'), data)
                 .then( role => {
                     this.dataLoaded = true;
                     EventBus.$emit('newRole', role.data);
@@ -91,7 +91,7 @@
                 });
             },
             updateRole: function(data) {
-                axios.post(route('app.roles.update', { id : this.publicId }), data)
+                axios.post(route('app.root.roles.update', { id : this.publicId }), data)
                 .then( role => {
                     this.dataLoaded = true;
                     UIkit.notification('Rol actualizado', 'success');

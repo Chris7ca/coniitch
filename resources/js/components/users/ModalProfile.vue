@@ -19,7 +19,7 @@
                             <div class="uk-flex uk-flex-column uk-flex-middle uk-margin-medium-top">
 
                                 <div class="avatar-container-light" style="width: 200px; height: 200px;">
-                                    <img :data-src="avatar" uk-img>
+                                    <img :data-src="getAvatar(profile.avatar)" uk-img>
                                 </div>
 
                                 <h5 class="uk-margin-small" v-if="dataLoaded">{{ fullName }}</h5>
@@ -31,7 +31,7 @@
 
                             </div>
 
-                            <div class="uk-text-center uk-margin-medium-top">
+                            <div class="uk-text-center uk-margin-medium-top" v-if="profile.personal_profile">
                                 <p v-if="dataLoaded"><span uk-icon="mail"></span> / {{ profile.email }}</p>
                                 <p v-if="dataLoaded"><span uk-icon="receiver"></span> / {{ profile.personal_profile.phone_number }}</p>
                             </div>
@@ -45,43 +45,49 @@
                         <div>
                             <h4>Datos personales</h4>
                             <hr class="uk-divider-small">
-                            <ul v-if="dataLoaded">
+
+                            <content-placeholders v-if="!dataLoaded">
+                                <content-placeholders-text :lines="3" />
+                            </content-placeholders>
+
+                            <ul v-if="profile.personal_profile && dataLoaded">
                                 <li><b>Sexo:</b> {{ (profile.personal_profile.gender == 'Male') ? 'Masculino' : 'Femenino' }}</li>
                                 <li><b>Edad:</b> {{ profile.personal_profile.age }}</li>
                                 <li><b>Originario:</b> {{ profile.personal_profile.state + ', ' + profile.personal_profile.country  }}</li>
                             </ul>
 
+                            <p v-if="dataLoaded && profile.personal_profile == null">No ha registrado información personal.</p>
+
+                            <h4>Información académica</h4>
+                            <hr class="uk-divider-small">
+
                             <content-placeholders v-if="!dataLoaded">
                                 <content-placeholders-text :lines="3" />
                             </content-placeholders>
 
-                            <h4>Información académica</h4>
-                            <hr class="uk-divider-small">
-                            <ul v-if="profile.academic_profile != null && dataLoaded">
+                            <ul v-if="profile.academic_profile && dataLoaded">
                                 <li><b>Carrera:</b> {{ profile.academic_profile.career }}</li>
                                 <li><b>Universidad / Instituto:</b> {{ profile.academic_profile.institute + ', ' + profile.academic_profile.faculty }}</li>
                                 <li><b>País:</b> {{ profile.academic_profile.state + ', ' + profile.academic_profile.country }}</li>
                             </ul>
 
-                            <content-placeholders v-if="!dataLoaded">
-                                <content-placeholders-text :lines="3" />
-                            </content-placeholders>
-
                             <p v-if="dataLoaded && profile.academic_profile == null">No ha registrado información académica.</p>
 
                             <h4>Información profesional</h4>
                             <hr class="uk-divider-small">
-                            <ul v-if="profile.professional_profile != null && dataLoaded">
-                                <li><b>Trabajo actual:</b> {{ profile.professional_profile.job_title }}</li>
-                                <li><b>Lugar de trabajo:</b> {{ profile.professional_profile.institute }}</li>
-                                <li><b>País:</b> {{ profile.professional_profile.state + ', ' + profile.professional_profile.country }}</li>
-                            </ul>
 
                             <content-placeholders v-if="!dataLoaded">
                                 <content-placeholders-text :lines="3" />
                             </content-placeholders>  
 
+                            <ul v-if="profile.professional_profile && dataLoaded">
+                                <li><b>Trabajo actual:</b> {{ profile.professional_profile.job_title }}</li>
+                                <li><b>Lugar de trabajo:</b> {{ profile.professional_profile.institute }}</li>
+                                <li><b>País:</b> {{ profile.professional_profile.state + ', ' + profile.professional_profile.country }}</li>
+                            </ul>
+
                             <p v-if="dataLoaded && profile.professional_profile == null">No ha registrado información profesional.</p>
+
                         </div>
                     </div>
                 </div>
@@ -109,22 +115,12 @@
         computed: {
             fullName: function () {
 
-                let firstName = this.profile.first_name;
-                let secondName = (this.profile.personal_profile.second_name) ? this.profile.personal_profile.second_name : '';
-                let lastName = this.profile.last_name;
-                let secondLastName = (this.profile.personal_profile.second_last_name) ? this.profile.personal_profile.second_last_name : '';
+                let firstName       = this.profile.first_name;
+                let secondName      = (this.profile.personal_profile) ? this.profile.personal_profile.second_name : '';
+                let lastName        = this.profile.last_name;
+                let secondLastName  = (this.profile.personal_profile) ? this.profile.personal_profile.second_last_name : '';
 
                 return firstName + ' ' + secondName + ' ' + lastName + ' ' + secondLastName;
-            },
-            avatar: function () {
-                
-                if ( this.profile.avatar && this.profile.avatar.startsWith('https') ) {
-                    return this.profile.avatar;
-                } else if ( this.profile.avatar && !this.profile.avatar.startsWith('https') ) {
-                    return this.profile.avatar.replace('public','/storage');
-                } else {
-                    return '/images/avatar.png';
-                }
             },
             methodToRegister: function () {
 
@@ -157,7 +153,7 @@
 
                 this.dataLoaded = false;
 
-                axios.post(route('app.profiles.show', { id : id }))
+                axios.post(route('app.users.profiles.show', { id : id }))
                 .then( response => {
                     this.dataLoaded = true;
                     this.profile = response.data.profile;

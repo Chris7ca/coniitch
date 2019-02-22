@@ -7,7 +7,7 @@ Vue.use(VueContentPlaceholders);
 Vue.component('users',              require('./components/root/Users.vue').default);
 Vue.component('user',               require('./components/root/User.vue').default);
 Vue.component('users-statistics',   require('./components/root/UsersStatistics.vue').default);
-Vue.component('modal-profile',      require('./components/congressman/ModalProfile.vue').default);
+Vue.component('modal-profile',      require('./components/users/ModalProfile.vue').default);
 
 const app = new Vue({
     el: '#app',

@@ -5,13 +5,7 @@
         <nav class="uk-navbar-container uk-navbar-transparent uk-margin" uk-navbar>
 
             <div class="nav-overlay uk-navbar-left">
-                <ul class="uk-navbar-nav">
-                    <li v-if="pages >= 2"><a role="button" @click="getPage(firstPage)" uk-icon="icon: chevron-double-left"></a></li>
-                    <li v-for="(page, i) in pages" :key="i">
-                        <a role="button" :class="{ 'uk-text-bold uk-text-primary' : (currentPage  == page) }" @click="getPage(page)">{{ page }}</a>
-                    </li>
-                    <li v-if="pages >= 2"><a role="button" @click="getPage(lastPage)" uk-icon="icon: chevron-double-right"></a></li>
-                </ul>
+                <pagination :url="route('app.root.users.index')" @updateItems="updateItems" @updateLoader="updateLoader"></pagination>
             </div>
 
             <div class="nav-overlay uk-navbar-right">
@@ -51,17 +45,21 @@
 
                 <tr v-for="(user, index) in users" :key="index" v-else>
                     <td class="uk-text-center">
-                        <img :src="avatar(user.avatar)" class="avatar-small uk-preserve-width">
+                        <img :src="getAvatar(user.avatar)" class="avatar-small uk-preserve-width">
                     </td>
-                    <td>{{ fullName(user) }}</td>
-                    <td>{{ user.email }}</td>
+                    <td>
+                        <a href="#modal-profile" class="uk-button button-text uk-padding-remove" @click="showProfile(user.public_id)" uk-toggle>{{ fullName(user) }}</a>
+                    </td>
+                    <td>
+                        {{ user.email }}
+                    </td>
                     <td>
                         <small v-for="(role, i) in user.roles" class="uk-text-primary" :key="i"> {{ role.display_name }}.</small>
                     </td>
                     <td>
                         <ul class="uk-iconnav uk-flex-center">
                             <li v-if="user.has_personal_profile">
-                                <a href="#modal-profile" @click="showProfile(user.public_id)" uk-icon="user" uk-toggle></a>
+                                <a ></a>
                             </li>
                             <li v-if="user.email_verified_at == null">
                                 <span class="uk-text-warning" uk-icon="warning" uk-tooltip="Usuario no verificado"></span>
@@ -99,18 +97,19 @@
 
                 <tr v-for="(user, index) in foundUsers" :key="index" v-else>
                     <td class="uk-text-center">
-                        <img :src="avatar(user.avatar)" class="avatar-small uk-preserve-width">
+                        <img :src="getAvatar(user.avatar)" class="avatar-small uk-preserve-width">
                     </td>
-                    <td>{{ fullName(user) }}</td>
-                    <td>{{ user.email }}</td>
+                    <td>
+                        <a href="#modal-profile" class="uk-button button-text uk-padding-remove" @click="showProfile(user.public_id)" uk-toggle>{{ fullName(user) }}</a>
+                    </td>
+                    <td>
+                        {{ user.email }}
+                    </td>
                     <td>
                         <small v-for="(role, i) in user.roles" class="uk-text-primary" :key="i"> {{ role.display_name }}.</small>
                     </td>
                     <td>
                         <ul class="uk-iconnav uk-flex uk-flex-center">
-                             <li v-if="user.has_personal_profile">
-                                <a href="#modal-profile" @click="showProfile(user.public_id)" uk-icon="user" uk-toggle></a>
-                            </li>
                             <li v-if="user.email_verified_at == null">
                                 <span class="uk-text-warning" uk-icon="warning" uk-tooltip="Usuario no verificado"></span>
                             </li>
@@ -132,18 +131,16 @@
 <script>
     
     import { EventBus } from './../../bus.js';
+    import Pagination from './../helpers/Pagination.vue';
 
     export default {
+        components:{
+            Pagination
+        },
         data() {
             return {
                 dataLoaded: false,
                 users: [],
-                perPage: 0,
-                total: 0,
-                pages: 0,
-                firstPage: 1,
-                lastPage: 0,
-                currentPage: 1,
                 foundUsers: [],
                 searchTableActive: false,
                 querySearch: ''
@@ -156,7 +153,7 @@
 
                     this.dataLoaded = false;
                     
-                    axios.post(route('app.users.search', { search : val }))
+                    axios.post(route('app.root.users.search', { search : val }))
                     .then( users => {
                         this.foundUsers = users.data;
                         this.searchTableActive = true;
@@ -182,44 +179,25 @@
 
                 return user.first_name + ' ' + secondName + ' ' + user.last_name + ' ' + secondLastName;
             },
-            avatar: function (avatar) {
-
-                if (avatar && avatar.startsWith('https')) {
-                    return avatar;
-                } else if (avatar && !avatar.startsWith('https')) {
-                    return avatar.replace('public','/storage');
-                } else {
-                    return '/images/avatar.png';
-                }
+            updateItems: function (users) {
+                this.users = users;
             },
-            getPage: function(page) {
-
-                this.dataLoaded = false;
-
-                axios.post(route('app.users.index', { page: page }))
-                .then( users => {
-                    this.dataLoaded = true;
-                    this.currentPage = users.data.current_page;
-                    this.users = users.data.data;
-                })
-                .catch( error => {
-                    this.dataLoaded = true;
-                    showAxiosErrorMessage(error);
-                });
+            updateLoader: function (status) {
+                this.dataLoaded = !status;
             },
             showProfile: function (id) {
                 EventBus.$emit('showProfile', id);
             },
             editUser: function (id) {
 
-                let url = route('app.users.edit', { id : id });
+                let url = route('app.root.users.edit', { id : id });
 
                 EventBus.$emit('editUser', url);
             },
             deleteUser: function (id) {
 
                 let self = this;
-                let url = route('app.users.delete', { id : id });
+                let url = route('app.root.users.delete', { id : id });
 
                 UIkit.modal.confirm('¿Estás seguro que deseas eliminar este usuario?').then(function () {
                     axios.delete(url)
@@ -240,20 +218,6 @@
             }
         },
         created() {
-
-            axios.post(route('app.users.index'))
-            .then( users => {
-                this.dataLoaded = true;
-                this.users = users.data.data;
-                this.perPage = users.data.per_page;
-                this.total = users.data.total;
-                this.pages = (Math.ceil(this.total / this.perPage) <= 1) ? 0 : Math.ceil(this.total / this.perPage);
-                this.lastPage = this.pages;
-            })
-            .catch( error => {
-                this.dataLoaded = true;
-                showAxiosErrorMessage(error);
-            });
 
             EventBus.$on('userUpdated', (user) => {
 

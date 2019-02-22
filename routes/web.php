@@ -11,15 +11,15 @@
 |
 */
 
-Route::get('/',             'SiteController@index')->name('site.index');
-Route::get('contacto',      'SiteController@contact')->name('site.contact');
-Route::get('convocatoria',  'SiteController@call')->name('site.call');
-Route::get('costos',        'SiteController@pricing')->name('site.pricing');
-Route::get('directorio',    'SiteController@directory')->name('site.directory');
-Route::get('nosotros',      'SiteController@aboutus')->name('site.aboutus');
-Route::get('privacidad',    'SiteController@privacy')->name('site.privacy');
-Route::get('programa',      'SiteController@programme')->name('site.programme');
-Route::get('terminos',      'SiteController@terms')->name('site.terms');
+Route::get('/',                                 'SiteController@index')->name('site.index');
+Route::get('contacto',                          'SiteController@contact')->name('site.contact');
+Route::get('convocatoria',                      'SiteController@call')->name('site.call');
+Route::get('costos',                            'SiteController@pricing')->name('site.pricing');
+Route::get('directorio',                        'SiteController@directory')->name('site.directory');
+Route::get('nosotros',                          'SiteController@aboutus')->name('site.aboutus');
+Route::get('privacidad',                        'SiteController@privacy')->name('site.privacy');
+Route::get('programa',                          'SiteController@programme')->name('site.programme');
+Route::get('terminos',                          'SiteController@terms')->name('site.terms');
 
 
 /**
@@ -44,3 +44,10 @@ Route::post('password/reset',                   'Auth\ResetPasswordController@re
 Route::get('correo/verificacion',               'Auth\VerificationController@show')->name('verification.notice');
 Route::get('correo/verificacion/{token}',       'Auth\VerificationController@verify')->name('verification.verify');
 Route::get('correo/reenviar',                   'Auth\VerificationController@resend')->name('verification.resend');
+
+
+/**
+ * App Route
+ */
+
+Route::get('app',                               'SiteController@app')->name('app.index');

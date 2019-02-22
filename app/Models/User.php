@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use App\Traits\HashId;
 use App\Traits\VerifyRoles;
 use App\Notifications\VerifyEmail;
@@ -20,6 +21,8 @@ class User extends Authenticatable implements MustVerifyEmail
 
     protected $appends = ['public_id'];
 
+    protected $dates = ['created_at','updated_at'];
+
     protected $casts = [
         'has_personal_profile' => 'boolean',
         'has_academic_profile' => 'boolean',
@@ -30,8 +33,18 @@ class User extends Authenticatable implements MustVerifyEmail
      * Mutators
      */
 
+    public function getCreatedAgoAttribute()
+    {
+        $date = new Carbon($this->created_at);
+        
+        return $date->diffForHumans();
+    }
 
-
+    public function reference()
+    {
+        return str_pad($this->id, (7 - strlen($this->id)), '0', STR_PAD_RIGHT);
+    }
+    
     /**
      * Relationships
      */
@@ -62,6 +75,11 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasOne('App\Models\ProfessionalProfile');
     }
 
+    public function invoicing_data()
+    {
+        return $this->hasOne('App\Models\InvoicingData');
+    }
+
     public function emergency_contact()
     {
         return $this->hasOne('App\Models\EmergencyContact');
@@ -77,6 +95,11 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->belongsToMany('App\Models\Work', 'revisors')
         ->withPivot('status')
         ->as('confirmation');
+    }
+
+    public function shopping_cart()
+    {
+        return $this->hasMany('App\Models\ShoppingCart');
     }
 
     /**

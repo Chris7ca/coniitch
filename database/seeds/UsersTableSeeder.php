@@ -43,7 +43,7 @@ class UsersTableSeeder extends Seeder
                 'password' => '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm', // secret
             ]);
 
-            $unverified_users->roles()->attach(6);
+            $unverified_users->roles()->attach([6,10]);
 
         }
 
@@ -68,7 +68,7 @@ class UsersTableSeeder extends Seeder
 
         }
 
-        for ($i=0; $i < 5; $i++) { # congresistas no estudiantes
+        for ($i=0; $i < 5; $i++) { # profesionistas
 
             $bussinesman = User::create([
                 'first_name' => $faker->name,
@@ -87,7 +87,7 @@ class UsersTableSeeder extends Seeder
             $bussinesman->emergency_contact()->save(factory(App\Models\EmergencyContact::class)->make());
             $bussinesman->professional_profile()->save(factory(App\Models\ProfessionalProfile::class)->make());
             $bussinesman->work()->save(factory(App\Models\Work::class)->make());
-            $bussinesman->roles()->attach(6);
+            $bussinesman->roles()->attach([6,10]);
             
         }
 
