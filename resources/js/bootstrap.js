@@ -95,7 +95,7 @@ Vue.mixin({
     }
 });
 
-Vue.component('widget-notifications',   require('./components/helpers/WidgetNotification.vue').default);
+Vue.component('widget-notifications',   require('./components/users/WidgetNotification.vue').default);
 
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
