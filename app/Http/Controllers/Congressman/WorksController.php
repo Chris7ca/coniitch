@@ -116,7 +116,7 @@ class WorksController extends Controller
                 
                 $users_notifiables = getUsersByRole('admin');
                 
-                Mail::to('trabajos@coniitch.mx')->queue(new NewWorkRegisterMail($work));
+                Mail::to('trabajos.coniitch@uaem.mx')->queue(new NewWorkRegisterMail($work));
                 Notification::send($users_notifiables, new NewWorkRegister(Auth()->user(), $work));
             }
 
