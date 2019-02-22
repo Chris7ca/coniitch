@@ -61,7 +61,7 @@
                 let data = this.getData();
                 this.dataLoaded = false;
 
-                axios.post(route('app.emergency.contact.update'), data)
+                axios.post(route('app.congressman.emergency.contact.update'), data)
                 .then( response => {
                     this.dataLoaded = true;
                     UIkit.notification(response.data.message, 'success');
@@ -74,7 +74,7 @@
         },
         created() {
 
-            axios.post(route('app.emergency.contact.edit'))
+            axios.post(route('app.congressman.emergency.contact.edit'))
             .then( information => {
                 let data = information.data;
                 this.relationship = (data.emergency_contact) ? data.emergency_contact.relationship : ''; 
