@@ -12,13 +12,14 @@ class ProfessionalProfileController extends Controller
     
     public function edit()
     {
-        $user = User::with('professional_profile')->where('id', Auth()->user()->id)->first();
+        $user = User::select('id')->with('professional_profile')->where('id', Auth()->user()->id)->first();
         return $user;
     }
 
     public function update(ProfessionalProfile $request)
     {
-        $user = User::with('professional_profile')->where('id', Auth()->user()->id)->first();
+        $user = User::select(['id'])
+            ->with('professional_profile')->where('id', Auth()->user()->id)->first();
 
         if ($user->professional_profile) {
             $user->professional_profile->job_title = $request->job_title;

@@ -13,13 +13,14 @@ class EmergencyContactController extends Controller
     
     public function edit()
     {
-        $user = User::with('emergency_contact')->where('id', Auth()->user()->id)->first();
+        $user = User::select('id')->with('emergency_contact')->where('id', Auth()->user()->id)->first();
         return $user;
     }
 
     public function update(EmergencyContactRequest $request)
     {
-        $user = User::with('emergency_contact')->where('id', Auth()->user()->id)->first();
+        $user = User::select(['id','has_emergency_contact'])
+            ->with('emergency_contact')->where('id', Auth()->user()->id)->first();
 
         if($user->emergency_contact){
             $user->relationship = $request->relationship;
