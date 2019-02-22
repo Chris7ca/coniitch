@@ -17,16 +17,18 @@ class HasProfiles
     {
 
         $exept_routes = [
-            'app.profiles.view',
-            'app.profiles.personal.edit',
-            'app.profiles.personal.update',
-            'app.profiles.academic.edit',
-            'app.profiles.academic.update',
-            'app.profiles.professional.edit',
-            'app.profiles.professional.update',
-            'app.emergency.contact.edit',
-            'app.emergency.contact.update',
-            'app.user.password.update'
+            'app.users.profile.edit',
+            'app.users.profile.personal.edit',
+            'app.users.profile.personal.update',
+            'app.congressman.profile.academic.edit',
+            'app.congressman.profile.academic.update',
+            'app.congressman.profile.professional.edit',
+            'app.congressman.profile.professional.update',
+            'app.congressman.emergency.contact.edit',
+            'app.congressman.emergency.contact.update',
+            'app.congressman.invoicing.edit',
+            'app.congressman.invoicing.update',
+            'app.users.password.update'
         ];
 
         $has_profiles = (Auth()->user()->has_personal_profile 
@@ -35,7 +37,7 @@ class HasProfiles
 
         if (!in_array($request->route()->getName(), $exept_routes) && !$has_profiles) {
             
-            return redirect('app/perfil/editar')
+            return redirect('app/usuarios/perfiles/editar')
                     ->with('doesntHaveProfiles', 'Por favor, antes de continuar, completa la información correspondiente a cada uno de los perfiles que a continuación se muestran.');
         }
 
