@@ -30,6 +30,11 @@ trait VerifyRoles
         return Auth()->user()->keyRoles->contains('key', 'revisor');
     }
 
+    public function isFinances()
+    {
+        return Auth()->user()->keyRoles->contains('key', 'finances');
+    }
+
     public function hasRole($role)
     {
 
