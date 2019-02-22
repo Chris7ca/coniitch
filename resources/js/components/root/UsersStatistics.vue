@@ -63,7 +63,7 @@
         },
         created () {
 
-            axios.post(route('app.users.statistics'))
+            axios.post(route('app.root.users.statistics'))
             .then( response => {
                 this.dataLoaded = true;
                 this.total = response.data.total;
