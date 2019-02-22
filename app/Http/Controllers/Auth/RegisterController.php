@@ -6,8 +6,12 @@ use App\Models\Role;
 use App\Models\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
+use App\Notifications\RegisteredUser;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use App\Mail\RegisteredUser as RegisteredUserMail;
 
 class RegisterController extends Controller
 {
@@ -77,7 +81,7 @@ class RegisterController extends Controller
     {
         $name = explode(' ', $data['name']);
 
-        $congressma_role = Role::select('id')->where('key','congressman')->first();
+        $roles = Role::select('id')->whereIn('key', ['congressman','professional'])->get();
 
         $user =  User::create([
             'first_name' => $name[0],
@@ -87,7 +91,12 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
         ]);
 
-        $user->roles()->attach($congressma_role);
+        $user->roles()->attach($roles);
+
+        $notifiables_users = getUsersByRole('finances'); 
+
+        Notification::send($notifiables_users, new RegisteredUser($user));
+        Mail::to('finanzas.coniitch@uaem.mx')->queue(new RegisteredUserMail($user));
 
         return $user;
 
