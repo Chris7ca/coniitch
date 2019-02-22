@@ -101,7 +101,7 @@
                 data.append('avatar', document.getElementById('avatar-input').files[0]);
                 this.uploadingAvatar = true;
 
-                axios.post(route('app.profiles.avatar.update'), data, {
+                axios.post(route('app.users.avatar.update'), data, {
                     headers: {
                         'Content-Type': 'multipart/form-data'
                     }

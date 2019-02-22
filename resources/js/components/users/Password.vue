@@ -75,7 +75,7 @@
                 let data = this.getData();
                 this.dataLoaded = false;
 
-                axios.post(route('app.user.password.update'), data)
+                axios.post(route('app.users.password.update'), data)
                 .then( response => {
                     this.dataLoaded = true;
                     UIkit.notification(response.data.message, 'success');
