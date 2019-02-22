@@ -116,7 +116,7 @@
             },
             storeUser: function(data) {
                 
-                axios.post(route('app.users.store'), data)
+                axios.post(route('app.root.users.store'), data)
                 .then( response => {
                     this.dataLoaded = true;
                     UIkit.notification(response.data.message, 'success');
@@ -128,7 +128,7 @@
             },
             updateUser: function(data) {
 
-                let url = route('app.users.update', { id : this.publicId });
+                let url = route('app.root.users.update', { id : this.publicId });
 
                 axios.post(url, data)
                 .then( user => {
@@ -144,7 +144,7 @@
         },
         created() {
             
-            axios.post(route('app.roles.simple.search'))
+            axios.post(route('app.root.roles.simple.search'))
             .then( roles => {
                 roles.data.forEach(role => {
                     this.roles.push({ name: role.display_name, value: role.public_id });
