@@ -57,13 +57,13 @@
         methods: {
             editRole: function (index) {
 
-                let url = route('app.roles.edit', { id : this.roles[index].public_id });
+                let url = route('app.root.roles.edit', { id : this.roles[index].public_id });
                 EventBus.$emit('editRole', index, url);
             },
             deleteRole: function (index) {
                 
                 let self = this;
-                let url = route('app.roles.delete', { id : this.roles[index].public_id });
+                let url = route('app.root.roles.delete', { id : this.roles[index].public_id });
                 
                 UIkit.modal.confirm('¿Estás seguro que deseas eliminar este rol?').then(function () {
                     axios.delete(url)
@@ -79,7 +79,7 @@
         },
         created() {
 
-            axios.post(route('app.roles.index'))
+            axios.post(route('app.root.roles.index'))
             .then( roles => {
                 this.dataLoaded = true;
                 this.roles = roles.data;
