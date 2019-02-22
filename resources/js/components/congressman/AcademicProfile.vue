@@ -64,12 +64,24 @@
                 faculty: '',
                 country: '',
                 state: '',
-                document: null
+                document: null,
+                is_student: null,
             }
         },
         computed: {
             hasAttachDocument: function () {
-                return (this.document !=  null) ? 'Ya has adjuntado un documento' : 'Aún no adjuntas ningun documento'; 
+                if ( this.document == null ) {
+                    return 'No has adjuntado ningún documento';
+                } 
+                else if ( this.document && this.is_student == null ) {
+                    return 'Se está revisando tu estatus académico';
+                }
+                else if ( this.document && this.is_student == false ) {
+                    return 'No se ha podido comprobar la validez del documento';
+                } 
+                else {
+                    return 'Documento válidado';
+                }
             }
         },
         methods: {
@@ -92,7 +104,7 @@
                 let data = this.getData();
                 this.dataLoaded = false;
 
-                axios.post(route('app.profiles.academic.update'), data, {
+                axios.post(route('app.congressman.profile.academic.update'), data, {
                     headers: {
                         'Content-Type': 'multipart/form-data'
                     }
@@ -108,7 +120,7 @@
             }
         },
         created() {
-            axios.post(route('app.profiles.academic.edit'))
+            axios.post(route('app.congressman.profile.academic.edit'))
             .then( information => {
                 let data =          information.data;
                 this.career =       (data.academic_profile) ? data.academic_profile.career : '';
@@ -117,6 +129,7 @@
                 this.country =      (data.academic_profile) ? data.academic_profile.country : '';
                 this.state =        (data.academic_profile) ? data.academic_profile.state : '';
                 this.document =     (data.academic_profile) ? data.academic_profile.document : null;
+                this.is_student=    (data.academic_profile) ? data.academic_profile.is_student : null;
                 this.dataLoaded =   true;
             })
             .catch( error => {
