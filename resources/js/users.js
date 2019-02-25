@@ -9,6 +9,9 @@ Vue.component('user',               require('./components/root/User.vue').defaul
 Vue.component('users-statistics',   require('./components/root/UsersStatistics.vue').default);
 Vue.component('modal-profile',      require('./components/users/ModalProfile.vue').default);
 
+Vue.component('modal-documents',    require('./components/root/Documents.vue').default);
+Vue.component('modal-document',     require('./components/root/Document.vue').default);
+
 const app = new Vue({
     el: '#app',
     methods:{
