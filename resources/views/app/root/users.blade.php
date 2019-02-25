@@ -42,7 +42,13 @@
 @endsection
 
 @section('modals')
+    
     <modal-profile></modal-profile>
+    
+    <modal-documents></modal-documents>
+
+    <modal-document></modal-document>
+
 @endsection
 
 @push('js')

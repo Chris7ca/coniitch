@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Users;
 
+use App\Models\Document;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -14,6 +15,13 @@ class UsersController extends Controller
         Auth()->user()->save();
         
         return response()->json(['message' => 'Contraseña actualizada']);
+    }
+
+    public function documents()
+    {
+        $documents = Document::where('user_id', Auth()->user()->id)->get();
+
+        return view('app.documents', compact('documents'));
     }
 
 }

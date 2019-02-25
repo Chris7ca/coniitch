@@ -2,7 +2,7 @@
     
     <div>
 
-        <table class="uk-table uk-table-divider uk-table-middle uk-table-resposive table-cards">
+        <table class="uk-table uk-table-divider uk-table-middle uk-table-resposive">
 
             <thead>
                 <tr>

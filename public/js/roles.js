@@ -3477,7 +3477,7 @@ var render = function() {
       "table",
       {
         staticClass:
-          "uk-table uk-table-divider uk-table-middle uk-table-resposive table-cards"
+          "uk-table uk-table-divider uk-table-middle uk-table-resposive"
       },
       [
         _vm._m(0),
