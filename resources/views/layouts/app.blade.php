@@ -113,6 +113,9 @@
                                     <li class="uk-visible@m item-light">
                                         <a href="{{ route('app.congressman.payments.view') }}">Pagos</a>
                                     </li>
+                                    <li class="uk-visible@m item-light">
+                                        <a href="{{ route('app.users.documents.view') }}">Documentos</a>
+                                    </li>
                                 
                                 @elseif ( Auth::user()->isRevisor() )
                                     <li class="uk-visible@m item-light">
@@ -232,6 +235,9 @@
                                     </li>
                                     <li>
                                         <a href="{{ route('app.congressman.payments.view') }}">Pagos</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ route('app.users.documents.view') }}">Documentos</a>
                                     </li>
 
                                 @elseif ( Auth::user()->isRevisor() )
