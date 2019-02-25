@@ -26,3 +26,9 @@ Route::post('perfiles/personal/actualizar',                         'Users\Perso
  */
 
 Route::post('perfiles/contrasena/actualizar',                       'Users\UsersController@password')->name('password.update');
+
+/**
+ * Documentos
+ */
+
+Route::get('documentos',                                            'Users\UsersController@documents')->name('documents.view');
