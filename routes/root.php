@@ -25,3 +25,13 @@ Route::post('roles/guardar',                                        'Root\RolesC
 Route::post('roles/{id}/editar',                                    'Root\RolesController@edit')->name('roles.edit');
 Route::post('roles/{id}/update',                                    'Root\RolesController@update')->name('roles.update');
 Route::delete('roles/{id}/eliminar',                                'Root\RolesController@delete')->name('roles.delete');
+
+/**
+ * Documentos
+ */
+
+Route::get('documentos',                                            'Root\DocumentsController@view')->name('documents.view');
+Route::post('documentos/usuario/{id}',                              'Root\DocumentsController@user')->name('documents.user');
+Route::post('documentos/usuario/{id}/nuevo',                        'Root\DocumentsController@add')->name('documents.add');
+Route::post('documentos/usuario/{id}/actualizar/{ID}',              'Root\DocumentsController@update')->name('documents.update');
+Route::delete('documentos/usuario/{id}/eliminar/{ID}',              'Root\DocumentsController@delete')->name('documents.delete');
