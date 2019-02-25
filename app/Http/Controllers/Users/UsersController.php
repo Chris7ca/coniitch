@@ -21,7 +21,7 @@ class UsersController extends Controller
     {
         $documents = Document::where('user_id', Auth()->user()->id)->get();
 
-        return view('app.congressman.documents', compact('documents'));
+        return view('app.documents', compact('documents'));
     }
 
 }
