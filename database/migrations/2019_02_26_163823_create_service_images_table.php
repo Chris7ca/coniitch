@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAssignedServicesTable extends Migration
+class CreateServiceImagesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,10 @@ class CreateAssignedServicesTable extends Migration
      */
     public function up()
     {
-        Schema::create('assigned_services', function (Blueprint $table) {
+        Schema::create('service_images', function (Blueprint $table) {
+            $table->increments('id');
             $table->integer('service_id')->unsigned();
-            $table->integer('role_id')->unsigned();
+            $table->string('file');
         });
     }
 
@@ -26,6 +27,6 @@ class CreateAssignedServicesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('assigned_services');
+        Schema::dropIfExists('service_images');
     }
 }
