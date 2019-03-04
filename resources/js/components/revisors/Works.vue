@@ -49,7 +49,7 @@
 
                     <ul class="uk-iconnav uk-flex uk-flex-center" v-if="!loader">
                         <li>
-                            <a :href="route('app.announcement.works.show', { id : work.public_id })" uk-icon="expand" uk-tooltip="Ver trabajo"></a>
+                            <a :href="route('app.congressman.announcement.works.show', { id : work.public_id })" uk-icon="expand" uk-tooltip="Ver trabajo"></a>
                         </li>
                         <li v-if="work.confirmation.status == null">
                             <a role="button" @click="responseRequest(work.public_id, true)" uk-icon="check" uk-tooltip="Aceptar trabajo"></a>
