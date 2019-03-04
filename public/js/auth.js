@@ -11705,14 +11705,26 @@ var app = new Vue({
 
 /***/ }),
 
+/***/ "./resources/less/site/site.less":
+/*!***************************************!*\
+  !*** ./resources/less/site/site.less ***!
+  \***************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
 /***/ 0:
-/*!************************************!*\
-  !*** multi ./resources/js/auth.js ***!
-  \************************************/
+/*!********************************************************************!*\
+  !*** multi ./resources/js/auth.js ./resources/less/site/site.less ***!
+  \********************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\laragon\www\coniitch\resources\js\auth.js */"./resources/js/auth.js");
+__webpack_require__(/*! C:\laragon\www\coniitch\resources\js\auth.js */"./resources/js/auth.js");
+module.exports = __webpack_require__(/*! C:\laragon\www\coniitch\resources\less\site\site.less */"./resources/less/site/site.less");
 
 
 /***/ })

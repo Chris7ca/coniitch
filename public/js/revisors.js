@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 9);
+/******/ 	return __webpack_require__(__webpack_require__.s = 8);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -3237,7 +3237,7 @@ var render = function() {
                               _c("a", {
                                 attrs: {
                                   href: _vm.route(
-                                    "app.announcement.works.show",
+                                    "app.congressman.announcement.works.show",
                                     { id: work.public_id }
                                   ),
                                   "uk-icon": "expand",
@@ -15119,7 +15119,7 @@ var app = new Vue({
 
 /***/ }),
 
-/***/ 9:
+/***/ 8:
 /*!****************************************!*\
   !*** multi ./resources/js/revisors.js ***!
   \****************************************/

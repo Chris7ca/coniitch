@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 11);
+/******/ 	return __webpack_require__(__webpack_require__.s = 10);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -1828,7 +1828,13 @@ __webpack_require__.r(__webpack_exports__);
     total: function total() {
       var total = 0;
       this.cart.map(function (item) {
-        total += item.service.discount ? parseFloat(item.service.price - item.service.discount.discount) : parseFloat(item.service.price);
+        total += parseFloat(item.service.price);
+
+        if (item.service.discounts.length > 0) {
+          item.service.discounts.forEach(function (discount) {
+            total -= discount.discount;
+          });
+        }
       });
       return total.toFixed(2);
     }
@@ -1850,6 +1856,17 @@ __webpack_require__.r(__webpack_exports__);
         _this.loader = false;
         showAxiosErrorMessage(error);
       });
+    },
+    getPrice: function getPrice(service) {
+      var price = service.price;
+
+      if (service.discounts.length > 0) {
+        service.discounts.forEach(function (discount) {
+          price -= discount.discount;
+        });
+      }
+
+      return price.toFixed(2);
     }
   },
   created: function created() {
@@ -2034,6 +2051,26 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -2050,6 +2087,17 @@ __webpack_require__.r(__webpack_exports__);
       var array = end_date.substring(0, 10).split('-');
       var date = new Date(array[0], array[1] - 1, array[2], 23, 59, 59);
       return (date.getTime() - now.getTime()) / 1000 / 60 / 60 / 24;
+    },
+    getPrice: function getPrice(service) {
+      var price = service.price;
+
+      if (service.discounts.length > 0) {
+        service.discounts.forEach(function (discount) {
+          price -= discount.discount;
+        });
+      }
+
+      return "$ ".concat(price.toFixed(2), " MXN");
     },
     existsInCart: function existsInCart(service) {
       return this.cart.find(function (item) {
@@ -2904,15 +2952,8 @@ var render = function() {
                       _c("div", { staticClass: "uk-text-right" }, [
                         _vm._v(
                           "\n                    $ " +
-                            _vm._s(
-                              item.service.discount
-                                ? (
-                                    item.service.price -
-                                    item.service.discount.discount
-                                  ).toFixed(2)
-                                : item.service.price.toFixed(2)
-                            ) +
-                            " \n                    "
+                            _vm._s(_vm.getPrice(item.service)) +
+                            "\n                    "
                         ),
                         _c("a", {
                           attrs: {
@@ -3041,105 +3082,182 @@ var render = function() {
             _c("p", [_vm._v(_vm._s(service.details))]),
             _vm._v(" "),
             _c("ul", { staticClass: "uk-list  uk-margin-medium-top" }, [
-              service.discount
-                ? _c("li", [
-                    _c("span", {
-                      staticClass: "uk-margin-small-right",
-                      attrs: { "uk-icon": "info" }
-                    }),
-                    _vm._v(" "),
-                    _c("b", [_vm._v(_vm._s(service.discount.name))]),
-                    _vm._v(
-                      ": " +
-                        _vm._s(service.discount.details) +
-                        "\n                "
-                    )
-                  ])
-                : _vm._e(),
-              _vm._v(" "),
-              service.discount && _vm.diffInDays(service.discount.end_date) > 7
-                ? _c("li", [
-                    _c("span", {
-                      staticClass: "uk-margin-small-right",
-                      attrs: { "uk-icon": "calendar" }
-                    }),
-                    _vm._v(
-                      " Válido hasta el " +
-                        _vm._s(service.discount.end_date) +
-                        "\n                "
-                    )
-                  ])
-                : _vm._e(),
-              _vm._v(" "),
-              service.discount &&
-              _vm.diffInDays(service.discount.end_date) <= 7 &&
-              _vm.diffInDays(service.discount.end_date) >= 1
-                ? _c("li", { staticClass: "uk-text-warning" }, [
-                    _c("span", {
-                      staticClass: "uk-margin-small-right",
-                      attrs: { "uk-icon": "calendar" }
-                    }),
-                    _vm._v(
-                      " Solo quedan " +
-                        _vm._s(
-                          Math.ceil(_vm.diffInDays(service.discount.end_date))
-                        ) +
-                        " días de precio especial\n                "
-                    )
-                  ])
-                : _vm._e(),
-              _vm._v(" "),
-              service.discount && _vm.diffInDays(service.discount.end_date) < 1
-                ? _c("li", { staticClass: "uk-text-danger" }, [
-                    _c("span", {
-                      staticClass: "uk-margin-small-right",
-                      attrs: { "uk-icon": "calendar" }
-                    }),
-                    _vm._v(" Solo quedan \n                    "),
-                    _c(
-                      "b",
-                      {
-                        attrs: {
-                          "uk-countdown": "date: " + service.discount.end_date
-                        }
-                      },
-                      [
-                        _c("span", { staticClass: "uk-countdown-hours" }),
-                        _vm._v(" horas,\n                        "),
-                        _c("span", { staticClass: "uk-countdown-minutes" }),
-                        _vm._v(" minutos,\n                        "),
-                        _c("span", { staticClass: "uk-countdown-seconds" }),
-                        _vm._v(" segundos\n                    ")
-                      ]
-                    )
-                  ])
-                : _vm._e(),
-              _vm._v(" "),
               _c("li", [
                 _c("span", {
                   staticClass: "uk-margin-small-right",
                   attrs: { "uk-icon": "tag" }
                 }),
+                _vm._v(" "),
+                _c("b", [_vm._v(_vm._s(_vm.getPrice(service)))]),
                 _vm._v(
-                  " $ " +
-                    _vm._s(
-                      service.discount
-                        ? (service.price - service.discount.discount).toFixed(2)
-                        : service.price.toFixed(2)
-                    ) +
-                    " MXN\n                    "
-                ),
-                service.discount
-                  ? _c("i", { staticClass: "uk-text-muted" }, [
-                      _vm._v(
-                        ", precio regular de $ " +
-                          _vm._s(service.price.toFixed(2))
-                      )
-                    ])
-                  : _vm._e()
+                  _vm._s(
+                    service.discounts.length > 0
+                      ? ", antes $ " + service.price.toFixed(2) + " MXN"
+                      : ""
+                  ) + "\n                "
+                )
               ]),
               _vm._v(" "),
-              _vm._m(0, true)
+              _vm._m(0, true),
+              _vm._v(" "),
+              _c("li", [
+                _c("span", {
+                  staticClass: "uk-margin-small-right",
+                  attrs: { "uk-icon": "info" }
+                }),
+                _vm._v(" "),
+                _c(
+                  "a",
+                  { staticClass: "uk-link-reset", attrs: { role: "button" } },
+                  [_vm._v("Promociones")]
+                ),
+                _vm._v(" "),
+                _c("div", { attrs: { "uk-dropdown": "" } }, [
+                  _c(
+                    "ul",
+                    {
+                      staticClass: "uk-list uk-list-divider uk-padding-remove"
+                    },
+                    _vm._l(service.discounts, function(discount) {
+                      return _c("li", { key: discount.public_id }, [
+                        _c("h6", { staticClass: "uk-margin-remove" }, [
+                          _vm._v(_vm._s(discount.name))
+                        ]),
+                        _vm._v(" "),
+                        _c("small", [
+                          _vm._v(
+                            " - $ " +
+                              _vm._s(discount.discount.toFixed(2)) +
+                              " MXN"
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _vm.diffInDays(discount.end_date) > 7
+                          ? _c("p", { staticClass: "uk-text-small" }, [
+                              _vm._v(
+                                "\n                                    Válido hasta el " +
+                                  _vm._s(discount.end_date) +
+                                  "\n                                "
+                              )
+                            ])
+                          : _vm._e(),
+                        _vm._v(" "),
+                        _vm.diffInDays(discount.end_date) <= 7 &&
+                        _vm.diffInDays(discount.end_date) >= 1
+                          ? _c(
+                              "p",
+                              { staticClass: "uk-text-warning uk-text-small" },
+                              [
+                                _vm._v(
+                                  "\n                                    Solo quedan " +
+                                    _vm._s(
+                                      Math.ceil(
+                                        _vm.diffInDays(discount.end_date)
+                                      )
+                                    ) +
+                                    " días de precio especial\n                                "
+                                )
+                              ]
+                            )
+                          : _vm._e(),
+                        _vm._v(" "),
+                        _vm.diffInDays(discount.end_date) < 1
+                          ? _c(
+                              "p",
+                              { staticClass: "uk-text-danger uk-text-small" },
+                              [
+                                _vm._v(
+                                  "\n                                    Solo quedan \n                                    "
+                                ),
+                                _c(
+                                  "b",
+                                  {
+                                    attrs: {
+                                      "uk-countdown":
+                                        "date: " + discount.end_date
+                                    }
+                                  },
+                                  [
+                                    _c("span", {
+                                      staticClass: "uk-countdown-hours"
+                                    }),
+                                    _vm._v(
+                                      " horas,\n                                        "
+                                    ),
+                                    _c("span", {
+                                      staticClass: "uk-countdown-minutes"
+                                    }),
+                                    _vm._v(
+                                      " minutos,\n                                        "
+                                    ),
+                                    _c("span", {
+                                      staticClass: "uk-countdown-seconds"
+                                    }),
+                                    _vm._v(
+                                      " segundos\n                                    "
+                                    )
+                                  ]
+                                )
+                              ]
+                            )
+                          : _vm._e()
+                      ])
+                    }),
+                    0
+                  )
+                ])
+              ]),
+              _vm._v(" "),
+              service.images.length > 0
+                ? _c("li", { staticClass: "uk-margin-medium-top" }, [
+                    _c(
+                      "div",
+                      {
+                        staticClass: "uk-grid uk-grid-middle",
+                        attrs: {
+                          "uk-grid": "",
+                          "uk-lightbox": "animation: slide"
+                        }
+                      },
+                      _vm._l(service.images, function(image) {
+                        return _c("div", { key: image.public_id }, [
+                          _c(
+                            "div",
+                            {
+                              staticClass:
+                                "uk-box-shadow-medium uk-box-shadow-hover-large"
+                            },
+                            [
+                              _c(
+                                "a",
+                                {
+                                  staticClass: "uk-inline service-image",
+                                  attrs: {
+                                    href: image.file.replace(
+                                      "public",
+                                      "/storage"
+                                    )
+                                  }
+                                },
+                                [
+                                  _c("img", {
+                                    attrs: {
+                                      src: image.file.replace(
+                                        "public",
+                                        "/storage"
+                                      )
+                                    }
+                                  })
+                                ]
+                              )
+                            ]
+                          )
+                        ])
+                      }),
+                      0
+                    )
+                  ])
+                : _vm._e()
             ]),
             _vm._v(" "),
             _vm.existsPayment(service)
@@ -3227,7 +3345,7 @@ var staticRenderFns = [
       }),
       _vm._v(" "),
       _c("a", { attrs: { href: "#modal-payment-methods", "uk-toggle": "" } }, [
-        _vm._v("Ver métodos de pago")
+        _vm._v("Métodos de pago")
       ])
     ])
   }
@@ -15373,7 +15491,7 @@ var app = new Vue({
 
 /***/ }),
 
-/***/ 11:
+/***/ 10:
 /*!****************************************!*\
   !*** multi ./resources/js/payments.js ***!
   \****************************************/
