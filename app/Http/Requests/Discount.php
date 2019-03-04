@@ -24,9 +24,11 @@ class Discount extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required',
-            'discount' => 'required|numeric',
-            'details' => 'required'
+            'name'      => 'required',
+            'discount'  => 'required|numeric',
+            'details'   => 'required',
+            'end_date'  => 'after:today',
+            'for'       => 'required'
         ];
     }
 }
