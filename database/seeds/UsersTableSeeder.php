@@ -2,6 +2,7 @@
 
 use App\Models\User;
 use Faker\Factory as Faker;
+use Illuminate\Support\Str;
 use Illuminate\Database\Seeder;
 
 class UsersTableSeeder extends Seeder
@@ -18,6 +19,7 @@ class UsersTableSeeder extends Seeder
         $methods = ['Traditional','Facebook','Google'];
 
         $user = User::create([
+            'uuid' => (string) Str::uuid(),
             'first_name' => 'Christian',
             'last_name' => 'Martínez',
             'email' => 'chris@mail.com',
@@ -36,6 +38,7 @@ class UsersTableSeeder extends Seeder
         for ($i=0; $i < 3; $i++) { # usuarios no verificados
             
             $unverified_users = User::create([
+                'uuid' => (string) Str::uuid(),
                 'first_name' => $faker->name,
                 'last_name' => $faker->lastName,
                 'email' => $faker->unique()->safeEmail,
@@ -50,6 +53,7 @@ class UsersTableSeeder extends Seeder
         for ($i=0; $i < 5; $i++) { # congresistas estudiantes
 
             $congressman = User::create([
+                'uuid' => (string) Str::uuid(),
                 'first_name' => $faker->name,
                 'last_name' => $faker->lastName,
                 'has_personal_profile' => 1,
@@ -71,6 +75,7 @@ class UsersTableSeeder extends Seeder
         for ($i=0; $i < 5; $i++) { # profesionistas
 
             $bussinesman = User::create([
+                'uuid' => (string) Str::uuid(),
                 'first_name' => $faker->name,
                 'last_name' => $faker->lastName,
                 'has_personal_profile' => 1,
@@ -94,6 +99,7 @@ class UsersTableSeeder extends Seeder
         for ($i=0; $i < 15; $i++) { # revisores
             
             $revisors = User::create([
+                'uuid' => (string) Str::uuid(),
                 'first_name' => $faker->name,
                 'last_name' => $faker->lastName,
                 'has_personal_profile' => 1,
@@ -112,6 +118,7 @@ class UsersTableSeeder extends Seeder
         for ($i=0; $i < 2; $i++) { # administadores
             
             $admin = User::create([
+                'uuid' => (string) Str::uuid(),
                 'first_name' => $faker->name,
                 'last_name' => $faker->lastName,
                 'has_personal_profile' => 1,
@@ -130,6 +137,7 @@ class UsersTableSeeder extends Seeder
         for ($i=0; $i < 2; $i++) { # finanzas
             
             $finances = User::create([
+                'uuid' => (string) Str::uuid(),
                 'first_name' => $faker->name,
                 'last_name' => $faker->lastName,
                 'has_personal_profile' => 1,
@@ -148,6 +156,7 @@ class UsersTableSeeder extends Seeder
         for ($i=0; $i < 2; $i++) { # staff
             
             $helpers = User::create([
+                'uuid' => (string) Str::uuid(),
                 'first_name' => $faker->name,
                 'last_name' => $faker->lastName,
                 'has_personal_profile' => 1,
@@ -164,6 +173,7 @@ class UsersTableSeeder extends Seeder
         }
 
         $user = User::create([ 
+            'uuid' => (string) Str::uuid(),
             'first_name' => 'Carlos',
             'last_name' => 'Carrillo',
             'email' => 'carlos@mail.com',
