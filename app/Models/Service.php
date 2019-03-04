@@ -28,14 +28,19 @@ class Service extends Model
      * Relationships
      */
 
-    public function discount()
-    {
-        return $this->hasOne('App\Models\Discount');
-    }
-
-    public function for_users()
+    public function for()
     {
         return $this->belongsToMany('App\Models\Role', 'assigned_services');
+    }
+    
+    public function discounts()
+    {
+        return $this->hasMany('App\Models\Discount');
+    }
+
+    public function images()
+    {
+        return $this->hasMany('App\Models\ServiceImage');
     }
 
 }
