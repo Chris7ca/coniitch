@@ -145,6 +145,26 @@
     border-radius: 50%;
 }
 
+.service-image { 
+    border-radius: 0.25rem;
+    overflow: hidden;
+}
+
+.service-image img {
+    object-fit: cover;
+    width: 80px;
+    height: 80px;
+}
+
+/*=====  End of Images  ======*/
+
+
+
+
+
+/*=============================================
+=            Button´s            =
+=============================================*/
 .button-google,
 .button-facebook {
     text-decoration: none !important;
@@ -180,16 +200,6 @@
     color: #f7f7f7;
     transition: all 500ms ease-in;
 }
-
-/*=====  End of Images  ======*/
-
-
-
-
-
-/*=============================================
-=            Button´s            =
-=============================================*/
 
 .rounded-button-icon-light {
     border: 1px solid #999;
@@ -433,12 +443,18 @@ table tfoot tr {
     }
 }
 
-@media (max-width: 959px) {
+@media screen and (max-width: 959px) {
     .table-cards tr {
         margin-bottom: 10px;
     }
     .table-cards td {
         border: none;
         text-align: center;
+    }
+}
+
+@media screen and (max-height: 920px) {
+    #title-auth {
+        padding-top: 50px !important;
     }
 }
