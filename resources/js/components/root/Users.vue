@@ -31,7 +31,7 @@
                     <th class="uk-width-small">Nombre</th>
                     <th class="uk-width-small">Correo</th>
                     <th>Roles</th>
-                    <th class="uk-table-shrink">Acciones</th>
+                    <th></th>
                 </tr>
             </thead>
 
@@ -58,24 +58,32 @@
                     <td>
                         <small v-for="(role, i) in user.roles" class="uk-text-primary" :key="i"> {{ role.display_name }}.</small>
                     </td>
-                    <td>
-                        <ul class="uk-iconnav uk-flex-center">
-                            <li v-if="user.has_personal_profile">
-                                <a ></a>
-                            </li>
-                            <li v-if="user.email_verified_at == null">
-                                <span class="uk-text-warning" uk-icon="warning" uk-tooltip="Usuario no verificado"></span>
-                            </li>
-                            <li>
-                                <a role="button" @click="editUser(user.public_id)" uk-icon="file-edit"></a>
-                            </li>
-                            <li>
-                                <a role="link" @click="deleteUser(user.public_id)" uk-icon="trash"></a>
-                            </li>
-                            <li>
-                                <a href="#modal-documents" @click="documents(user.public_id)" uk-icon="folder" uk-toggle></a>
-                            </li>
-                        </ul>
+                    <td class="uk-text-center">
+
+                        <span class="uk-text-warning" uk-icon="warning" uk-tooltip="Usuario no verificado" v-if="user.email_verified_at == null"></span>
+
+                        <a role="button" uk-icon="chevron-down"></a>
+                        
+                        <div uk-dropdown="mode: click">
+
+                            <h6>Opciones</h6>
+
+                            <ul class="uk-iconnav uk-flex-center">
+                                <li>
+                                    <a role="button" @click="editUser(user.public_id)" uk-icon="file-edit" uk-tooltip="Editar"></a>
+                                </li>
+                                <li>
+                                    <a role="link" @click="deleteUser(user.public_id)" uk-icon="trash" uk-tooltip="Eliminar"></a>
+                                </li>
+                                <li>
+                                    <a href="#modal-documents" @click="documents(user.public_id)" uk-icon="folder" uk-toggle uk-tooltip="Documentos"></a>
+                                </li>
+                                <li>
+                                    <a href="#modal-qr-code" @click="generateQRCode(user)" uk-icon="icon: qr-code; ratio: 0.9" uk-toggle uk-tooltip="Generar código QR"></a>
+                                </li>
+                            </ul>
+                        </div>
+
                     </td>
                 </tr>
 
@@ -183,6 +191,13 @@
             },
             documents: function (id) {
                 EventBus.$emit('documentsUser', id);
+            },
+            generateQRCode: function (user) {
+                EventBus.$emit('generateQRCode', {
+                    uuid:       user.uuid,
+                    first_name: user.first_name,
+                    last_name:  user.last_name
+                });
             }
         },
         created() {
