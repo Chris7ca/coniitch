@@ -35,6 +35,11 @@ trait VerifyRoles
         return Auth()->user()->keyRoles->contains('key', 'finances');
     }
 
+    public function isStaff()
+    {
+        return Auth()->user()->keyRoles->contains('key', 'staff');
+    }
+
     public function hasRole($role)
     {
 
