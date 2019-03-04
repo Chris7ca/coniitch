@@ -28,13 +28,18 @@ class PaymentsController extends Controller
     {
         $roles = Auth()->user()->keyRoles->pluck('key');
 
-        $services = Service::whereHas('for_users', function ($query) use ($roles) {
-            $query->whereIn('roles.key', $roles);
-        })->with([
-            'discount' => function($query){
-                $query->where('end_date', '>=', now());
-            }
-        ])->get();
+        $services = Service::whereHas('for', function ($q) use ($roles) {
+                $q->whereIn('roles.key', $roles);
+            })
+            ->with([
+                'images',
+                'discounts' => function ($query) use ($roles) {
+                    $query->where('end_date', '>=', now())
+                    ->whereHas('for', function ($q) use ($roles) {
+                        $q->whereIn('roles.key', $roles);
+                    });
+                }
+            ])->get();
 
         $payments = Payment::select(['id','service_id','user_id','status'])
             ->where('user_id', Auth()->user()->id)->get();
@@ -48,11 +53,16 @@ class PaymentsController extends Controller
 
     public function cart()
     {
+        $roles = Auth()->user()->keyRoles->pluck('key');
+
         return $cart = ShoppingCart::where('user_id', Auth()->user()->id)
             ->with([
                 'service:id,concept,price', 
-                'service.discount' => function($query){
-                    $query->select(['id','service_id','discount'])->where('end_date', '>=', now());
+                'service.discounts' => function ($query) use ($roles) {
+                    $query->where('end_date', '>=', now())
+                    ->whereHas('for', function ($q) use ($roles) {
+                        $q->whereIn('roles.key', $roles);
+                    });
                 }
             ])->get();
     }
@@ -88,7 +98,7 @@ class PaymentsController extends Controller
             'currency_code'     => 'MXN',
             'amount'            => $request->amount,
             'voucher'           => $voucher,
-            'required_invoice'  => ($request->invoice) ? 1 : 0
+            'required_invoice'  => (filter_var($request->invoice, FILTER_VALIDATE_BOOLEAN)) ? 1 : 0
         ]);
 
         $notifiables_users = getUsersByRole('finances');
