@@ -2,7 +2,7 @@
 
     <div>
 
-        <p class="uk-text-meta"><b>Información importante.</b> Requerimos contar con un contacto de emergencia en caso de que requieras asistencia médica durante el congreso.</p>
+        <p class="uk-text-meta"><b>Información importante.</b> Requerimos contar con un contacto de emergencia en caso de que requiera asistencia médica durante el congreso.</p>
 
         <content-placeholders v-if="!dataLoaded">
             <content-placeholders-heading/>

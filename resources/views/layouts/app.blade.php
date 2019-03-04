@@ -45,6 +45,7 @@
                 background-color: #f9f9fb !important;
             }
             #preloader-page{
+                overflow: hidden;
                 position: absolute;
                 height: 100vh;
                 background-color: #f9f9fb;
@@ -92,6 +93,9 @@
                                     <li class="uk-visible@m item-light">
                                         <a href="{{ route('app.root.roles.view') }}">Roles</a>
                                     </li>
+                                    <li class="uk-visible@m item-light">
+                                        <a href="{{ route('app.root.events.view') }}">Actividades</a>
+                                    </li>
 
                                 @elseif ( Auth::user()->isPublicRelations() )
                                     <li class="uk-visible@m item-light">
@@ -132,7 +136,13 @@
                                     <li class="uk-visible@m item-light">
                                         <a href="{{ route('app.finances.payments.view') }}">Pagos</a>
                                     </li>
+
+                                @elseif ( Auth::user()->isStaff() )
+                                    <li class="uk-visible@m item-light">
+                                        <a href="{{ route('app.staff.attendances.view') }}">Asistencias</a>
+                                    </li>
                                 @endif
+
 
                             </ul>
                         </div>
@@ -143,7 +153,7 @@
                                 <li class="item-light">
                                     <a role="button"> 
 
-                                        <img data-src="{{ avatar(Auth::user()->avatar) }}" class="avatar-xs uk-preserve-width uk-margin-small-right" uk-img>
+                                        <img data-src="{{ avatar(Auth::user()->avatar) }}" class="avatar-xs uk-preserve-width uk-margin-small-right uk-visible@s" uk-img>
 
                                         {{ Auth::user()->first_name . ' ' . Auth::user()->last_name }}
                                         
@@ -215,6 +225,9 @@
                                     <li>
                                         <a href="{{ route('app.root.roles.view') }}">Roles</a>
                                     </li>
+                                    <li>
+                                        <a href="{{ route('app.root.events.view') }}">Actividades</a>
+                                    </li>
 
                                 @elseif ( Auth::user()->isPublicRelations() )
                                     <li>
@@ -255,7 +268,12 @@
                                     <li>
                                         <a href="{{ route('app.finances.payments.view') }}">Pagos</a>
                                     </li>
-                                @endif   
+                                
+                                @elseif ( Auth::user()->isStaff() )
+                                    <li>
+                                        <a href="{{ route('app.staff.attendances.view') }}">Asistencias</a>
+                                    </li>
+                                @endif 
 
                             </ul>
         

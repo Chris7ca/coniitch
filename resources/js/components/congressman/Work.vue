@@ -268,7 +268,9 @@
             },
             confirmWork: function () {
 
-                UIkit.modal.confirm('¿Estás seguro que deseas confirmar todos los cambios en tu trabajo? Una vez hecho esto, no podrás modificar la información contenida en él.')
+                let note = ( this.fullNameCoauthor != '' && this.adscriptionCoauthor != '' && this.emailCoauthor != '' ) ? 'No ha agregado a un coautor' : '';
+
+                UIkit.modal.confirm(`¿Estás seguro que deseas confirmar todos los cambios en tu trabajo? Una vez hecho esto, no podrás modificar la información contenida en él. ${note}`)
                 .then( () => {
 
                     let url                     = route('app.congressman.announcement.confirm', { id : this.work.public_id });

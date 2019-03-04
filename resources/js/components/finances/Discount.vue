@@ -21,7 +21,13 @@
 
                 <div class="uk-margin">
                     <label class="uk-form-lable">Descueto</label>
-                    <input type="text" class="uk-input" v-model="discount.discount" required placeholder="$ 00.00 MXN">
+                    <input type="number" class="uk-input" v-model="discount.discount" required placeholder="$ 00.00 MXN">
+                </div>
+
+                <div class="uk-margin">
+                    <label class="uk-form-label">Dirigido a</label>
+                    <multiselect v-model="selectedRoles" :multiple="true" :searchable="false" label="name" 
+                    track-by="value" :options="roles" required placeholder="Selecciona a quienes va dirigido el servico"></multiselect>
                 </div>
 
                 <div class="uk-margin">
@@ -30,7 +36,9 @@
                 </div>
 
                 <div class="uk-margin">
-                    <button type="submit" class="uk-button uk-button-primary uk-box-shadow-hover-large">{{ txtBtnSubmit }}</button>
+                    <button type="submit" class="uk-button uk-button-primary uk-box-shadow-hover-large" :disabled="loader">
+                        {{ txtBtnSubmit }} <span class="uk-margin-small-right" uk-spinner="ratio: 0.8" v-if="loader"></span>
+                    </button>
                 </div>
 
             </form>
@@ -43,12 +51,13 @@
 <script>
 
     import { EventBus } from './../../bus.js';
-    import flatPickr from 'vue-flatpickr-component';  
+    import flatPickr from 'vue-flatpickr-component';
+    import Multiselect from 'vue-multiselect';
     import 'flatpickr/dist/flatpickr.css';
 
     export default {
         components: {
-            flatPickr
+            flatPickr, Multiselect
         },
         data () {
             return {
@@ -60,8 +69,16 @@
                     name: '',
                     details: '',
                     discount: '',
-                    end_date: ''
-                }
+                    end_date: '',
+                    for : []
+                },
+                roles : [],
+                selectedRoles : []
+            }
+        },
+        watch: {
+            selectedRoles: function (roles) {
+                this.discount.for = roles.map( role => ({ public_id: role.value, display_name: role.name }) );
             }
         },
         computed: {
@@ -77,8 +94,12 @@
                     details: '',
                     discount: '',
                     start_date: '',
-                    end_date: ''
+                    end_date: '',
+                    for : []
                 }
+                this.public_id = '';
+                this.selectedRoles = [];
+                this.mode = 'create';
             },
             saveDiscount: function () {
                 
@@ -92,11 +113,14 @@
                     
                     if ( this.mode == 'create' ) {
                         EventBus.$emit('discountCreated', this.public_id, response.data);
-                    } 
+                    }
 
                     UIkit.notification(`Promoción ${ (this.mode == 'create') ? 'creada' : 'actualizada' }`, 'success');
                     UIkit.modal('#modal-discount').hide();
 
+                    UIkit.util.on('#modal-discount', 'hide', () => {
+                        this.clearData();
+                    }); 
                 })
                 .catch( error => {
                     this.loader = false;
@@ -106,20 +130,31 @@
         },
         created () {
 
+            axios.post(route('app.root.roles.simple.search'))
+            .then( response => {
+                response.data.forEach(role => {
+                    this.roles.push({ name: role.display_name, value: role.public_id });
+                });
+            })
+            .catch( error => {
+                showAxiosErrorMessage(error);
+            });
+
             EventBus.$on('createDiscount', service => {
 
                 this.public_id = service.public_id;
 
             });
 
-            EventBus.$on('editDiscount', service => {
+            EventBus.$on('editDiscount', (service, discount) => {
                 
                 this.mode      = 'update';
                 this.public_id = service.public_id;
-                this.discount  = service.discount;
+                this.discount  = discount;
+
+                this.selectedRoles = discount.for.map( role => ({ name: role.display_name, value: role.public_id }) );
 
                 UIkit.util.on('#modal-discount', 'hide', () => {
-                    this.mode = 'create';
                     this.clearData();
                 });
 
@@ -129,3 +164,5 @@
     }
 
 </script>
+
+<style src="vue-multiselect/dist/vue-multiselect.min.css"></style>

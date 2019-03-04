@@ -2,7 +2,7 @@
     
     <div>
 
-        <p class="uk-text-meta"><b>Datos de facturación.</b> Estos datos son requeridos en caso de que necesites factura al momento de realizar algún pago.</p>
+        <p class="uk-text-meta"><b>Datos de facturación.</b> Estos datos son requeridos en caso de que requiera factura al momento de realizar algún pago.</p>
 
         <content-placeholders v-if="!dataLoaded">
             <content-placeholders-heading/>

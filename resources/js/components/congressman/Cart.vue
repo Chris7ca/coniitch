@@ -22,7 +22,7 @@
                     </div>
 
                     <div class="uk-text-right">
-                        $ {{ (item.service.discount) ? (item.service.price - item.service.discount.discount).toFixed(2) : item.service.price.toFixed(2)  }} 
+                        $ {{ getPrice(item.service) }}
                         <a role="button" @click="removeItem(index, item)" uk-icon="close" uk-tooltip="Eliminar item"></a>
                     </div>
 
@@ -67,7 +67,15 @@
                 let total = 0;
 
                 this.cart.map( item => {
-                    total += (item.service.discount) ? parseFloat(item.service.price - item.service.discount.discount) : parseFloat(item.service.price);
+
+                    total += parseFloat(item.service.price);
+
+                    if ( item.service.discounts.length > 0 ) {
+
+                        item.service.discounts.forEach( discount => {
+                            total -= discount.discount;
+                        });
+                    }
                 });
 
                 return total.toFixed(2);
@@ -90,7 +98,19 @@
                     this.loader = false;
                     showAxiosErrorMessage(error);
                 })
-            }
+            },
+            getPrice: function (service) {
+
+                let price = service.price;
+                
+                if ( service.discounts.length > 0 ) {
+                    service.discounts.forEach(discount => {
+                        price -= discount.discount;
+                    });
+                } 
+
+                return price.toFixed(2);
+            },
         },
         created () {
 

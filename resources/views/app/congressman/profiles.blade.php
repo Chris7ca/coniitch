@@ -66,7 +66,7 @@
 
                     <li>
                         <a role="button" class="uk-flex uk-flex-center uk-flex-middle uk-flex-column uk-h6 uk-link-reset"> 
-                            <span class="uk-margin-small" uk-icon="fingerprint"></span>  Crédenciales
+                            <span class="uk-margin-small" uk-icon="fingerprint"></span>  Credenciales
                         </a>
                     </li>
                     

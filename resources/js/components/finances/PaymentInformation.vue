@@ -16,7 +16,7 @@
                 <li>Fecha de pago: <b>{{ payment.created_at }}</b></li>
                 <li>Referencia de pago: <b>{{ payment.transaction_id }}</b></li>
                 <li>Nombre del congresista: <b>{{ payment.user.first_name + ' ' + payment.user.last_name }}</b></li>
-                <li>Concepto: <b>{{ payment.service.concept.toLowerCase() }}</b></li>
+                <li>Concepto: <b>{{ payment.service.concept }}</b></li>
                 <li>Monto: <b>$ {{ payment.amount.toFixed(2) }}</b></li>
                 <li>Método de pago: <b>{{ payment.method.toUpperCase() }}</b></li>
                 <li>Requiere factura: <b>{{ (payment.required_invoice) ? 'Sí' : 'No' }}</b></li>
@@ -48,7 +48,7 @@
                 <br>
 
                 <a role="button" class="uk-button button-text uk-padding-remove" @click="aprovePayment" v-if="!payment.status">
-                    Aprovar pago <span class="uk-margin-small-left" uk-icon="check"></span>
+                    Aprobar pago <span class="uk-margin-small-left" uk-icon="check"></span>
                 </a>
 
             </div>

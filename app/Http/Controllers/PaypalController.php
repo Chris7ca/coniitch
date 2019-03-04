@@ -46,18 +46,31 @@ class PaypalController extends Controller
         $items    = array();
         $subtotal = 0;
 
+        $roles = Auth()->user()->keyRoles->pluck('key');
+
         $cart     = ShoppingCart::where('user_id', Auth()->user()->id)
             ->with([
                 'service',
-                'service.discount' => function($query){
-                    $query->select(['id','service_id','discount'])->where('end_date', '>=', now());
+                'service.discounts' => function ($query) use ($roles) {
+                    $query->where('end_date', '>=', now())
+                    ->whereHas('for', function ($q) use ($roles) {
+                        $q->whereIn('roles.key', $roles);
+                    });
                 }
             ])->get();
 
         foreach ( $cart as $itemCart ) {
 
             $item  = new Item();
-            $price = ($itemCart->service->discount) ? ($itemCart->service->price - $itemCart->service->discount->discount) : $itemCart->service->price;
+
+            $price = $itemCart->service->price;
+
+            if ( sizeof($itemCart->service->discounts) > 0 ) {
+
+                foreach ( $itemCart->service->discounts as $discount ){
+                    $price -= $discount->discount;
+                }
+            } 
 
             $item->setName($itemCart->service->concept)
                  ->setCurrency($this->currency)
@@ -148,7 +161,7 @@ class PaypalController extends Controller
                     'transaction_id'    => $result->id,
                     'currency_code'     => $result->transactions[0]->amount->currency,
                     'amount'            => $itemPaid->price,
-                    'required_invoice'  => ($request->invoice) ? 1 : 0,
+                    'required_invoice'  => (filter_var($request->invoice, FILTER_VALIDATE_BOOLEAN)) ? 1 : 0,
                     'status'            => 1,
                 ]);
 

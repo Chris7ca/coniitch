@@ -35,3 +35,13 @@ Route::post('documentos/usuario/{id}',                              'Root\Docume
 Route::post('documentos/usuario/{id}/nuevo',                        'Root\DocumentsController@add')->name('documents.add');
 Route::post('documentos/usuario/{id}/actualizar/{ID}',              'Root\DocumentsController@update')->name('documents.update');
 Route::delete('documentos/usuario/{id}/eliminar/{ID}',              'Root\DocumentsController@delete')->name('documents.delete');
+
+/**
+ * Actividades
+ */
+
+Route::get('eventos',                                                'Root\EventsController@view')->name('events.view');
+Route::post('eventos',                                               'Root\EventsController@index')->name('events.index');
+Route::post('eventos/guardar',                                       'Root\EventsController@save')->name('events.save');
+Route::delete('eventos/{id}/eliminar',                               'Root\EventsController@delete')->name('events.delete');
+Route::post('eventos/{id}/asistencias',                              'Root\EventsController@attendances')->name('events.attendances');

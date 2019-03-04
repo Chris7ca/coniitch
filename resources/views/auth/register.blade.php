@@ -4,10 +4,10 @@
 
 @section('content')
 
-    <h3>¡Regístrate!</h3>
+    <h3 id="title-auth">¡Regístrate!</h3>
     <p>No te pierdas esta gran oportunidad</p>
 
-    <form id="form-auth" method="POST" action="{{ route('signup') }}" class="uk-form-stacked uk-margin-medium">
+    <form id="form-auth" method="POST" action="{{ route('signup') }}" class="uk-form-stacked uk-margin-medium"> 
 
         @csrf
 

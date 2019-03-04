@@ -43,7 +43,7 @@ class FinalEvaluation extends Notification implements ShouldQueue
             'title' => 'Han evaluado tu trabajo',
             'description' => 'Un par de investigadores capacitados ha revisado tu trabajo y lo han evaluado de acuerdo a una serie de criterios. Podrás ver su evaluación en el menú 
             "Convocatoria".',
-            'route' => route('app.announcement.view')
+            'route' => route('app.congressman.announcement.view')
         ];
     }
 }

@@ -24,9 +24,12 @@ class Service extends FormRequest
     public function rules()
     {
         return [
-            'concept' => 'required',
-            'price'   => 'required|numeric',
-            'details' => 'required'
+            'concept'   => 'required',
+            'price'     => 'required|numeric',
+            'details'   => 'required',
+            'images'    => 'nullable',
+            'images.*'  => 'mimes:png,jpg,jpeg',
+            'for'       => 'required'
         ];
     }
 }

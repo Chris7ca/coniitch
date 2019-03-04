@@ -64,14 +64,6 @@
                 </div>
             </div>
 
-            {{-- <div class="uk-width-1-4@m">
-                <div>
-
-                    <h6 class="text-secondary">Esdísticas</h6>
-
-                </div>
-            </div> --}}
-
         </div>   
         
     </section>

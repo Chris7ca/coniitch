@@ -2,7 +2,7 @@
     
     <div class="uk-flex uk-flex-column uk-flex-middle uk-text-center">
 
-        <div class="avatar-container" style="height: 200px; width: 200px;">
+        <div class="avatar-container" style="height: 200px; width: 200px;" uk-tooltip="Ten en cuenta que esta imagen será la que se utilizará para tu gafete de acceso al congreso">
             <img :src="avatar" v-if="imageLoaded">
             <img src="/svg/spinner.svg" v-else>
         </div>

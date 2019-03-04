@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Str;
 use Faker\Generator as Faker;
 
 /*
@@ -18,6 +19,7 @@ $factory->define(App\Models\User::class, function (Faker $faker) {
     $methods = ['Traditional','Facebook','Google'];
 
     return [
+        'uuid' => (string) Str::uuid(),
         'first_name' => $faker->name,
         'last_name' => $faker->lastName,
         'has_personal_profile' => 1,
