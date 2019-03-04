@@ -13,8 +13,9 @@
             <h3>Registro de trabajos</h3>
             <hr class="uk-divider-small">
 
-            <p><small>Si deseas participar en el 3<sup>er</sup> Congreso Internacional de Investigación en Ciencias Humanas 2019. Por favor registra tu trabajo conforme a los líneamientos
-            establecidos en la <a class="text-secondary uk-text-bold" href="{{ route('site.call') }}">convocatoria</a>. Tienes hasta el XX de XX para registrar tu trabajo.</small></p>
+            <p><small>Si desea participar en el 3<sup>er</sup> Congreso Internacional de Investigación en Ciencias Humanas 2019. Por favor registra tu trabajo conforme a los líneamientos
+            establecidos en la <a class="text-secondary uk-text-bold" href="{{ route('site.call') }}">convocatoria</a>. Tiene hasta el <b>domingo 31 de marzo del 2019 a las 23:59 horas</b> 
+            para registrar su trabajo.</small></p>
 
             <p><small><strong>Nota I.</strong> Puede guardar su trabajo y suspender su edición para retomarlo en el mismo punto donde lo dejó, únicamente debe asegurarse oprimir el botón 
             <strong class="text-secondary">Guardar</strong> para que sus avances se almacenen. Una vez esté completamente seguro que ha finalizado la edición de la información o el resumen del 
@@ -29,15 +30,15 @@
 
             <h3 class="text-secondary">¡Buenas noticias!</h3>
 
-            <p>Te notificamos notificamos que la comisión evaluadora del CONIITCH ha resuelto que su trabajo titulado <b>"{{ $work->title }}"</b> ha sido <b>aceptado</b>
+            <p>Le notificamos que la comisión evaluadora del CONIITCH ha resuelto que su trabajo titulado <b>"{{ $work->title }}"</b> ha sido <b>aceptado</b>
             por la Comisión Científica para ser presentado en la modalidad de {{ ($work->type == 'Banner') ? 'Cartel' : 'Trabajo Oral' }} en el 3er Congreso de Investigación 
             Transdisciplinar en Ciencias Humanas 2019.</p>
 
             @if ( $work->evaluation == 2 )
-                <p>Únicamente deberás realizar algunas modificaciones menores que la Comisión Científica te hizo, puedes tomar en cuenta algunas de sus observaciones.</p>
+                <p>Únicamente deberá realizar algunas modificaciones menores que la Comisión Científica le hizo, tome en cuenta sus observaciones.</p>
             @endif
 
-            <p>Las observaciones que hicieron a tu trabajo fueron las siguientes:</p>
+            <p>Las observaciones que hicieron a su trabajo fueron las siguientes:</p>
 
             @foreach ($work->reviews as $review)
                 <p><i>"{{ $review->feedback }}"</i></p>
@@ -45,7 +46,7 @@
 
             @if ( $work->type == 'Banner' )
                 
-                <p>Recuerda que los carteles deberán ajustarse a las siguientes especificaciones técnicas:</p>
+                <p>Recuerde que los carteles deberán ajustarse a las siguientes especificaciones técnicas:</p>
 
                 <ul>
                     <li>Dimensión del cartel: 120 cm. de alto por 90 cm. de ancho.</li>
@@ -64,10 +65,10 @@
 
             <h3 class="text-secondary">¡Tenemos noticias!</h3>
 
-            <p>Te notificamos notificamos que la comisión evaluadora del CONIITCH ha resuelto que su trabajo titulado <b>"{{ $work->title }}"</b> ha sido sido considerado como <b>no aceptado</b>
+            <p>Le notificamos que la comisión evaluadora del CONIITCH ha resuelto que su trabajo titulado <b>"{{ $work->title }}"</b> ha sido sido considerado como <b>no aceptado</b>
             por la Comisión Científica del 3er Congreso de Investigación Transdisciplinar en Ciencias Humanas 2019.</p>
 
-            <p>Algunas de las observaciones que hicieron a tu trabajo fueron las siguientes: </p>
+            <p>Algunas de las observaciones que hicieron a su trabajo fueron las siguientes: </p>
 
             @foreach ($work->reviews as $review)
                 <p><i>"{{ $review->feedback }}"</i></p>
@@ -85,7 +86,7 @@
                     <img data-src="{{ asset('images/okok.gif') }}" width="" uk-img>
 
                     <h4 class="uk-margin-top-remove">
-                        Notificaremos a tus revisores sobre los cambios realizados a este trabajo. Dentro de poco tendrás noticias sobre el dictamen que emitan.
+                        Notificaremos a sus revisores sobre los cambios realizados a este trabajo. Dentro de poco tendrá noticias sobre el dictamen que emitan.
                     </h4>
                 </div>
 
@@ -101,7 +102,7 @@
                     <img data-src="{{ asset('images/okok.gif') }}" width="" uk-img>
 
                     <h4 class="uk-margin-top-remove">
-                        Hemos recibido tu trabajo y lo asignaremos a un par de investigadores expertos para su evaluación. En breve se te notificará sobre dicha evaluación.
+                        Hemos recibido su trabajo y lo asignaremos a un par de investigadores expertos para su evaluación. En breve se le notificará sobre dicha evaluación.
                     </h4>
                 </div>
 
