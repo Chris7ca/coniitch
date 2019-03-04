@@ -37,7 +37,7 @@ class NewPayment extends Notification implements ShouldQueue
             'icon' => 'credit-card',
             'title' => 'Se ha registrado un nuevo pago',
             'description' => $this->user->first_name . ' ' . $this->user->last_name . ' ha realizado un pago de  $ ' . number_format($this->payment->amount, 2) .  ', por el concepto
-            de '. $this->service->concept .'. Dicho pago fue realizado medinate '. $this->payment->method .', puedes leer más detalles en el menú "Pagos".',
+            de '. $this->service->concept .'. Dicho pago fue realizado mediante '. $this->payment->method .', puedes leer más detalles en el menú "Pagos".',
             'route' => route('app.finances.payments.view')
         ];
     }
