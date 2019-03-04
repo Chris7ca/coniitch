@@ -19,35 +19,55 @@
 
                 <ul class="uk-list  uk-margin-medium-top">
 
-                    <li v-if="service.discount">
-                        <span class="uk-margin-small-right" uk-icon="info"></span> <b>{{ service.discount.name }}</b>: {{ service.discount.details }}
-                    </li>
-
-                    <li v-if="service.discount && diffInDays(service.discount.end_date) > 7">
-                        <span class="uk-margin-small-right" uk-icon="calendar"></span> Válido hasta el {{ service.discount.end_date }}
-                    </li>
-
-                    <li class="uk-text-warning" v-if="service.discount && diffInDays(service.discount.end_date) <= 7 && diffInDays(service.discount.end_date) >= 1">
-                        <span class="uk-margin-small-right" uk-icon="calendar"></span> Solo quedan {{ Math.ceil(diffInDays(service.discount.end_date)) }} días de precio especial
-                    </li>
-
-                    <li class="uk-text-danger" v-if="service.discount && diffInDays(service.discount.end_date) < 1">
-                        <span class="uk-margin-small-right" uk-icon="calendar"></span> Solo quedan 
-                        <b :uk-countdown="`date: ${service.discount.end_date}`">
-                            <span class="uk-countdown-hours"></span> horas,
-                            <span class="uk-countdown-minutes"></span> minutos,
-                            <span class="uk-countdown-seconds"></span> segundos
-                        </b>
-                    </li>
-
                     <li>
-                        <span class="uk-margin-small-right" uk-icon="tag"></span> $ {{ (service.discount) ? (service.price - service.discount.discount).toFixed(2) : service.price.toFixed(2) }} MXN
-                        <i class="uk-text-muted" v-if="service.discount">, precio regular de $ {{ service.price.toFixed(2) }}</i>
+                        <span class="uk-margin-small-right" uk-icon="tag"></span> <b>{{ getPrice(service) }}</b>{{ (service.discounts.length > 0) ? `, antes $ ${service.price.toFixed(2)} MXN` : '' }}
                     </li>
 
                     <li>
                         <span class="uk-margin-small-right" uk-icon="credit-card"></span>
-                        <a href="#modal-payment-methods" uk-toggle>Ver métodos de pago</a>
+                        <a href="#modal-payment-methods" uk-toggle>Métodos de pago</a>
+                    </li>
+
+                    <li>
+                        <span class="uk-margin-small-right" uk-icon="info"></span>
+                        <a role="button" class="uk-link-reset">Promociones</a>
+                        <div uk-dropdown>
+                            <ul class="uk-list uk-list-divider uk-padding-remove">
+                                <li v-for="discount in service.discounts" :key="discount.public_id">
+                                    <h6 class="uk-margin-remove">{{ discount.name }}</h6>
+                                    <small> - $ {{ discount.discount.toFixed(2) }} MXN</small>
+
+                                    <p class="uk-text-small" v-if="diffInDays(discount.end_date) > 7">
+                                        Válido hasta el {{ discount.end_date }}
+                                    </p>
+
+                                    <p class="uk-text-warning uk-text-small" v-if="diffInDays(discount.end_date) <= 7 && diffInDays(discount.end_date) >= 1">
+                                        Solo quedan {{ Math.ceil(diffInDays(discount.end_date)) }} días de precio especial
+                                    </p>
+
+                                    <p class="uk-text-danger uk-text-small" v-if="diffInDays(discount.end_date) < 1">
+                                        Solo quedan 
+                                        <b :uk-countdown="`date: ${discount.end_date}`">
+                                            <span class="uk-countdown-hours"></span> horas,
+                                            <span class="uk-countdown-minutes"></span> minutos,
+                                            <span class="uk-countdown-seconds"></span> segundos
+                                        </b>
+                                    </p>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+
+                    <li class="uk-margin-medium-top" v-if="service.images.length > 0">
+                        <div class="uk-grid uk-grid-middle" uk-grid uk-lightbox="animation: slide">
+                            <div v-for="image in service.images" :key="image.public_id">
+                                <div class="uk-box-shadow-medium uk-box-shadow-hover-large">
+                                    <a class="uk-inline service-image" :href="image.file.replace('public','/storage')">
+                                        <img :src="image.file.replace('public','/storage')">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
                     </li>
                 
                 </ul>
@@ -98,6 +118,18 @@
                 let date  = new Date(array[0], (array[1] - 1), array[2], 23, 59, 59);
 
                 return ((date.getTime() - now.getTime()) / 1000 / 60 / 60 / 24);     
+            },
+            getPrice: function (service) {
+
+                let price = service.price;
+                
+                if ( service.discounts.length > 0 ) {
+                    service.discounts.forEach(discount => {
+                        price -= discount.discount;
+                    });
+                } 
+
+                return `$ ${ price.toFixed(2) } MXN`;
             },
             existsInCart: function (service) {
 
