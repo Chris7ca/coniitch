@@ -102,6 +102,11 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany('App\Models\ShoppingCart');
     }
 
+    public function attendances()
+    {
+        return $this->hasMany('App\Models\Attendance');
+    }
+
     /**
      * @ Override
      * Notificación de confirmación de email
