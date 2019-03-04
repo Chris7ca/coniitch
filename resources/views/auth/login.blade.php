@@ -4,30 +4,21 @@
 
 @section('content')
 
-    <h3>Inicia Sesión</h3>
+    <h3 id="title-auth">Inicia Sesión</h3>
     <p>Nunca compartas tus credenciales de acceso</p>
 
-    @if ($errors->all())
-    
-        <div class="uk-alert-danger uk-animation-shake uk-margin" uk-alert>
-            <a class="uk-alert-close" uk-close></a>
-            <h5>¡Espera!</h5>
-            <ul class="uk-list">
-                @foreach ( $errors->all() as $message )
-                    <li><small>{{ $message }}</small></li>
-                @endforeach
-            </ul>
-        </div>
-
-    @endif
-
-    <form method="POST" action="{{ route('to.access') }}" class="uk-form-stacked uk-margin-medium">
+    <form id="form-auth" method="POST" action="{{ route('to.access') }}" class="uk-form-stacked uk-margin-medium">
 
         @csrf
 
         <div class="uk-margin-medium">
             <label class="uk-form-label">Correo electrónico</label>
             <input type="email" class="uk-input" name="email" value="{{ old('email') }}" autofocus required placeholder="Campo requerido...">
+            @if ($errors->has('email'))
+                <span class="uk-text-danger uk-text-bold">
+                    <small>{{ $errors->first('email') }}</small>
+                </span>
+            @endif
         </div>
 
         <div class="uk-margin-medium">
