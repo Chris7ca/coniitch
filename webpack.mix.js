@@ -17,10 +17,10 @@ mix.js('resources/js/admin.js', 'public/js')
 mix.js('resources/js/announcement.js', 'public/js')
 mix.js('resources/js/notifications.js', 'public/js')
 mix.js('resources/js/profiles.js', 'public/js')
-mix.js('resources/js/users.js', 'public/js')
-mix.js('resources/js/roles.js', 'public/js')
+mix.js('resources/js/root.js', 'public/js')
 mix.js('resources/js/sponsors.js', 'public/js')
 mix.js('resources/js/revisors.js', 'public/js')
 mix.js('resources/js/finances.js', 'public/js')
 mix.js('resources/js/payments.js', 'public/js')
-// mix.less('resources/less/site/site.less', 'public/css');
+mix.js('resources/js/staff.js', 'public/js')
+mix.less('resources/less/site/site.less', 'public/css');
