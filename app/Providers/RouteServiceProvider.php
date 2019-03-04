@@ -61,6 +61,8 @@ class RouteServiceProvider extends ServiceProvider
 
         $this->mapFinancesRoutes();
 
+        $this->mapStaffRoutes();
+
     }
 
     /**
@@ -129,6 +131,15 @@ class RouteServiceProvider extends ServiceProvider
             ->middleware(['web','auth','verified','hasProfiles'])
             ->namespace($this->namespace)
             ->group(base_path('routes/finances.php'));
+    }
+
+    protected function mapStaffRoutes()
+    {
+        Route::prefix('app/staff')
+            ->name('app.staff.')
+            ->middleware(['web','auth','verified','hasProfiles'])
+            ->namespace($this->namespace)
+            ->group(base_path('routes/staff.php'));
     }
 
     /**
