@@ -49,8 +49,10 @@
 
     <modal-document></modal-document>
 
+    <modal-qr-code></modal-qr-code>
+
 @endsection
 
 @push('js')
-    <script src="{{ asset('js/users.js') }}" defer></script>
+    <script src="{{ asset('js/root.js') }}" defer></script>
 @endpush
