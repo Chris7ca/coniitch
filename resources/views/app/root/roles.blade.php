@@ -36,5 +36,5 @@
 @endsection
 
 @push('js')
-    <script src="{{ asset('js/roles.js') }}" defer></script>
+    <script src="{{ asset('js/root.js') }}" defer></script>
 @endpush
