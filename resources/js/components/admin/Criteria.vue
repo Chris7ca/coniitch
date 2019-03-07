@@ -83,7 +83,7 @@
             storeCriteria: function () {
                 
                 let data = this.getData();
-                let url = route('app.criterias.store');
+                let url = route('app.admin.criterias.store');
                 this.dataLoaded = false;
 
                 axios.post(url, data)
@@ -101,7 +101,7 @@
             updateCriteria: function () {
 
                 let data = this.getData();
-                let url = route('app.criterias.update', { id : this.id });
+                let url = route('app.admin.criterias.update', { id : this.id });
                 this.dataLoaded = false;
 
                 axios.post(url, data)

@@ -52,7 +52,7 @@
             },
             editCriteria: function (id) {
                 
-                let url = route('app.criterias.edit', { id : id });
+                let url = route('app.admin.criterias.edit', { id : id });
                 EventBus.$emit('editCriteria', url);
             },
             deleteCriteria: function (id) {
@@ -80,7 +80,7 @@
         },
         created () {
 
-            axios.post(route('app.criterias.index'))
+            axios.post(route('app.admin.criterias.index'))
             .then( response => {
                 this.dataLoaded = true;
                 this.criterias = response.data;

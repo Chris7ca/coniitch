@@ -54,7 +54,7 @@
                 <td>
                     <ul class="uk-iconnav uk-flex uk-flex-center">
                         <li>
-                            <a :href="route('app.congressman.announcement.works.show', { id : work.public_id })" uk-icon="expand" uk-tooltip="Ver trabajo"></a>
+                            <a :href="route('app.congressman.announcement.works.show', { id : work.public_id })" uk-icon="eye" uk-tooltip="Ver trabajo"></a>
                         </li>
                         <li v-if="isAssignable(work)">
                             <a href="#modal-assign-revisors" @click="assignRevisors(work.public_id)" uk-icon="forward" uk-toggle uk-tooltip="Asignar revisor"></a>
