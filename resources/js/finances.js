@@ -15,16 +15,5 @@ Vue.component('payments',               require('./components/finances/Payments.
 Vue.component('payment-information',    require('./components/finances/PaymentInformation.vue').default);
 
 const app = new Vue({
-    el: '#app',
-    methods:{
-        logout: function() {
-            axios.post(route('logout'))
-            .then( response => {
-                window.location = route('site.login');
-            })
-            .catch( error => {
-                console.log(error);
-            });
-        }
-    }
+    el: '#app'
 });

@@ -15128,7 +15128,8 @@ function hidePreloaderPage() {
 window.addEventListener("load", function (event) {
   hidePreloaderPage().then(function (preloaderPage) {
     setTimeout(function () {
-      return preloaderPage.setAttribute("hidden", true);
+      preloaderPage.setAttribute("hidden", true);
+      document.getElementById('app').removeAttribute('hidden');
     }, 400);
   });
 });
@@ -15151,6 +15152,16 @@ Vue.mixin({
       } else {
         return '/images/avatar.png';
       }
+    },
+    logout: function logout() {
+      var preloader = document.getElementById('preloader-page');
+      preloader.removeAttribute('hidden');
+      preloader.classList.remove('uk-animation-fade', 'uk-animation-reverse');
+      axios.post(route('logout')).then(function (response) {
+        window.location = route('site.login');
+      }).catch(function (error) {
+        console.log(error);
+      });
     }
   }
 });
@@ -15477,16 +15488,7 @@ Vue.component('cart', __webpack_require__(/*! ./components/congressman/Cart.vue 
 Vue.component('services', __webpack_require__(/*! ./components/congressman/Services.vue */ "./resources/js/components/congressman/Services.vue").default);
 Vue.component('upload-voucher', __webpack_require__(/*! ./components/congressman/UploadVoucher.vue */ "./resources/js/components/congressman/UploadVoucher.vue").default);
 var app = new Vue({
-  el: '#app',
-  methods: {
-    logout: function logout() {
-      axios.post(route('logout')).then(function (response) {
-        window.location = route('site.login');
-      }).catch(function (error) {
-        console.log(error);
-      });
-    }
-  }
+  el: '#app'
 });
 
 /***/ }),

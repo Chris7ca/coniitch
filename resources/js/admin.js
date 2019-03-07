@@ -12,16 +12,5 @@ Vue.component('assign-revisors',    require('./components/admin/AssignRevisors.v
 Vue.component('modal-reviews',      require('./components/admin/ModalReviews.vue').default);
 
 const app = new Vue({
-    el: '#app',
-    methods:{
-        logout: function() {
-            axios.post(route('logout'))
-            .then( response => {
-                window.location = route('site.login');
-            })
-            .catch( error => {
-                console.log(error);
-            });
-        }
-    }
+    el: '#app'
 });

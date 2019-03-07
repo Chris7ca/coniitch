@@ -20178,7 +20178,8 @@ function hidePreloaderPage() {
 window.addEventListener("load", function (event) {
   hidePreloaderPage().then(function (preloaderPage) {
     setTimeout(function () {
-      return preloaderPage.setAttribute("hidden", true);
+      preloaderPage.setAttribute("hidden", true);
+      document.getElementById('app').removeAttribute('hidden');
     }, 400);
   });
 });
@@ -20201,6 +20202,16 @@ Vue.mixin({
       } else {
         return '/images/avatar.png';
       }
+    },
+    logout: function logout() {
+      var preloader = document.getElementById('preloader-page');
+      preloader.removeAttribute('hidden');
+      preloader.classList.remove('uk-animation-fade', 'uk-animation-reverse');
+      axios.post(route('logout')).then(function (response) {
+        window.location = route('site.login');
+      }).catch(function (error) {
+        console.log(error);
+      });
     }
   }
 });
@@ -20885,16 +20896,7 @@ Vue.component('modal-discount', __webpack_require__(/*! ./components/finances/Di
 Vue.component('payments', __webpack_require__(/*! ./components/finances/Payments.vue */ "./resources/js/components/finances/Payments.vue").default);
 Vue.component('payment-information', __webpack_require__(/*! ./components/finances/PaymentInformation.vue */ "./resources/js/components/finances/PaymentInformation.vue").default);
 var app = new Vue({
-  el: '#app',
-  methods: {
-    logout: function logout() {
-      axios.post(route('logout')).then(function (response) {
-        window.location = route('site.login');
-      }).catch(function (error) {
-        console.log(error);
-      });
-    }
-  }
+  el: '#app'
 });
 
 /***/ }),

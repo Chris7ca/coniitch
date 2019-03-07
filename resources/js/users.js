@@ -13,16 +13,5 @@ Vue.component('modal-documents',    require('./components/root/Documents.vue').d
 Vue.component('modal-document',     require('./components/root/Document.vue').default);
 
 const app = new Vue({
-    el: '#app',
-    methods:{
-        logout: function() {
-            axios.post(route('logout'))
-            .then( response => {
-                window.location = route('site.login');
-            })
-            .catch( error => {
-                console.log(error);
-            });
-        }
-    }
+    el: '#app'
 });

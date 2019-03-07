@@ -15351,7 +15351,8 @@ function hidePreloaderPage() {
 window.addEventListener("load", function (event) {
   hidePreloaderPage().then(function (preloaderPage) {
     setTimeout(function () {
-      return preloaderPage.setAttribute("hidden", true);
+      preloaderPage.setAttribute("hidden", true);
+      document.getElementById('app').removeAttribute('hidden');
     }, 400);
   });
 });
@@ -15374,6 +15375,16 @@ Vue.mixin({
       } else {
         return '/images/avatar.png';
       }
+    },
+    logout: function logout() {
+      var preloader = document.getElementById('preloader-page');
+      preloader.removeAttribute('hidden');
+      preloader.classList.remove('uk-animation-fade', 'uk-animation-reverse');
+      axios.post(route('logout')).then(function (response) {
+        window.location = route('site.login');
+      }).catch(function (error) {
+        console.log(error);
+      });
     }
   }
 });
@@ -15704,16 +15715,7 @@ Vue.use(vue_content_placeholders__WEBPACK_IMPORTED_MODULE_0__["default"]);
 Vue.component('sponsors', __webpack_require__(/*! ./components/publicrelations/Sponsors.vue */ "./resources/js/components/publicrelations/Sponsors.vue").default);
 Vue.component('modal-sponsor', __webpack_require__(/*! ./components/publicrelations/Sponsor.vue */ "./resources/js/components/publicrelations/Sponsor.vue").default);
 var app = new Vue({
-  el: '#app',
-  methods: {
-    logout: function logout() {
-      axios.post(route('logout')).then(function (response) {
-        window.location = route('site.login');
-      }).catch(function (error) {
-        console.log(error);
-      });
-    }
-  }
+  el: '#app'
 });
 
 /***/ }),

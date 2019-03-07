@@ -1951,7 +1951,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       var data = this.getData();
-      var url = route('app.criterias.store');
+      var url = route('app.admin.criterias.store');
       this.dataLoaded = false;
       axios.post(url, data).then(function (response) {
         _this.dataLoaded = true;
@@ -1969,7 +1969,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
 
       var data = this.getData();
-      var url = route('app.criterias.update', {
+      var url = route('app.admin.criterias.update', {
         id: this.id
       });
       this.dataLoaded = false;
@@ -2077,7 +2077,7 @@ __webpack_require__.r(__webpack_exports__);
       })[0].name;
     },
     editCriteria: function editCriteria(id) {
-      var url = route('app.criterias.edit', {
+      var url = route('app.admin.criterias.edit', {
         id: id
       });
       _bus_js__WEBPACK_IMPORTED_MODULE_0__["EventBus"].$emit('editCriteria', url);
@@ -2106,7 +2106,7 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {
     var _this2 = this;
 
-    axios.post(route('app.criterias.index')).then(function (response) {
+    axios.post(route('app.admin.criterias.index')).then(function (response) {
       _this2.dataLoaded = true;
       _this2.criterias = response.data;
     }).catch(function (error) {
@@ -15997,16 +15997,7 @@ Vue.component('works', __webpack_require__(/*! ./components/admin/Works.vue */ "
 Vue.component('assign-revisors', __webpack_require__(/*! ./components/admin/AssignRevisors.vue */ "./resources/js/components/admin/AssignRevisors.vue").default);
 Vue.component('modal-reviews', __webpack_require__(/*! ./components/admin/ModalReviews.vue */ "./resources/js/components/admin/ModalReviews.vue").default);
 var app = new Vue({
-  el: '#app',
-  methods: {
-    logout: function logout() {
-      axios.post(route('logout')).then(function (response) {
-        window.location = route('site.login');
-      }).catch(function (error) {
-        console.log(error);
-      });
-    }
-  }
+  el: '#app'
 });
 
 /***/ }),
@@ -16077,7 +16068,8 @@ function hidePreloaderPage() {
 window.addEventListener("load", function (event) {
   hidePreloaderPage().then(function (preloaderPage) {
     setTimeout(function () {
-      return preloaderPage.setAttribute("hidden", true);
+      preloaderPage.setAttribute("hidden", true);
+      document.getElementById('app').removeAttribute('hidden');
     }, 400);
   });
 });
@@ -16100,6 +16092,16 @@ Vue.mixin({
       } else {
         return '/images/avatar.png';
       }
+    },
+    logout: function logout() {
+      var preloader = document.getElementById('preloader-page');
+      preloader.removeAttribute('hidden');
+      preloader.classList.remove('uk-animation-fade', 'uk-animation-reverse');
+      axios.post(route('logout')).then(function (response) {
+        window.location = route('site.login');
+      }).catch(function (error) {
+        console.log(error);
+      });
     }
   }
 });

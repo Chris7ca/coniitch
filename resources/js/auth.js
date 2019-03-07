@@ -7,11 +7,19 @@ const app = new Vue({
         passwordIsValid: null,
         passwordConfirmation: '',
         passwordConfirmationIsValid: null,
-        regex: /^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,}$/
+        oneUppercaseLetter: /[A-Z]/,
+        oneLowercaseLetter: /[a-z]/,
+        oneNumber: /[0-9]/
     },
     watch: {
         password: function (val) {
-            this.passwordIsValid = (this.regex.test(val));
+
+            this.passwordIsValid = false;
+
+            if ( val.length > 8 && this.oneLowercaseLetter.test(val) && this.oneUppercaseLetter.test(val) && this.oneNumber.test(val) ) {
+
+                this.passwordIsValid = true;
+            }
         },
         passwordConfirmation: function (val) {
             this.passwordConfirmationIsValid = (this.password === this.passwordConfirmation);

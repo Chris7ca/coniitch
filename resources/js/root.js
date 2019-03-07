@@ -24,16 +24,5 @@ Vue.component('attendances',        require('./components/root/Attendances.vue')
 Vue.component('modal-qr-code',      require('./components/helpers/QRCodeGenerator.vue').default);
 
 const app = new Vue({
-    el: '#app',
-    methods:{
-        logout: function() {
-            axios.post(route('logout'))
-            .then( response => {
-                window.location = route('site.login');
-            })
-            .catch( error => {
-                console.log(error);
-            });
-        }
-    }
+    el: '#app'
 });
