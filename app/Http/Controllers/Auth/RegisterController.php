@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Auth;
 
 use App\Models\Role;
 use App\Models\User;
+use App\Rules\Password;
+use Illuminate\Support\Str;
+use App\Rules\NameToRegister;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
@@ -59,15 +62,14 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         $messages = [
-            'regex' => 'La contraseña debe de tener mínimo 8 caracteres, una letra mayúscula, una letra minúscula y un dígito',
             'unique' => 'Ya existe una cuenta asociada a este correo electrónico'
         ];
 
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
+            'name' => ['required', 'string', 'max:255', new NameToRegister],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'privacy_notice' => ['required','accepted'],
-            'password' => ['required', 'regex:/^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,}$/'],
+            'password' => ['required', new Password],
         ], $messages);
     }
 
@@ -84,6 +86,7 @@ class RegisterController extends Controller
         $roles = Role::select('id')->whereIn('key', ['congressman','professional'])->get();
 
         $user =  User::create([
+            'uuid' => Str::uuid(),
             'first_name' => $name[0],
             'last_name' => $name[1],
             'email' => $data['email'],
