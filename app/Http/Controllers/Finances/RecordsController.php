@@ -12,6 +12,11 @@ use App\Notifications\ValidateAcademicDocument;
 class RecordsController extends Controller
 {
     
+    public function __construct()
+    {
+        $this->middleware('hasRoles:finances');
+    }
+
     public function view()
     {
         return view('app.finances.records');

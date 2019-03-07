@@ -10,6 +10,11 @@ use App\Http\Controllers\Controller;
 
 class AttendancesController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('hasRoles:staff');
+    }
     
     public function view()
     {

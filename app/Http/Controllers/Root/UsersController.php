@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Root;
 
 use App\Models\User;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Requests\CreateUser;
 use App\Http\Requests\UpdateUser;
@@ -11,6 +12,11 @@ use Illuminate\Support\Facades\Hash;
 
 class UsersController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('hasRoles:root');
+    }
     
     public function view()
     {
@@ -40,6 +46,7 @@ class UsersController extends Controller
     public function store(CreateUser $request)
     {
         $user = User::create([
+            'uuid' => Str::uuid(),
             'first_name' => $request->first_name,
             'last_name' => $request->last_name,
             'email' => $request->email,

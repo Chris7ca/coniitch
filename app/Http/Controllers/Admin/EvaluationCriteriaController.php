@@ -9,6 +9,11 @@ use App\Http\Requests\EvaluationCriteria;
 
 class EvaluationCriteriaController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('hasRoles:admin');
+    }
     
     public function view()
     {

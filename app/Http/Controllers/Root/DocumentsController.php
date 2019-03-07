@@ -13,6 +13,11 @@ use Illuminate\Support\Facades\Notification;
 
 class DocumentsController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('hasRoles:root');
+    }
     
     public function view()
     {

@@ -18,6 +18,10 @@ use Illuminate\Support\Facades\Notification;
 class PaymentsController extends Controller
 {
     
+    public function __construct()
+    {
+        $this->middleware('hasRoles:congressman');
+    }
 
     public function view()
     {    

@@ -10,6 +10,11 @@ use App\Http\Requests\Event as EventRequest;
 
 class EventsController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('hasRoles:root');
+    }
     
     public function view()
     {

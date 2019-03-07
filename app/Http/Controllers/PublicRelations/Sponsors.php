@@ -10,6 +10,11 @@ use App\Http\Requests\UpdateSponsor;
 
 class Sponsors extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('hasRoles:public-relations');
+    }
     
     public function view()
     {

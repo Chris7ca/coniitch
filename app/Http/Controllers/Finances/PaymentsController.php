@@ -11,6 +11,11 @@ use Illuminate\Support\Facades\Notification;
 
 class PaymentsController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('hasRoles:finances');
+    }
     
     public function view()
     {

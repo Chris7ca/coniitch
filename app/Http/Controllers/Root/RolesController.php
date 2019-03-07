@@ -11,6 +11,11 @@ use App\Http\Controllers\Controller;
 class RolesController extends Controller
 {
     
+    public function __construct()
+    {
+        $this->middleware('hasRoles:root')->except('forSimpleSearch');
+    }
+
     public function view()
     {
         return view('app.root.roles');

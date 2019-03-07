@@ -17,6 +17,12 @@ use App\Mail\NewWorkRegister as NewWorkRegisterMail;
 
 class WorksController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('hasRoles:congressman')->except('show');
+        $this->middleware('hasRoles:admin,revisors')->only('show');
+    }
     
     public function view()
     {

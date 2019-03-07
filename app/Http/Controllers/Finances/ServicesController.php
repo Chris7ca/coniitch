@@ -12,6 +12,11 @@ use App\Http\Requests\Discount as DiscountRequest;
 
 class ServicesController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('hasRoles:finances');
+    }
     
     public function view()
     {

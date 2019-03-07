@@ -16,6 +16,11 @@ use Illuminate\Support\Facades\Notification;
 
 class WorksController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('hasRoles:revisors');
+    }
     
     public function view()
     {
