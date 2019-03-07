@@ -47,14 +47,11 @@
             #preloader-page{
                 overflow: hidden;
                 position: absolute;
-                height: 100vh;
+                height: inherit;
                 background-color: #f9f9fb;
-                top: 0;
-                left: 0;
-                bottom: 0;
-                right: 0;
+                height: 100vh;
                 width: 100%;
-                z-index: 1000 !important;
+                z-index: 10000 !important;
             }
         </style>
     </head>
@@ -67,7 +64,7 @@
             </div>
         </div>
         
-        <main id="app">
+        <main id="app" hidden>
         
             <header class="uk-background-fixed uk-background-cover uk-background-top-center" data-src="{{ asset('images/image-hero-app.jpg') }}" uk-img>
                 
