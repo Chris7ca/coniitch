@@ -34,8 +34,9 @@ window.showAxiosErrorMessage = (error) => {
 
         let listOfErrors = `<ul class="uk-margin-small">`;
 
-        for (let field in error.response.data.errors) {
-            if (error.response.data.errors.hasOwnProperty(field)) {
+        for ( let field in error.response.data.errors ) {
+            
+            if ( error.response.data.errors.hasOwnProperty(field) ) {
               listOfErrors += `<li>${error.response.data.errors[field]}</li>`;
             }
         }
@@ -66,7 +67,12 @@ window.addEventListener("load", function(event) {
     
     hidePreloaderPage()
         .then((preloaderPage) => {
-            setTimeout( () =>  preloaderPage.setAttribute("hidden", true) , 400);
+
+            setTimeout( () => {
+
+                preloaderPage.setAttribute("hidden", true);
+                document.getElementById('app').removeAttribute('hidden');
+            }, 400);
         });
 });
 
@@ -84,13 +90,33 @@ Vue.mixin({
     methods: {
         route: route,
         getAvatar: function (avatar) {
-            if (avatar && avatar.startsWith('https')) {
+
+            if ( avatar && avatar.startsWith('https') ) {
                 return avatar;
-            } else if (avatar && !avatar.startsWith('https')) {
+            } 
+            
+            else if ( avatar && !avatar.startsWith('https') ) {
                 return avatar.replace('public','/storage');
-            } else {
+            } 
+            
+            else {
                 return '/images/avatar.png';
             }
+        },
+        logout: function() {
+
+            let preloader = document.getElementById('preloader-page');
+
+            preloader.removeAttribute('hidden');
+            preloader.classList.remove('uk-animation-fade', 'uk-animation-reverse');
+
+            axios.post(route('logout'))
+            .then( response => {
+                window.location = route('site.login');
+            })
+            .catch( error => {
+                console.log(error);
+            });
         }
     }
 });
