@@ -24,7 +24,7 @@
             </div>
             <div class="uk-width-1-2@m">
                 <label class="uk-form-label">Teléfono Fíjo</label>
-                <input type="text" class="uk-input" v-model="secondPhoneNumber" required placeholder="Opcional">
+                <input type="text" class="uk-input" v-model="secondPhoneNumber" placeholder="Opcional">
             </div>
             <div class="uk-width-1-1">
                 <button class="uk-button uk-button-default rounded-button" type="submit">Actualizar Información</button>
