@@ -14,6 +14,11 @@
         <div class="uk-margin-medium">
             <label class="uk-form-label">Nombre</label>
             <input type="text" class="uk-input" name="name" value="{{ old('name') }}" required autofocus placeholder="Primer nombre y primer apellido">
+            @if ($errors->has('name'))
+                <span class="uk-text-danger uk-text-bold">
+                    <small>{{ $errors->first('name') }}</small>
+                </span>
+            @endif
         </div>
 
         <div class="uk-margin-medium">
