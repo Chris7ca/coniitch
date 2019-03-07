@@ -6,6 +6,7 @@ use Auth;
 use Socialite;
 use App\Models\Role;
 use App\Models\User;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Models\PersonalProfile;
 use App\Http\Controllers\Controller;
@@ -26,7 +27,6 @@ class SocialAuthController extends Controller
     {
         
         $social_user = Socialite::driver($provider)->user(); 
-        // dd($social_user);
         
         
         if ($user = User::where('email', $social_user->email)->first()) 
@@ -39,9 +39,10 @@ class SocialAuthController extends Controller
 
             $name = explode(' ', $data['name']);
 
-            $congressman_role = Role::select('id')->where('key','congressman')->first();
+            $roles = Role::select('id')->whereIn('key', ['congressman','professional'])->get();
 
             $user =  User::create([
+                'uuid' => Str::uuid(),
                 'first_name' => $name[0],
                 'last_name' => $name[1],
                 'email' => $social_user->email,
@@ -50,10 +51,12 @@ class SocialAuthController extends Controller
                 'method_to_register' => title_case($provider)
             ]);
 
-            $user->roles()->attach($congressma_role);
+            $user->roles()->attach($roles);
 
-            Notification::send($work->registered_user, new RegisteredUser($user));
-            Mail::to('finanzas.coniitch@uaem.mx')->queue(new RegisteredUserMail($work));
+            $notifiables_users = getUsersByRole('finances'); 
+
+            Notification::send($notifiables_users, new RegisteredUser($user));
+            Mail::to('finanzas.coniitch@uaem.mx')->queue(new RegisteredUserMail($user));
 
             return $this->authAndRedirect($user); // Login y redirección
         }
