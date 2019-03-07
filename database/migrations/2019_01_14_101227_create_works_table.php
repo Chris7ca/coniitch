@@ -15,7 +15,7 @@ class CreateWorksTable extends Migration
     {
         Schema::create('works', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id')->unsigned();
+            $table->unsignedInteger('user_id');
             $table->string('title')->nullable();
             $table->enum('theme', ['Health and Society', 'Transdiscipline'])->nullable();
             $table->enum('type', ['Oral','Banner'])->nullable();
@@ -26,6 +26,8 @@ class CreateWorksTable extends Migration
             $table->smallInteger('version')->default(0);
             $table->smallInteger('evaluation')->nullable();
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

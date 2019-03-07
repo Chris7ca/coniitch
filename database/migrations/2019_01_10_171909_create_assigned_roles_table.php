@@ -14,8 +14,8 @@ class CreateAssignedRolesTable extends Migration
     public function up()
     {
         Schema::create('assigned_roles', function (Blueprint $table) {
-            $table->integer('user_id')->unsigned();
-            $table->integer('role_id')->unsigned();
+            $table->unsignedInteger('user_id');
+            $table->unsignedInteger('role_id');
         });
     }
 

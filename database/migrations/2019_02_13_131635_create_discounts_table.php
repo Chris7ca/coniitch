@@ -15,12 +15,14 @@ class CreateDiscountsTable extends Migration
     {
         Schema::create('discounts', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('service_id')->unsigned();
+            $table->unsignedInteger('service_id');
             $table->string('name');
             $table->string('details');
             $table->float('discount');
             $table->dateTime('end_date');
             $table->timestamps();
+
+            $table->foreign('service_id')->references('id')->on('services')->onDelete('cascade');
         });
     }
 

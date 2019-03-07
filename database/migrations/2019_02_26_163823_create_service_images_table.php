@@ -15,8 +15,10 @@ class CreateServiceImagesTable extends Migration
     {
         Schema::create('service_images', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('service_id')->unsigned();
+            $table->unsignedInteger('service_id');
             $table->string('file');
+
+            $table->foreign('service_id')->references('id')->on('services')->onDelete('cascade');
         });
     }
 

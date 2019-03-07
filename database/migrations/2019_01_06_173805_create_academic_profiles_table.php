@@ -15,7 +15,7 @@ class CreateAcademicProfilesTable extends Migration
     {
         Schema::create('academic_profiles', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id')->unsigned();
+            $table->unsignedInteger('user_id');
             $table->string('career');
             $table->string('institute');
             $table->string('faculty')->nullable();
@@ -23,6 +23,8 @@ class CreateAcademicProfilesTable extends Migration
             $table->string('state');
             $table->string('document')->nullable();
             $table->boolean('is_student')->nullable();
+
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

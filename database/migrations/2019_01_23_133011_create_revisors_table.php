@@ -14,9 +14,12 @@ class CreateRevisorsTable extends Migration
     public function up()
     {
         Schema::create('revisors', function (Blueprint $table) {
-            $table->integer('user_id')->unsigned();
-            $table->integer('work_id')->unsigned();
+            $table->unsignedInteger('user_id');
+            $table->unsignedInteger('work_id');
             $table->boolean('status')->nullable();
+
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('work_id')->references('id')->on('works');
         });
     }
 

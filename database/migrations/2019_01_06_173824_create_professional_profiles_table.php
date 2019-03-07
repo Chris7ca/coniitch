@@ -15,11 +15,13 @@ class CreateProfessionalProfilesTable extends Migration
     {
         Schema::create('professional_profiles', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id')->unsigned();
+            $table->unsignedInteger('user_id');
             $table->string('job_title');
             $table->string('institute');
             $table->string('country');
             $table->string('state');
+
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

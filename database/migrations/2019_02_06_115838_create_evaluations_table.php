@@ -15,9 +15,12 @@ class CreateEvaluationsTable extends Migration
     {
         Schema::create('evaluations', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('review_id')->unsigned();
-            $table->integer('criteria_id');
+            $table->unsignedInteger('review_id');
+            $table->unsignedInteger('criteria_id');
             $table->smallInteger('score');
+            
+            $table->foreign('review_id')->references('id')->on('reviews');
+            $table->foreign('criteria_id')->references('id')->on('criterias');
         });
     }
 

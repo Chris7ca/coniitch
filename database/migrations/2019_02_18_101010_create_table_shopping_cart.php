@@ -15,8 +15,8 @@ class CreateTableShoppingCart extends Migration
     {
         Schema::create('shopping_cart', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id')->unsigned();
-            $table->integer('service_id')->unsigned();
+            $table->unsignedInteger('user_id');
+            $table->unsignedInteger('service_id');
         });
     }
 

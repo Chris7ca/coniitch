@@ -14,8 +14,8 @@ class CreateAssignedDiscountsTable extends Migration
     public function up()
     {
         Schema::create('assigned_discounts', function (Blueprint $table) {
-            $table->integer('discount_id')->unsigned();
-            $table->integer('role_id')->unsigned();
+            $table->unsignedInteger('discount_id');
+            $table->unsignedInteger('role_id');
         });
     }
 

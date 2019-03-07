@@ -14,8 +14,8 @@ class CreateAssignedServicesTable extends Migration
     public function up()
     {
         Schema::create('assigned_services', function (Blueprint $table) {
-            $table->integer('service_id')->unsigned();
-            $table->integer('role_id')->unsigned();
+            $table->unsignedInteger('service_id');
+            $table->unsignedInteger('role_id');
         });
     }
 

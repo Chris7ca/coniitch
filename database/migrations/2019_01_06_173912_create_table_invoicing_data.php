@@ -15,7 +15,7 @@ class CreateTableInvoicingData extends Migration
     {
         Schema::create('invoicing_data', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id')->unsigned();
+            $table->unsignedInteger('user_id');
             $table->enum('type',['Moral','Física']);
             $table->string('display_name');
             $table->string('rfc');
@@ -24,6 +24,8 @@ class CreateTableInvoicingData extends Migration
             $table->string('state');
             $table->string('city');
             $table->string('address');
+
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

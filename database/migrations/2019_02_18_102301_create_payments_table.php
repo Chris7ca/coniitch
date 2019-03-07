@@ -15,8 +15,8 @@ class CreatePaymentsTable extends Migration
     {
         Schema::create('payments', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id')->unsigned();
-            $table->integer('service_id')->unsigned();
+            $table->unsignedInteger('user_id');
+            $table->unsignedInteger('service_id');
             $table->string('method');
             $table->string('transaction_id');
             $table->string('currency_code');
@@ -25,6 +25,9 @@ class CreatePaymentsTable extends Migration
             $table->boolean('required_invoice')->default(false);
             $table->boolean('status')->nullable();
             $table->timestamps();
+
+            $table->foreign('service_id')->references('id')->on('services');
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

@@ -15,7 +15,7 @@ class CreatePersonalProfilesTable extends Migration
     {
         Schema::create('personal_profiles', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id')->unsigned();
+            $table->unsignedInteger('user_id');
             $table->string('second_name')->nullable();
             $table->string('second_last_name')->nullable();
             $table->enum('gender',['Male','Female']);
@@ -23,6 +23,8 @@ class CreatePersonalProfilesTable extends Migration
             $table->string('country');
             $table->string('state');
             $table->string('phone_number');
+
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

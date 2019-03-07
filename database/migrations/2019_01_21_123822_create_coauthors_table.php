@@ -15,11 +15,13 @@ class CreateCoauthorsTable extends Migration
     {
         Schema::create('coauthors', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('work_id')->unsigned();
+            $table->unsignedInteger('work_id');
             $table->string('full_name');
             $table->string('email');
             $table->string('adscription');
             $table->boolean('is_first_author');
+
+            $table->foreign('work_id')->references('id')->on('works');
         });
     }
 
