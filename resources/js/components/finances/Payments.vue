@@ -41,7 +41,7 @@
                     <td>
                         <ul class="uk-iconnav uk-flex uk-flex-center">
                             <li>
-                                <a href="#payment-information" uk-tooltip="Ver más información" @click="paymentInformation(payment)" uk-icon="expand" uk-toggle></a>
+                                <a href="#payment-information" uk-tooltip="Ver más información" @click="paymentInformation(payment)" uk-icon="eye" uk-toggle></a>
                             </li>
                         </ul>
                     </td>
