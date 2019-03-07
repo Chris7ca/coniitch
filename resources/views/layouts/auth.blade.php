@@ -90,11 +90,11 @@
     
             </header>
     
-            <div class="uk-grid uk-grid-collapse" uk-grid>
+            <div class="uk-grid uk-grid-collapse uk-grid-match" uk-grid>
                          
                 <div class="uk-width-1-3 uk-visible@m">
                     <div class="uk-background-cover uk-background-center-right" data-src="{{ asset('images/laptop.jpg') }}" uk-img>
-                        <div class="gradient-background-bottom" uk-height-viewport>
+                        <div class="gradient-background-bottom" style="height: 100%;">
     
                         </div>
                     </div>
