@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Sponsor;
 use Illuminate\Http\Request;
 
 class SiteController extends Controller
@@ -19,7 +20,9 @@ class SiteController extends Controller
 
     public function index()
     {
-        return view('website.index');
+        $sponsors = Sponsor::all();
+
+        return view('website.index', compact('sponsors'));
     }
 
     public function contact() 
