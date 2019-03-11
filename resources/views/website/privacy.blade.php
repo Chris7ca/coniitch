@@ -24,7 +24,7 @@
 
         <article>
 
-            <h2>Política de Privacidad del stio web del 3er Congreso Internacional de Investigación Transdisciplinar en Ciencias Humanas</h2>
+            <h2>Política de Privacidad del sitio web del 3er Congreso Internacional de Investigación Transdisciplinar en Ciencias Humanas</h2>
             <span class="uk-text-meta">Última actualización: 25 de diciembre de 2018.</span>
             <hr class="uk-divider-small">
 
@@ -107,7 +107,7 @@
 
             </ul>
 
-            <p>La información que se recaba, no se comparte con terceros y en ningún moment se obtienen datos personales a menos que se registre en nuestro sitio.</p>
+            <p>La información que se recaba, no se comparte con terceros y en ningún momento se obtienen datos personales a menos que se registre en nuestro sitio.</p>
 
             <h4>Modificaciones y actualización al presente aviso de privacidad.</h4>
 

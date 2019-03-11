@@ -24,7 +24,7 @@
 
         <article>
 
-            <h2>Términos y Condiciones del stio web del 3er Congreso Internacional de Investigación Transdisciplinar en Ciencias Humanas</h2>
+            <h2>Términos y Condiciones del sitio web del 3er Congreso Internacional de Investigación Transdisciplinar en Ciencias Humanas</h2>
             <span class="uk-text-meta">Última actualización: 25 de diciembre de 2018.</span>
             <hr class="uk-divider-small">
 
@@ -37,7 +37,7 @@
             <h4>Licencia</h4>
             
             <p>El Centro de Investigación Transdisciplinar en Psicología través de su sitio web del 3er Congreso Internacional de Investigación Transdisciplinar en Ciencias Humanas 
-            concede una licencia para que los usuarios vea, compartan la información contenida en este sitio web de acuerdo a los Términos y Condiciones que se describen en este documento.</p>
+            concede una licencia para que los usuarios vean, compartan la información contenida en este sitio web de acuerdo a los Términos y Condiciones que se describen en este documento.</p>
 
             <h4>Uso no autorizado</h4>
 
@@ -48,15 +48,15 @@
 
             <p>Todos los contenidos, marcas, logos, dibujos, documentación, software o cualquier otro elemento susceptible de protección por la legislación de propiedad intelectual 
             o industrial, que sean accesibles en sitio web corresponden exclusivamente al Centro de Investigación Transdisciplinar en Psicología o a sus legítimos titulares y quedan 
-            expresamente reservados todos los derechos sobre los mismos. A contiuación se listan los derechos de terceros sobre material digítal (imágenes, logos e icons):</p>
+            expresamente reservados todos los derechos sobre los mismos. A continuación se listan los derechos de terceros sobre material digital (imágenes, logos e iconos):</p>
 
             <ul class="uk-list">
                 
-                <li><b>Imágenes</b>. Algunas imagenes han sido tomdas de bancos de imágenes con licencia <a href="https://creativecommons.org/publicdomain/zero/1.0/legalcode" target="_blank">
+                <li><b>Imágenes</b>. Algunas imagenes han sido tomadas de bancos de imágenes con licencia <a href="https://creativecommons.org/publicdomain/zero/1.0/legalcode" target="_blank">
                 Creative Commons CC0</a></li>
 
                 <li><b>Logos</b>. Los logos aquí presentados, salvo el logo del Congreso Internacional de Investigación Transdisciplinar en Ciencias Humanas, Centro de Investigación 
-                Transdisciplinar en Psicología y la Universidad Autónoma del Estado de Morelos; pertenecen a los patrocinadores que han concensuado la publicidad en nuestro sitio web.</li>
+                Transdisciplinar en Psicología y la Universidad Autónoma del Estado de Morelos; pertenecen a los patrocinadores que han consensuado la publicidad en nuestro sitio web.</li>
 
                 <li><b>Iconos</b>, algunos iconos de este sitio web fueron obtenidos del sitio <a href="flaticon.com" target="_blank">flaticon.com</a> y a continuación se otorgan los créditos
                 correspondientes por cada uno de ellos:</li>

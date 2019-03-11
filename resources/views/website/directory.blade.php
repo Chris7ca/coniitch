@@ -22,7 +22,7 @@
 
     <section class="uk-container uk-margin-large" style="padding-top: 80px; padding-bottom: 100px;">
 
-        <h2>Comité organizador local</h2>
+        <h2>Comité organizador</h2>
         <hr class="uk-divider-small">
 
         <table class="uk-table uk-table-divider uk-table-responsive">
@@ -36,36 +36,32 @@
 
             <tbody>
                 <tr>
-                    <td>Dr. Gustavo Urquiza Beltrán</td>
-                    <td>Rector</td>
-                </tr>
-                <tr>
                     <td>Dra. Bernarda Téllez Alanís</td>
-                    <td>Directora interina del CITPsi</td>
+                    <td>Presidente del Congreso</td>
                 </tr>
                 <tr>
                     <td>Dra. Esperanza López Vázquez</td>
-                    <td>Jefa de Desarrollo de Investigación</td>
+                    <td>Presidente del Comité Científico</td>
                 </tr>
                 <tr>
                     <td>Mtra. Kenya Martínez Tinajero</td>
-                    <td>Coordinación General</td>
+                    <td>Coordinadora General</td>
                 </tr>
                 <tr>
                     <td>Lic. Elizabeth Raimondi Jímenez</td>
-                    <td>Coordinación de Logística</td>
+                    <td>Coordinadora de Logística</td>
                 </tr>
                 <tr>
                     <td>Mtro. Carlos Aragón Carrillo</td>
-                    <td>Relaciones Públicas</td>
+                    <td>Coordinador de Relaciones Públicas</td>
                 </tr>
                 <tr>
                     <td>Psic. Noemí Nava Rivera</td>
-                    <td>Finanzas y Tesorería</td>
+                    <td>Coordinadora de Finanzas y Tesorería</td>
                 </tr>
                 <tr>
                     <td>Mtra. Ulizec Ortíz Duque</td>
-                    <td>Difusión</td>
+                    <td>Coordinadora de Difusión</td>
                 </tr>
             </tbody>
 
@@ -106,11 +102,11 @@
                 </tr>
                 <tr>
                     <td>Mtro. Emmanuel Poblete Trujillo</td>
-                    <td>Estudiante Doctorado Psicología</td>
+                    <td>CITPsi</td>
                 </tr>
                 <tr>
                     <td>Mtra. Belem Quezada Díaz</td>
-                    <td>Estudiante Doctorado Psicología</td>
+                    <td>CITPsi</td>
                 </tr>
                 <tr>
                     <td>Dr. Manuel Aguilar Tamayo</td>
@@ -121,16 +117,12 @@
                     <td>CITPsi</td>
                 </tr>
                 <tr>
-                    <td>Dr. Aldo Bazán Ramírez</td>
-                    <td></td>
-                </tr>
-                <tr>
                     <td>Mtra. Oniria Gutiérrez Ramos</td>
-                    <td>Estudios Superiores del Jicarero</td>
+                    <td>Escuela de Estudios Superiores del Jicarero</td>
                 </tr>
                 <tr>
                     <td>Lic. Nenetzin Álvarez Velasco</td>
-                    <td>Estudios Superiores del Jicarero</td>
+                    <td>Escuela de Estudios Superiores del Jicarero</td>
                 </tr>
             </tbody>
 
