@@ -61,7 +61,9 @@ class RouteServiceProvider extends ServiceProvider
 
         $this->mapFinancesRoutes();
 
-        $this->mapStaffRoutes();
+        $this->mapStaffRoutes(); 
+
+        $this->mapPublicRelationsRoutes(); 
 
     }
 
@@ -140,6 +142,15 @@ class RouteServiceProvider extends ServiceProvider
             ->middleware(['web','auth','verified','hasProfiles'])
             ->namespace($this->namespace)
             ->group(base_path('routes/staff.php'));
+    }
+
+    protected function mapPublicRelationsRoutes()
+    {
+        Route::prefix('app/relaciones-publicas')
+            ->name('app.publicrelations.')
+            ->middleware(['web','auth','verified','hasProfiles'])
+            ->namespace($this->namespace)
+            ->group(base_path('routes/publicrelations.php'));
     }
 
     /**
