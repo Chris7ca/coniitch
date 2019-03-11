@@ -16,4 +16,8 @@ class Sponsor extends Model
 
     protected $hidden = ['id'];
 
+    protected $casts  = [
+        'image' => 'array'
+    ];
+
 }
