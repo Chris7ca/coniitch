@@ -42,7 +42,7 @@ class NewDocument extends Notification implements ShouldQueue
                 'mails.default', [
                     'notification' => 'Estimado(a) '. $this->user->first_name .' '. $this->user->last_name .',',
                     'subject' => 'Le notificamos que se ha agregado "'. $this->document->title .'", a la lista de tus documentos. Puedes verlo abriendo esta notificación.',
-                    'url' => route('app.congressman.documents.view')
+                    'url' => route('app.users.documents.view')
                     ]
             );
     }
@@ -55,7 +55,7 @@ class NewDocument extends Notification implements ShouldQueue
             'icon' => 'file-pdf',
             'title' => 'Nuevo documento',
             'description' => 'Se ha agregado "'. $this->document->title .'" a la lista de tus documentos. Puedes verlo abriendo esta notificación.',
-            'route' => route('app.congressman.documents.view')
+            'route' => route('app.users.documents.view')
         ];
     }
 }
