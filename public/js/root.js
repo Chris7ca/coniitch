@@ -1787,6 +1787,11 @@ __webpack_require__.r(__webpack_exports__);
       currentPage: 1
     };
   },
+  watch: {
+    url: function url(_url) {
+      this.getItems(_url);
+    }
+  },
   methods: {
     getPage: function getPage(page) {
       var _this = this;
@@ -1807,25 +1812,27 @@ __webpack_require__.r(__webpack_exports__);
 
         showAxiosErrorMessage(error);
       });
+    },
+    getItems: function getItems(url) {
+      var _this2 = this;
+
+      axios.post(url).then(function (response) {
+        _this2.total = response.data.total;
+        _this2.perPage = response.data.per_page;
+        _this2.pages = Math.ceil(_this2.total / _this2.perPage) <= 1 ? 0 : Math.ceil(_this2.total / _this2.perPage);
+        _this2.lastPage = _this2.pages;
+
+        _this2.$emit('updateLoader', false);
+
+        _this2.$emit('updateItems', response.data.data);
+      }).catch(function (error) {
+        _this2.loader = false;
+        showAxiosErrorMessage(error);
+      });
     }
   },
   created: function created() {
-    var _this2 = this;
-
-    var url = this.url.template;
-    axios.post(url).then(function (response) {
-      _this2.total = response.data.total;
-      _this2.perPage = response.data.per_page;
-      _this2.pages = Math.ceil(_this2.total / _this2.perPage) <= 1 ? 0 : Math.ceil(_this2.total / _this2.perPage);
-      _this2.lastPage = _this2.pages;
-
-      _this2.$emit('updateLoader', false);
-
-      _this2.$emit('updateItems', response.data.data);
-    }).catch(function (error) {
-      _this2.loader = false;
-      showAxiosErrorMessage(error);
-    });
+    this.getItems(this.url);
   }
 });
 
@@ -2022,6 +2029,7 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _bus_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../../bus.js */ "./resources/js/bus.js");
+//
 //
 //
 //
@@ -3069,7 +3077,8 @@ __webpack_require__.r(__webpack_exports__);
       users: [],
       tempUsers: [],
       searchTableActive: false,
-      querySearch: ''
+      querySearch: '',
+      usersUrl: route('app.root.users.index')
     };
   },
   watch: {
@@ -3090,7 +3099,6 @@ __webpack_require__.r(__webpack_exports__);
           showAxiosErrorMessage(error);
         });
       } else if (val.length < 2) {
-        console.log('ok');
         this.users = this.tempUsers;
         this.searchTableActive = false;
       }
@@ -7565,7 +7573,7 @@ var render = function() {
                   {
                     staticClass:
                       "uk-button uk-button-primary uk-box-shadow-hover-large",
-                    attrs: { type: "submit" }
+                    attrs: { type: "submit", disabled: _vm.loader }
                   },
                   [
                     _vm._v(
@@ -7575,8 +7583,11 @@ var render = function() {
                             ? "Añadir documento"
                             : "Actualizar documento"
                         ) +
-                        "\n                "
-                    )
+                        "\n                    "
+                    ),
+                    _vm.loader
+                      ? _c("span", { attrs: { "uk-spinner": "ratio: 0.8" } })
+                      : _vm._e()
                   ]
                 ),
                 _vm._v(" "),
@@ -8645,7 +8656,7 @@ var render = function() {
           { staticClass: "nav-overlay uk-navbar-left" },
           [
             _c("pagination", {
-              attrs: { url: _vm.route("app.root.users.index") },
+              attrs: { url: _vm.usersUrl },
               on: {
                 updateItems: _vm.updateItems,
                 updateLoader: _vm.updateLoader

@@ -1924,6 +1924,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -1935,6 +1939,7 @@ __webpack_require__.r(__webpack_exports__);
       dataLoaded: true,
       mode: 'create',
       id: '',
+      width: 'auto',
       image: '/images/placeholder.jpg',
       imageLoaded: true,
       errorFile: false,
@@ -1989,7 +1994,7 @@ __webpack_require__.r(__webpack_exports__);
     clearData: function clearData() {
       this.image = '/images/placeholder.jpg';
       this.url = '';
-      this.description = '';
+      this.width = 'auto', this.description = '';
       this.displayName = '';
     },
     getData: function getData() {
@@ -1998,13 +2003,16 @@ __webpack_require__.r(__webpack_exports__);
       formData.append('display_name', this.displayName);
       formData.append('url', this.url);
       formData.append('description', this.description);
+      formData.append('width', this.width);
       formData.append('image', image);
       return formData;
     },
     handleSubmit: function handleSubmit() {
       if (this.url != '' && this.description != '') {
-        UIkit.notification('El campo URL y descripción no pueden contener información al mismo tiempo, debes de elegir solo uno de ellos', 'warning');
-      } else if (this.mode == 'create' && !document.getElementById('image-sponsor').files) {
+        UIkit.notification('Solo puedes agregar descripción del patrocinador o una url', 'warning');
+      }
+
+      if (this.mode == 'create' && !document.getElementById('image-sponsor').files[0]) {
         UIkit.notification('Debes cargar una imagen del patricinador', 'warning');
       } else {
         this.mode == 'create' ? this.storeSponsor() : this.updateSponsor();
@@ -2015,7 +2023,7 @@ __webpack_require__.r(__webpack_exports__);
 
       var data = this.getData();
       this.dataLoaded = false;
-      axios.post(route('app.sponsors.store'), data, {
+      axios.post(route('app.publicrelations.sponsors.store'), data, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }
@@ -2034,7 +2042,7 @@ __webpack_require__.r(__webpack_exports__);
 
       var data = this.getData();
       this.dataLoaded = false;
-      axios.post(route('app.sponsors.update', {
+      axios.post(route('app.publicrelations.sponsors.update', {
         id: this.id
       }), data, {
         headers: {
@@ -2054,20 +2062,14 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {
     var _this4 = this;
 
-    _bus_js__WEBPACK_IMPORTED_MODULE_0__["EventBus"].$on('editSponsor', function (url) {
-      _this4.dataLoaded = false;
+    _bus_js__WEBPACK_IMPORTED_MODULE_0__["EventBus"].$on('editSponsor', function (sponsor) {
       _this4.mode = 'update';
-      axios.post(url).then(function (response) {
-        _this4.dataLoaded = true;
-        _this4.id = response.data.public_id;
-        _this4.displayName = response.data.display_name;
-        _this4.url = response.data.url != null ? response.data.url : '';
-        _this4.description = response.data.description != null ? response.data.description : '';
-        _this4.image = response.data.image.replace('public', '/storage');
-      }).catch(function (error) {
-        _this4.dataLoaded = true;
-        showAxiosErrorMessage(error);
-      });
+      _this4.id = sponsor.public_id;
+      _this4.url = sponsor.url != null ? sponsor.url : '';
+      _this4.width = sponsor.image.width;
+      _this4.image = sponsor.image.file.replace('public', '/storage');
+      _this4.displayName = sponsor.display_name;
+      _this4.description = sponsor.description != null ? sponsor.description : '';
       UIkit.util.on('#modal-sponsor', 'hide', function () {
         _this4.mode = 'create';
 
@@ -2137,10 +2139,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
+      loader: false,
       sponsors: []
     };
   },
@@ -2148,22 +2154,19 @@ __webpack_require__.r(__webpack_exports__);
     image: function image(_image) {
       return _image.replace('public', '/storage');
     },
-    editSponsor: function editSponsor(id) {
-      var url = route('app.sponsors.edit', {
-        id: id
-      });
-      _bus_js__WEBPACK_IMPORTED_MODULE_0__["EventBus"].$emit('editSponsor', url);
+    editSponsor: function editSponsor(sponsor) {
+      _bus_js__WEBPACK_IMPORTED_MODULE_0__["EventBus"].$emit('editSponsor', sponsor);
     },
-    deleteSponsor: function deleteSponsor(id) {
+    deleteSponsor: function deleteSponsor(sponsor) {
       var _this = this;
 
       UIkit.modal.confirm('¿Deseas eliminar a este patrocionador?').then(function () {
-        var url = route('app.sponsors.delete', {
-          id: id
+        var url = route('app.publicrelations.sponsors.delete', {
+          id: sponsor.public_id
         });
         axios.delete(url).then(function (response) {
           var index = _this.sponsors.findIndex(function (s) {
-            return s.public_id = id;
+            return s.public_id = sponsor.public_id;
           });
 
           _this.sponsors.splice(index, 1);
@@ -2178,7 +2181,7 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {
     var _this2 = this;
 
-    axios.post(route('app.sponsors.index')).then(function (response) {
+    axios.post(route('app.publicrelations.sponsors.index')).then(function (response) {
       _this2.sponsors = response.data;
     }).catch(function (error) {
       showAxiosErrorMessage(error);
@@ -2191,8 +2194,11 @@ __webpack_require__.r(__webpack_exports__);
         return s.public_id == sponsor.public_id;
       });
 
+      _this2.sponsors[index].url = sponsor.url;
+      _this2.sponsors[index].image.file = sponsor.image.file;
+      _this2.sponsors[index].image.width = sponsor.image.width;
       _this2.sponsors[index].display_name = sponsor.display_name;
-      _this2.sponsors[index].image = sponsor.image.replace('public', '/storage');
+      _this2.sponsors[index].description = sponsor.description;
     });
   }
 });
@@ -3564,10 +3570,7 @@ var render = function() {
     [
       _c(
         "div",
-        {
-          staticClass: "uk-modal-dialog uk-modal-body uk-position-relative",
-          staticStyle: { "border-radius": "0.25rem" }
-        },
+        { staticClass: "uk-modal-dialog uk-modal-body uk-position-relative" },
         [
           _c("button", {
             staticClass: "uk-modal-close-default",
@@ -3579,10 +3582,16 @@ var render = function() {
           _c("hr", { staticClass: "uk-divider-small" }),
           _vm._v(" "),
           _c(
-            "div",
+            "form",
             {
               staticClass: "uk-grid uk-grid-large uk-flex-middle",
-              attrs: { "uk-grid": "" }
+              attrs: { "uk-grid": "" },
+              on: {
+                submit: function($event) {
+                  $event.preventDefault()
+                  return _vm.handleSubmit($event)
+                }
+              }
             },
             [
               _c(
@@ -3595,148 +3604,165 @@ var render = function() {
                   _c(
                     "div",
                     {
-                      staticClass: "uk-placeholder",
+                      staticClass: "uk-placeholder uk-margin",
                       staticStyle: { "min-height": "100px", width: "300px" }
                     },
                     [
                       _vm.imageLoaded
-                        ? _c("img", { attrs: { src: _vm.image } })
-                        : _c("img", { attrs: { src: "/svg/spinner.svg" } })
+                        ? _c("img", {
+                            attrs: { src: _vm.image, width: _vm.width }
+                          })
+                        : _c("img", { attrs: { src: "/svg/spinner.svg" } }),
+                      _vm._v(" "),
+                      _vm.errorFile
+                        ? _c(
+                            "span",
+                            {
+                              staticClass:
+                                "uk-text-danger uk-text-small uk-margin"
+                            },
+                            [_vm._v(_vm._s(_vm.textErrorFile))]
+                          )
+                        : _vm._e()
                     ]
                   ),
                   _vm._v(" "),
-                  _vm.errorFile
-                    ? _c(
-                        "span",
+                  _c("div", { staticClass: "uk-margin" }, [
+                    _vm._m(0),
+                    _vm._v(" "),
+                    _c("input", {
+                      attrs: {
+                        type: "file",
+                        id: "image-sponsor",
+                        accept: "image/png",
+                        hidden: ""
+                      },
+                      on: { change: _vm.changeImage }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "uk-margin" }, [
+                    _vm._m(1),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
                         {
-                          staticClass: "uk-text-danger uk-text-small uk-margin"
-                        },
-                        [_vm._v(_vm._s(_vm.textErrorFile))]
-                      )
-                    : _vm._e()
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.width,
+                          expression: "width"
+                        }
+                      ],
+                      staticClass: "uk-input",
+                      attrs: {
+                        type: "number",
+                        placeholder: "Tamaño en píxeles"
+                      },
+                      domProps: { value: _vm.width },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.width = $event.target.value
+                        }
+                      }
+                    })
+                  ])
                 ]
               ),
               _vm._v(" "),
               _c("div", { staticClass: "uk-width-expand@m" }, [
-                _c(
-                  "form",
-                  {
-                    staticClass: "uk-form-stacked",
-                    on: {
-                      submit: function($event) {
-                        $event.preventDefault()
-                        return _vm.handleSubmit($event)
-                      }
-                    }
-                  },
-                  [
-                    _c("div", { staticClass: "uk-margin" }, [
-                      _c("label", { staticClass: "uk-form-label" }, [
-                        _vm._v("Nombre del patrocinador")
-                      ]),
-                      _vm._v(" "),
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.displayName,
-                            expression: "displayName"
-                          }
-                        ],
-                        staticClass: "uk-input",
-                        attrs: { type: "text", required: "" },
-                        domProps: { value: _vm.displayName },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.displayName = $event.target.value
-                          }
-                        }
-                      })
+                _c("div", { staticClass: "uk-form-stacked" }, [
+                  _c("div", { staticClass: "uk-margin" }, [
+                    _c("label", { staticClass: "uk-form-label" }, [
+                      _vm._v("Nombre del patrocinador")
                     ]),
                     _vm._v(" "),
-                    _c("div", { staticClass: "uk-margin" }, [
-                      _c("label", { staticClass: "uk-form-label" }, [
-                        _vm._v("URL (si aplica)")
-                      ]),
-                      _vm._v(" "),
-                      _c("input", {
-                        directives: [
-                          {
-                            name: "model",
-                            rawName: "v-model",
-                            value: _vm.url,
-                            expression: "url"
-                          }
-                        ],
-                        staticClass: "uk-input",
-                        attrs: {
-                          type: "text",
-                          required: _vm.description == ""
-                        },
-                        domProps: { value: _vm.url },
-                        on: {
-                          input: function($event) {
-                            if ($event.target.composing) {
-                              return
-                            }
-                            _vm.url = $event.target.value
-                          }
-                        }
-                      })
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      { staticClass: "uk-margin" },
-                      [
-                        _c("label", { staticClass: "uk-form-label" }, [
-                          _vm._v("Descripción (si aplica)")
-                        ]),
-                        _vm._v(" "),
-                        _c("editor", {
-                          attrs: { id: "editor_sponsor", value: "" },
-                          model: {
-                            value: _vm.description,
-                            callback: function($$v) {
-                              _vm.description = $$v
-                            },
-                            expression: "description"
-                          }
-                        })
-                      ],
-                      1
-                    ),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "uk-margin" }, [
-                      _vm._m(0),
-                      _vm._v(" "),
-                      _c("input", {
-                        attrs: {
-                          type: "file",
-                          id: "image-sponsor",
-                          accept: "image/png",
-                          hidden: ""
-                        },
-                        on: { change: _vm.changeImage }
-                      })
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "uk-margin" }, [
-                      _c(
-                        "button",
+                    _c("input", {
+                      directives: [
                         {
-                          staticClass: "uk-button uk-button-primary",
-                          attrs: { type: "submit" }
-                        },
-                        [_vm._v(_vm._s(_vm.textBtnSubmit))]
-                      )
-                    ])
-                  ]
-                )
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.displayName,
+                          expression: "displayName"
+                        }
+                      ],
+                      staticClass: "uk-input",
+                      attrs: { type: "text", required: "" },
+                      domProps: { value: _vm.displayName },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.displayName = $event.target.value
+                        }
+                      }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "uk-margin" }, [
+                    _c("label", { staticClass: "uk-form-label" }, [
+                      _vm._v("URL (si aplica)")
+                    ]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.url,
+                          expression: "url"
+                        }
+                      ],
+                      staticClass: "uk-input",
+                      attrs: { type: "text", required: _vm.description == "" },
+                      domProps: { value: _vm.url },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.url = $event.target.value
+                        }
+                      }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "uk-margin" },
+                    [
+                      _c("label", { staticClass: "uk-form-label" }, [
+                        _vm._v("Descripción (si aplica)")
+                      ]),
+                      _vm._v(" "),
+                      _c("editor", {
+                        attrs: { id: "editor_sponsor", value: "" },
+                        model: {
+                          value: _vm.description,
+                          callback: function($$v) {
+                            _vm.description = $$v
+                          },
+                          expression: "description"
+                        }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "uk-margin" }, [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "uk-button uk-button-primary",
+                        attrs: { type: "submit" }
+                      },
+                      [_vm._v(_vm._s(_vm.textBtnSubmit))]
+                    )
+                  ])
+                ])
               ])
             ]
           ),
@@ -3768,6 +3794,21 @@ var staticRenderFns = [
       }),
       _vm._v(" Cambiar imagen del patrocinador")
     ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { staticClass: "uk-form-label" }, [
+      _vm._v("Ancho de la imagen "),
+      _c("span", {
+        staticClass: "uk-margin-small-left",
+        attrs: {
+          "uk-tooltip":
+            "Si no se especifíca el ancho de la imagen, tomará el ancho original"
+        }
+      })
+    ])
   }
 ]
 render._withStripped = true
@@ -3794,71 +3835,74 @@ var render = function() {
   return _c(
     "div",
     {
-      staticClass:
-        "uk-grid uk-grid-match uk-child-width-1-4@xl uk-child-width-1-3@m uk-child-width-1-2",
+      staticClass: "uk-grid-medium uk-flex-around uk-flex-middle",
       attrs: { "uk-grid": "" }
     },
     [
       _vm._m(0),
       _vm._v(" "),
-      _vm._l(_vm.sponsors, function(sponsor, index) {
-        return _c("div", { key: index }, [
-          _c(
+      _vm.loader
+        ? _c("div", { staticClass: "uk-text-center" }, [_vm._m(1)])
+        : _c(
             "div",
-            {
-              staticClass:
-                "uk-card uk-card-body card-default uk-box-shadow-small uk-flex uk-flex-column uk-flex-around uk-flex-middle",
-              staticStyle: { "min-height": "400px" }
-            },
-            [
-              _c("div", { staticStyle: { width: "90%", height: "auto" } }, [
-                _c("img", { attrs: { src: _vm.image(sponsor.image), alt: "" } })
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "uk-text-center uk-margin" }, [
-                _c("h6", [_vm._v(_vm._s(sponsor.display_name))]),
+            _vm._l(_vm.sponsors, function(sponsor, index) {
+              return _c("div", { key: index }, [
+                _c("a", { attrs: { role: "button" } }, [
+                  _c("img", {
+                    attrs: {
+                      "data-src": sponsor.image.file.replace(
+                        "public",
+                        "/storage"
+                      ),
+                      width: sponsor.image.width,
+                      "uk-img": ""
+                    }
+                  })
+                ]),
                 _vm._v(" "),
-                _c(
-                  "ul",
-                  {
-                    staticClass:
-                      "uk-iconnav uk-flex uk-flex-center uk-margin-medium-top"
-                  },
-                  [
-                    _c("li", [
-                      _c("a", {
-                        attrs: {
-                          href: "#modal-sponsor",
-                          "uk-icon": "file-edit",
-                          "uk-toggle": ""
-                        },
-                        on: {
-                          click: function($event) {
-                            _vm.editSponsor(sponsor.public_id)
+                _c("div", { attrs: { "uk-dropdown": "mode: click" } }, [
+                  _c("h6", [_vm._v(_vm._s(sponsor.display_name))]),
+                  _vm._v(" "),
+                  _c(
+                    "ul",
+                    {
+                      staticClass:
+                        "uk-iconnav uk-flex uk-flex-center uk-margin-medium-top"
+                    },
+                    [
+                      _c("li", [
+                        _c("a", {
+                          attrs: {
+                            href: "#modal-sponsor",
+                            "uk-icon": "file-edit",
+                            "uk-toggle": ""
+                          },
+                          on: {
+                            click: function($event) {
+                              _vm.editSponsor(sponsor)
+                            }
                           }
-                        }
-                      })
-                    ]),
-                    _vm._v(" "),
-                    _c("li", [
-                      _c("a", {
-                        attrs: { role: "button", "uk-icon": "trash" },
-                        on: {
-                          click: function($event) {
-                            _vm.deleteSponsor(sponsor.public_id)
+                        })
+                      ]),
+                      _vm._v(" "),
+                      _c("li", [
+                        _c("a", {
+                          attrs: { role: "button", "uk-icon": "trash" },
+                          on: {
+                            click: function($event) {
+                              _vm.deleteSponsor(sponsor)
+                            }
                           }
-                        }
-                      })
-                    ])
-                  ]
-                )
+                        })
+                      ])
+                    ]
+                  )
+                ])
               ])
-            ]
+            }),
+            0
           )
-        ])
-      })
-    ],
-    2
+    ]
   )
 }
 var staticRenderFns = [
@@ -3866,33 +3910,29 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", [
-      _c(
-        "div",
-        {
-          staticClass: "uk-placeholder uk-flex uk-flex-middle uk-flex-center",
-          staticStyle: { "min-height": "400px" }
+    return _c("div", { staticClass: "uk-text-center" }, [
+      _c("h6", [_vm._v("Agregar")]),
+      _vm._v(" "),
+      _c("a", {
+        staticClass: "uk-button-primary uk-box-shadow-hover-large",
+        staticStyle: {
+          padding: "10px",
+          "border-radius": "50%",
+          color: "#fafafa"
         },
-        [
-          _c("div", { staticClass: "uk-text-center" }, [
-            _c("h6", [_vm._v("Agregar")]),
-            _vm._v(" "),
-            _c("a", {
-              staticClass: "uk-button-primary uk-box-shadow-hover-large",
-              staticStyle: {
-                padding: "10px",
-                "border-radius": "50%",
-                color: "#fafafa"
-              },
-              attrs: {
-                href: "#modal-sponsor",
-                "uk-icon": "plus",
-                "uk-toggle": ""
-              }
-            })
-          ])
-        ]
-      )
+        attrs: { href: "#modal-sponsor", "uk-icon": "plus", "uk-toggle": "" }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", [
+      _c("h6", [
+        _vm._v("Cargando... "),
+        _c("span", { attrs: { "uk-spinner": "ratio: 0.8" } })
+      ])
     ])
   }
 ]

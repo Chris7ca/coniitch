@@ -3240,7 +3240,7 @@ var render = function() {
                                     "app.congressman.announcement.works.show",
                                     { id: work.public_id }
                                   ),
-                                  "uk-icon": "expand",
+                                  "uk-icon": "eye",
                                   "uk-tooltip": "Ver trabajo"
                                 }
                               })

@@ -2428,12 +2428,18 @@ __webpack_require__.r(__webpack_exports__);
       passwordIsValid: null,
       passwordConfirmation: '',
       passwordConfirmationIsValid: null,
-      regex: /^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,}$/
+      oneUppercaseLetter: /[A-Z]/,
+      oneLowercaseLetter: /[a-z]/,
+      oneNumber: /[0-9]/
     };
   },
   watch: {
     password: function password(val) {
-      this.passwordIsValid = this.regex.test(val);
+      this.passwordIsValid = false;
+
+      if (val.length > 8 && this.oneLowercaseLetter.test(val) && this.oneUppercaseLetter.test(val) && this.oneNumber.test(val)) {
+        this.passwordIsValid = true;
+      }
     },
     passwordConfirmation: function passwordConfirmation(val) {
       this.passwordConfirmationIsValid = this.password === this.passwordConfirmation;
@@ -6682,11 +6688,7 @@ var render = function() {
                     }
                   ],
                   staticClass: "uk-input",
-                  attrs: {
-                    type: "text",
-                    required: "",
-                    placeholder: "Opcional"
-                  },
+                  attrs: { type: "text", placeholder: "Opcional" },
                   domProps: { value: _vm.secondPhoneNumber },
                   on: {
                     input: function($event) {

@@ -2179,7 +2179,8 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       loader: true,
-      payments: []
+      payments: [],
+      paymentsUrl: route('app.finances.payments.index')
     };
   },
   computed: {
@@ -2326,7 +2327,8 @@ __webpack_require__.r(__webpack_exports__);
     return {
       loader: true,
       validation: true,
-      records: []
+      records: [],
+      recordsUrl: route('app.finances.records.index')
     };
   },
   methods: {
@@ -2885,6 +2887,11 @@ __webpack_require__.r(__webpack_exports__);
       currentPage: 1
     };
   },
+  watch: {
+    url: function url(_url) {
+      this.getItems(_url);
+    }
+  },
   methods: {
     getPage: function getPage(page) {
       var _this = this;
@@ -2905,25 +2912,27 @@ __webpack_require__.r(__webpack_exports__);
 
         showAxiosErrorMessage(error);
       });
+    },
+    getItems: function getItems(url) {
+      var _this2 = this;
+
+      axios.post(url).then(function (response) {
+        _this2.total = response.data.total;
+        _this2.perPage = response.data.per_page;
+        _this2.pages = Math.ceil(_this2.total / _this2.perPage) <= 1 ? 0 : Math.ceil(_this2.total / _this2.perPage);
+        _this2.lastPage = _this2.pages;
+
+        _this2.$emit('updateLoader', false);
+
+        _this2.$emit('updateItems', response.data.data);
+      }).catch(function (error) {
+        _this2.loader = false;
+        showAxiosErrorMessage(error);
+      });
     }
   },
   created: function created() {
-    var _this2 = this;
-
-    var url = this.url.template;
-    axios.post(url).then(function (response) {
-      _this2.total = response.data.total;
-      _this2.perPage = response.data.per_page;
-      _this2.pages = Math.ceil(_this2.total / _this2.perPage) <= 1 ? 0 : Math.ceil(_this2.total / _this2.perPage);
-      _this2.lastPage = _this2.pages;
-
-      _this2.$emit('updateLoader', false);
-
-      _this2.$emit('updateItems', response.data.data);
-    }).catch(function (error) {
-      _this2.loader = false;
-      showAxiosErrorMessage(error);
-    });
+    this.getItems(this.url);
   }
 });
 
@@ -6734,7 +6743,7 @@ var render = function() {
             [
               _c("div", { staticClass: "uk-margin" }, [
                 _c("label", { staticClass: "uk-form-label" }, [
-                  _vm._v("Nombre del la promoción")
+                  _vm._v("Nombre de la promoción")
                 ]),
                 _vm._v(" "),
                 _c("input", {
@@ -6789,7 +6798,7 @@ var render = function() {
               _vm._v(" "),
               _c("div", { staticClass: "uk-margin" }, [
                 _c("label", { staticClass: "uk-form-lable" }, [
-                  _vm._v("Descueto")
+                  _vm._v("Descuento")
                 ]),
                 _vm._v(" "),
                 _c("input", {
@@ -6835,7 +6844,8 @@ var render = function() {
                       "track-by": "value",
                       options: _vm.roles,
                       required: "",
-                      placeholder: "Selecciona a quienes va dirigido el servico"
+                      placeholder:
+                        "Selecciona a quienes va dirigido el servicio"
                     },
                     model: {
                       value: _vm.selectedRoles,
@@ -7163,7 +7173,7 @@ var render = function() {
       ]),
       _vm._v(" "),
       _c("pagination", {
-        attrs: { url: _vm.route("app.finances.payments.index") },
+        attrs: { url: _vm.paymentsUrl },
         on: { updateItems: _vm.updateItems, updateLoader: _vm.updateLoader }
       }),
       _vm._v(" "),
@@ -7252,7 +7262,7 @@ var render = function() {
                           attrs: {
                             href: "#payment-information",
                             "uk-tooltip": "Ver más información",
-                            "uk-icon": "expand",
+                            "uk-icon": "eye",
                             "uk-toggle": ""
                           },
                           on: {
@@ -7355,7 +7365,7 @@ var render = function() {
       "div",
       [
         _c("pagination", {
-          attrs: { url: _vm.route("app.finances.records.index") },
+          attrs: { url: _vm.recordsUrl },
           on: { updateItems: _vm.updateItems, updateLoader: _vm.updateLoader }
         })
       ],
@@ -7486,7 +7496,7 @@ var render = function() {
                                                 "uk-margin-small-right",
                                               attrs: { "uk-icon": "check" }
                                             }),
-                                            _vm._v(" Aprovar documento")
+                                            _vm._v(" Aprobar documento")
                                           ]
                                         )
                                       ])

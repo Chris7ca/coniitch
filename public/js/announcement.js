@@ -3591,11 +3591,7 @@ var render = function() {
       _c("div", { staticClass: "uk-width-1-1" }, [
         _c("ul", { attrs: { "uk-accordion": "" } }, [
           _c("li", [
-            _c(
-              "a",
-              { staticClass: "uk-accordion-title", attrs: { role: "button" } },
-              [_vm._v("Autoría")]
-            ),
+            _vm._m(0),
             _vm._v(" "),
             _c("div", { staticClass: "uk-accordion-content" }, [
               _c("div", [
@@ -3768,7 +3764,7 @@ var render = function() {
                         "uk-table uk-table-divider uk-table-middle uk-table-responsive uk-margin-medium"
                     },
                     [
-                      _vm._m(0),
+                      _vm._m(1),
                       _vm._v(" "),
                       _c(
                         "tbody",
@@ -3837,7 +3833,7 @@ var render = function() {
         "div",
         { staticClass: "uk-width-1-1" },
         [
-          _vm._m(1),
+          _vm._m(2),
           _vm._v(" "),
           _c("editor", {
             attrs: {
@@ -3909,6 +3905,19 @@ var render = function() {
   )
 }
 var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "a",
+      { staticClass: "uk-accordion-title", attrs: { role: "button" } },
+      [
+        _vm._v("Autoría "),
+        _c("small", [_vm._v("(si desea agregar coautores)")])
+      ]
+    )
+  },
   function() {
     var _vm = this
     var _h = _vm.$createElement

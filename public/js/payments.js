@@ -3100,113 +3100,123 @@ var render = function() {
               _vm._v(" "),
               _vm._m(0, true),
               _vm._v(" "),
-              _c("li", [
-                _c("span", {
-                  staticClass: "uk-margin-small-right",
-                  attrs: { "uk-icon": "info" }
-                }),
-                _vm._v(" "),
-                _c(
-                  "a",
-                  { staticClass: "uk-link-reset", attrs: { role: "button" } },
-                  [_vm._v("Promociones")]
-                ),
-                _vm._v(" "),
-                _c("div", { attrs: { "uk-dropdown": "" } }, [
-                  _c(
-                    "ul",
-                    {
-                      staticClass: "uk-list uk-list-divider uk-padding-remove"
-                    },
-                    _vm._l(service.discounts, function(discount) {
-                      return _c("li", { key: discount.public_id }, [
-                        _c("h6", { staticClass: "uk-margin-remove" }, [
-                          _vm._v(_vm._s(discount.name))
-                        ]),
-                        _vm._v(" "),
-                        _c("small", [
-                          _vm._v(
-                            " - $ " +
-                              _vm._s(discount.discount.toFixed(2)) +
-                              " MXN"
-                          )
-                        ]),
-                        _vm._v(" "),
-                        _vm.diffInDays(discount.end_date) > 7
-                          ? _c("p", { staticClass: "uk-text-small" }, [
+              service.discounts.length > 0
+                ? _c("li", [
+                    _c("span", {
+                      staticClass: "uk-margin-small-right",
+                      attrs: { "uk-icon": "info" }
+                    }),
+                    _vm._v(" "),
+                    _c(
+                      "a",
+                      {
+                        staticClass: "uk-link-reset",
+                        attrs: { role: "button" }
+                      },
+                      [_vm._v("Promociones")]
+                    ),
+                    _vm._v(" "),
+                    _c("div", { attrs: { "uk-dropdown": "" } }, [
+                      _c(
+                        "ul",
+                        {
+                          staticClass:
+                            "uk-list uk-list-divider uk-padding-remove"
+                        },
+                        _vm._l(service.discounts, function(discount) {
+                          return _c("li", { key: discount.public_id }, [
+                            _c("h6", { staticClass: "uk-margin-remove" }, [
+                              _vm._v(_vm._s(discount.name))
+                            ]),
+                            _vm._v(" "),
+                            _c("small", [
                               _vm._v(
-                                "\n                                    Válido hasta el " +
-                                  _vm._s(discount.end_date) +
-                                  "\n                                "
+                                " - $ " +
+                                  _vm._s(discount.discount.toFixed(2)) +
+                                  " MXN"
                               )
-                            ])
-                          : _vm._e(),
-                        _vm._v(" "),
-                        _vm.diffInDays(discount.end_date) <= 7 &&
-                        _vm.diffInDays(discount.end_date) >= 1
-                          ? _c(
-                              "p",
-                              { staticClass: "uk-text-warning uk-text-small" },
-                              [
-                                _vm._v(
-                                  "\n                                    Solo quedan " +
-                                    _vm._s(
-                                      Math.ceil(
-                                        _vm.diffInDays(discount.end_date)
-                                      )
-                                    ) +
-                                    " días de precio especial\n                                "
-                                )
-                              ]
-                            )
-                          : _vm._e(),
-                        _vm._v(" "),
-                        _vm.diffInDays(discount.end_date) < 1
-                          ? _c(
-                              "p",
-                              { staticClass: "uk-text-danger uk-text-small" },
-                              [
-                                _vm._v(
-                                  "\n                                    Solo quedan \n                                    "
-                                ),
-                                _c(
-                                  "b",
+                            ]),
+                            _vm._v(" "),
+                            _vm.diffInDays(discount.end_date) > 7
+                              ? _c("p", { staticClass: "uk-text-small" }, [
+                                  _vm._v(
+                                    "\n                                    Válido hasta el " +
+                                      _vm._s(discount.end_date) +
+                                      "\n                                "
+                                  )
+                                ])
+                              : _vm._e(),
+                            _vm._v(" "),
+                            _vm.diffInDays(discount.end_date) <= 7 &&
+                            _vm.diffInDays(discount.end_date) >= 1
+                              ? _c(
+                                  "p",
                                   {
-                                    attrs: {
-                                      "uk-countdown":
-                                        "date: " + discount.end_date
-                                    }
+                                    staticClass: "uk-text-warning uk-text-small"
                                   },
                                   [
-                                    _c("span", {
-                                      staticClass: "uk-countdown-hours"
-                                    }),
                                     _vm._v(
-                                      " horas,\n                                        "
-                                    ),
-                                    _c("span", {
-                                      staticClass: "uk-countdown-minutes"
-                                    }),
-                                    _vm._v(
-                                      " minutos,\n                                        "
-                                    ),
-                                    _c("span", {
-                                      staticClass: "uk-countdown-seconds"
-                                    }),
-                                    _vm._v(
-                                      " segundos\n                                    "
+                                      "\n                                    Solo quedan " +
+                                        _vm._s(
+                                          Math.ceil(
+                                            _vm.diffInDays(discount.end_date)
+                                          )
+                                        ) +
+                                        " días de precio especial\n                                "
                                     )
                                   ]
                                 )
-                              ]
-                            )
-                          : _vm._e()
-                      ])
-                    }),
-                    0
-                  )
-                ])
-              ]),
+                              : _vm._e(),
+                            _vm._v(" "),
+                            _vm.diffInDays(discount.end_date) < 1
+                              ? _c(
+                                  "p",
+                                  {
+                                    staticClass: "uk-text-danger uk-text-small"
+                                  },
+                                  [
+                                    _vm._v(
+                                      "\n                                    Solo quedan \n                                    "
+                                    ),
+                                    _c(
+                                      "b",
+                                      {
+                                        attrs: {
+                                          "uk-countdown":
+                                            "date: " + discount.end_date
+                                        }
+                                      },
+                                      [
+                                        _c("span", {
+                                          staticClass: "uk-countdown-hours"
+                                        }),
+                                        _vm._v(
+                                          " horas,\n                                        "
+                                        ),
+                                        _c("span", {
+                                          staticClass: "uk-countdown-minutes"
+                                        }),
+                                        _vm._v(
+                                          " minutos,\n                                        "
+                                        ),
+                                        _c("span", {
+                                          staticClass: "uk-countdown-seconds"
+                                        }),
+                                        _vm._v(
+                                          " segundos\n                                    "
+                                        )
+                                      ]
+                                    )
+                                  ]
+                                )
+                              : _vm._e()
+                          ])
+                        }),
+                        0
+                      )
+                    ])
+                  ])
+                : _vm._e(),
               _vm._v(" "),
               service.images.length > 0
                 ? _c("li", { staticClass: "uk-margin-medium-top" }, [

@@ -11711,10 +11711,10 @@ var app = new Vue({
 
 /***/ }),
 
-/***/ "./resources/less/site/site.less":
-/*!***************************************!*\
-  !*** ./resources/less/site/site.less ***!
-  \***************************************/
+/***/ "./resources/less/site/app.less":
+/*!**************************************!*\
+  !*** ./resources/less/site/app.less ***!
+  \**************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -11723,14 +11723,14 @@ var app = new Vue({
 /***/ }),
 
 /***/ 0:
-/*!********************************************************************!*\
-  !*** multi ./resources/js/auth.js ./resources/less/site/site.less ***!
-  \********************************************************************/
+/*!*******************************************************************!*\
+  !*** multi ./resources/js/auth.js ./resources/less/site/app.less ***!
+  \*******************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(/*! C:\laragon\www\coniitch\resources\js\auth.js */"./resources/js/auth.js");
-module.exports = __webpack_require__(/*! C:\laragon\www\coniitch\resources\less\site\site.less */"./resources/less/site/site.less");
+module.exports = __webpack_require__(/*! C:\laragon\www\coniitch\resources\less\site\app.less */"./resources/less/site/app.less");
 
 
 /***/ })
