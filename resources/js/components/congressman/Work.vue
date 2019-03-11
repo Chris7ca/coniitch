@@ -33,7 +33,7 @@
         <div class="uk-width-1-1">
             <ul uk-accordion>
                 <li>
-                    <a role="button" class="uk-accordion-title">Autoría</a>
+                    <a role="button" class="uk-accordion-title">Autoría <small>(si desea agregar coautores)</small></a>
 
                     <div class="uk-accordion-content">
 
