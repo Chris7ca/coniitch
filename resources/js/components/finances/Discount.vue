@@ -10,7 +10,7 @@
             <form class="uk-form-stacked uk-flex-middle uk-margin-medium" @submit.prevent="saveDiscount">
 
                 <div class="uk-margin">
-                    <label class="uk-form-label">Nombre del la promoción</label>
+                    <label class="uk-form-label">Nombre de la promoción</label>
                     <input type="text" class="uk-input" v-model="discount.name" required placeholder="Nombre de la promoción o descuento">
                 </div>
 
@@ -20,14 +20,14 @@
                 </div>
 
                 <div class="uk-margin">
-                    <label class="uk-form-lable">Descueto</label>
+                    <label class="uk-form-lable">Descuento</label>
                     <input type="number" class="uk-input" v-model="discount.discount" required placeholder="$ 00.00 MXN">
                 </div>
 
                 <div class="uk-margin">
                     <label class="uk-form-label">Dirigido a</label>
                     <multiselect v-model="selectedRoles" :multiple="true" :searchable="false" label="name" 
-                    track-by="value" :options="roles" required placeholder="Selecciona a quienes va dirigido el servico"></multiselect>
+                    track-by="value" :options="roles" required placeholder="Selecciona a quienes va dirigido el servicio"></multiselect>
                 </div>
 
                 <div class="uk-margin">
