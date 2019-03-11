@@ -40,7 +40,7 @@
                     <hr class="uk-divider-small">
 
                     <p class="uk-margin-medium-top">Para ser considerados, los resúmenes de los trabajos orales y carteles deberán <a href="{{ route('site.register') }}" class="text-secondary">registrarse</a> 
-                    a más tardar el día <b>domingo 10 de febrero del 2019 a las 23:59 horas</b>, hora del centro de México.</p>
+                    a más tardar el día <b>domingo 31 de marzo del 2019 a las 23:59 horas</b>, hora del centro de México.</p>
 
                 </article>
             </div>
@@ -58,12 +58,19 @@
             <div class="uk-width-2-3@m uk-flex-first@m" uk-scrollspy="cls:uk-animation-slide-right-medium; delay: 200">
                 <article class="uk-padding uk-padding-remove-horizontal">
 
-                    <h4 class="uk-text-muted">Especifícaciones</h4>
+                    <h4 class="uk-text-muted">Especificaciones</h4>
                     <hr class="uk-divider-small">
 
                     <p class="uk-margin-medium-top">Los trabajos libres podrán ser: investigaciones, trabajos teóricos, epistemológicos, informes técnicos o experiencias 
                     documentadas en general. La extensión de los resúmenes deberá ser de un <b>mínimo de 250 palabras</b> y un <b>máximo de 300 palabras</b>, sin  imágenes y sin tablas. 
                     Los resúmenes serán publicados en línea en la página del CITPsi y del congreso.</p>
+                    <p>Los trabajos aceptados para la sesión de carteles deberán ajustarse a las siguientes especificaciones técnicas:</p>
+                    <ul>
+                        <li>Dimensión del cartel: 120 cm. de alto por 90 cm. de ancho.</li>
+                        <li>Título: tamaño de letra en un rango de 100 a 130 pts.</li>
+                        <li>Texto en un rango de 24 a 48 pts.</li>
+                        <li>Se deberá colocar la ficha de identificación (título del trabajo, nombre de autor(es), correo electrónico del autor de correspondencia) en la parte superior.</li>
+                    </ul>
 
                 </article>
             </div>
@@ -110,9 +117,9 @@
                     <p class="uk-margin-medium-top">Posterior al registro y subida del resumen en la página correspondiente, los autores recibirán una notificación 
                     informando que su documento se recibió exitosamente. Esto <b>NO</b> significa la aceptación final del trabajo. </p>
                     <p>Los resúmenes de trabajos (tanto orales como carteles) deberán pasar por el dictamen del Comité Científico. Los resultados serán enviados vía correo electrónico 
-                    el día <b>lunes 11 de marzo de 2019</b>.</p>
-                    <p>Los trabajos aceptados serán incluidos en el programa de sesiones y publicados en en línea en la página del CITPsi y del congreso, siempre y cuando al menos uno 
-                    de los autores hayan realizado su pago de inscripción al congreso, teniendo como fecha límite el <b>31 de marzo de 2017</b>.</p>
+                    a más tardar el día<b> domingo 14 de abril de 2019</b>.</p>
+                    <p>Los trabajos aceptados serán incluidos en el programa de sesiones y publicados en línea en la página del CITPsi y del congreso, siempre y cuando al menos uno 
+                    de los autores hayan realizado su pago de inscripción al congreso, teniendo como fecha límite el <b>sábado 4 de mayo de 2017</b>.</p>
 
                 </article>
             </div>
