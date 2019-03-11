@@ -1,99 +1,136 @@
 <template>
-    
-    <table class="uk-table uk-table-middle uk-table-divider uk-table-responsive">
 
-        <thead>
-            <tr>
-                <th class="uk-table-shrink"></th>
-                <th class="uk-table-expand">Trabajo</th>
-                <th class="uk-table-shrink"></th>
-                <th class="uk-table-expand">Revisores</th>
-                <th>Estatus</th>
-                <th class="uk-table-shrink uk-text-center">Acciones</th>
-            </tr>
-        </thead>
+    <div>
 
-        <tbody>
+        <nav class="uk-navbar-container uk-navbar-transparent uk-margin" uk-navbar>
 
-            <tr v-if="!dataLoaded">
-                <td colspan="5" class="uk-text-center">
-                    Cargando... <div class="uk-margin-small-left" uk-spinner="ratio: 0.9"></div>
-                </td>
-            </tr>
+            <div class="nav-overlay uk-navbar-left">
+                <pagination :url="urlWorks" @updateItems="updateItems" @updateLoader="updateLoader"></pagination>
+            </div>
 
-            <tr v-for="(work, index) in works" :key="index" v-else>
-
-                <td v-html="tagWork(work)">
-                    
-                </td>
-
-                <td>
-                    <h6>{{ work.title }}</h6>
-                </td>
-
-                <td style="width: 20px;">
-                    <ul class="uk-list" v-if="work.revisors.length > 0">
-                        <li v-for="(revisor, i) in work.revisors" :key="i" v-html="revisorsStatus(revisor.confirmation.status)"></li>
-                    </ul>
-                </td>
-
-                <td>
-                    <span class="uk-text-small uk-text-muted" v-if="work.revisors.length == 0">Aún no asignas este trabajo...</span>
-
-                    <ul class="uk-list uk-text-small" v-else>
-                        <li v-for="(revisor, i) in work.revisors" :key="i">
-                            {{ revisor.first_name + ' ' + revisor.last_name }}
-                        </li>
-                    </ul>
-                </td>
-
-                <td v-html="statusWork(work)">
-                    
-                </td>
-
-                <td>
-                    <ul class="uk-iconnav uk-flex uk-flex-center">
+            <div class="nav-overlay uk-navbar-right">
+                <a role="button" uk-icon="list" uk-tooltip="Filtrar"></a>
+                <div uk-dropdown="mode: click">
+                    <ul class="uk-list">
                         <li>
-                            <a :href="route('app.congressman.announcement.works.show', { id : work.public_id })" uk-icon="eye" uk-tooltip="Ver trabajo"></a>
+                            <a role="button" class="uk-link-reset" @click="filter(null)">Todos</a>
                         </li>
-                        <li v-if="isAssignable(work)">
-                            <a href="#modal-assign-revisors" @click="assignRevisors(work.public_id)" uk-icon="forward" uk-toggle uk-tooltip="Asignar revisor"></a>
+                        <li>
+                            <a role="button" class="uk-link-reset" @click="filter(1)">Aprovados</a>
                         </li>
-                        <li v-if="work.reviews.length > 0">
-                            <a href="#modal-reviews" @click="showReviews(work)" uk-icon="copy" uk-toggle uk-tooltip="Ver evaluaciones"></a>
+                        <li>
+                            <a role="button" class="uk-link-reset" @click="filter(0)">No aprovados</a>
                         </li>
-                        <li v-if="notifiableStatus(work)">
-                            <a role="button" uk-icon="bell" @click="notify(work)" uk-tooltip="Notificar la evaluación"></a>
+                        <li>
+                            <a role="button" class="uk-link-reset" @click="filter(2)">Pendientes</a>
                         </li>
                     </ul>
-                </td>
+                </div>
+            </div>
 
-            </tr>
+        </nav>
 
-        </tbody>
+        <table class="uk-table uk-table-middle uk-table-divider uk-table-responsive">
 
-        <tfoot>
-            <tr v-if="dataLoaded && works.length == 0">
-                <td class="uk-text-center" colspan="6">
-                    <h6 class="uk-text-muted">No hay trabajos nuevos aún...</h6>
-                </td>
-            </tr>
-        </tfoot>
+            <thead>
+                <tr>
+                    <th class="uk-table-shrink"></th>
+                    <th class="uk-table-expand">Trabajo</th>
+                    <th class="uk-table-shrink"></th>
+                    <th class="uk-table-expand">Revisores</th>
+                    <th>Estatus</th>
+                    <th class="uk-table-shrink uk-text-center">Acciones</th>
+                </tr>
+            </thead>
 
-    </table>
+            <tbody>
+
+                <tr v-if="!dataLoaded">
+                    <td colspan="5" class="uk-text-center">
+                        Cargando... <div class="uk-margin-small-left" uk-spinner="ratio: 0.9"></div>
+                    </td>
+                </tr>
+
+                <tr v-for="(work, index) in works" :key="index" v-else>
+
+                    <td v-html="tagWork(work)">
+                        
+                    </td>
+
+                    <td>
+                        <h6>{{ work.title }}</h6>
+                    </td>
+
+                    <td style="width: 20px;">
+                        <ul class="uk-list" v-if="work.revisors.length > 0">
+                            <li v-for="(revisor, i) in work.revisors" :key="i" v-html="revisorsStatus(revisor.confirmation.status)"></li>
+                        </ul>
+                    </td>
+
+                    <td>
+                        <span class="uk-text-small uk-text-muted" v-if="work.revisors.length == 0">Aún no asignas este trabajo...</span>
+
+                        <ul class="uk-list uk-text-small" v-else>
+                            <li v-for="(revisor, i) in work.revisors" :key="i">
+                                {{ revisor.first_name + ' ' + revisor.last_name }}
+                            </li>
+                        </ul>
+                    </td>
+
+                    <td v-html="statusWork(work)">
+                        
+                    </td>
+
+                    <td>
+                        <ul class="uk-iconnav uk-flex uk-flex-center">
+                            <li>
+                                <a :href="route('app.congressman.announcement.works.show', { id : work.public_id })" uk-icon="eye" uk-tooltip="Ver trabajo"></a>
+                            </li>
+                            <li v-if="isAssignable(work)">
+                                <a href="#modal-assign-revisors" @click="assignRevisors(work.public_id)" uk-icon="forward" uk-toggle uk-tooltip="Asignar revisor"></a>
+                            </li>
+                            <li v-if="work.reviews.length > 0">
+                                <a href="#modal-reviews" @click="showReviews(work)" uk-icon="copy" uk-toggle uk-tooltip="Ver evaluaciones"></a>
+                            </li>
+                            <li v-if="notifiableStatus(work)">
+                                <a role="button" uk-icon="bell" @click="notify(work)" uk-tooltip="Notificar la evaluación"></a>
+                            </li>
+                        </ul>
+                    </td>
+
+                </tr>
+
+            </tbody>
+
+            <tfoot>
+                <tr v-if="dataLoaded && works.length == 0">
+                    <td class="uk-text-center" colspan="6">
+                        <h6 class="uk-text-muted">No hay trabajos nuevos aún...</h6>
+                    </td>
+                </tr>
+            </tfoot>
+
+        </table>
+
+    </div>
 
 </template>
 
 <script>
     
     import { EventBus } from './../../bus.js';
+    import Pagination from './../helpers/Pagination.vue';
 
     export default {
         
+        components: {
+            Pagination
+        },
         data () {
             return {
                 dataLoaded: false,
-                works: []
+                works: [],
+                urlWorks: route('app.admin.works.index')
             }
         },
         methods: {
@@ -244,22 +281,19 @@
 
                 }, {});
 
+            },
+            updateItems: function(works) {
+                this.works = works;
+            },
+            updateLoader: function(status) {
+                this.dataLoaded = !status;
+            },
+            filter: function(order) {
+                this.urlWorks = route('app.admin.works.index', { evaluation : order });
             }
         },
         created () {
             
-            let url = route('app.admin.works.index');
-
-            axios.post(url)
-            .then( response => {
-                this.dataLoaded = true;
-                this.works = response.data;
-            })
-            .catch( error => {
-                this.dataLoaded = true;
-                showAxiosErrorMessage(error);
-            });
-
             EventBus.$on('assignedRevisors', (id, revisors) => {
 
                 let index = this.works.findIndex( w => w.public_id == id );
