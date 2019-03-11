@@ -34,7 +34,10 @@ class Sponsors extends Controller
             'display_name' => $request->display_name,
             'url' => ($request->url) ? $request->url : null,
             'description' => ($request->description) ? $request->description : null,
-            'image' => $image
+            'image' => [
+                "file" => $image,
+                "width" => $request->width
+            ]
         ]);
 
         return $sponsor;
@@ -50,12 +53,21 @@ class Sponsors extends Controller
     {
         $sponsor = Sponsor::find($id);
 
+        $image = $sponsor->image['file'];
+
+        if ( $request->filled('image') ) {
+            $image = $request->image->store('public/sponsors');
+        }
+
         $sponsor->display_name = $request->display_name;
         $sponsor->url = ($request->url) ? $request->url : null;
         $sponsor->description = ($request->description) ? $request->description : null;
-        if ( $request->filled('image') ) {
-            $sponsor->image = $request->image->store('public/sponsors');
-        }
+
+        $sponsor->image = [
+            "file" => $image,
+            "width" => $request->width
+        ];
+
         $sponsor->save();
 
         return $sponsor;
