@@ -33,16 +33,25 @@ class WorksController extends Controller
         return $revisors;
     }
 
-    public function index()
+    public function index(Request $request)
     {
+        $conditions = [
+            ['ready', '=', 1]
+        ];
+
+        if ( $request->query('evaluation') != null ) {
+            \Log::info( $request->query('evaluation') );
+            array_push($conditions, ['evaluation', '=', $request->query('evaluation')]);
+        }
+
         $works = Work::select(['id','title','evaluation','version'])
-            ->where('ready', 1)
+            ->where($conditions)
             ->with([
                 'revisors:id,first_name,last_name',
                 'reviews.author:id,first_name,last_name',
                 'reviews.evaluations.criteria:id,title,description',
             ])
-            ->get();
+            ->paginate(10);
         
         foreach ($works as $work) {
             foreach ($work->revisors as $revisor) {
