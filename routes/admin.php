@@ -22,3 +22,9 @@ Route::post('trabajos',                                             'Admin\Works
 Route::post('trabajos/revisores',                                   'Admin\WorksController@revisors')->name('works.revisors');
 Route::post('trabajos/{id}/asignar',                                'Admin\WorksController@assign')->name('works.assign.revisors');
 Route::post('trabajos/{id}/evaluacion/confirmar',                   'Admin\WorksController@confirm')->name('works.evaluation.confirm');
+
+/**
+ * Estadísticas
+ */
+
+Route::post('trabajos/aceptados',                                   'Admin\WorksController@acceptedWorks')->name('works.accepted');
