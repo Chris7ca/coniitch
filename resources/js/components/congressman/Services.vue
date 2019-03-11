@@ -28,7 +28,7 @@
                         <a href="#modal-payment-methods" uk-toggle>Métodos de pago</a>
                     </li>
 
-                    <li>
+                    <li v-if="service.discounts.length > 0">
                         <span class="uk-margin-small-right" uk-icon="info"></span>
                         <a role="button" class="uk-link-reset">Promociones</a>
                         <div uk-dropdown>
