@@ -6,7 +6,7 @@
             <h6>Balance total: $ {{ total.toFixed(2) }}</h6>
         </div>
 
-        <pagination :url="route('app.finances.payments.index')" @updateItems="updateItems" @updateLoader="updateLoader"></pagination>
+        <pagination :url="paymentsUrl" @updateItems="updateItems" @updateLoader="updateLoader"></pagination>
 
         <table class="uk-table uk-table-divider uk-table-middle uk-table-responsive">
 
@@ -83,7 +83,8 @@
         data () {
             return {
                 loader: true,
-                payments: []
+                payments: [],
+                paymentsUrl: route('app.finances.payments.index')
             }
         },
         computed: {

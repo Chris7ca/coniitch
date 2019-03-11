@@ -5,7 +5,7 @@
         <nav class="uk-navbar-container uk-navbar-transparent uk-margin" uk-navbar>
 
             <div class="nav-overlay uk-navbar-left">
-                <pagination :url="route('app.root.users.index')" @updateItems="updateItems" @updateLoader="updateLoader"></pagination>
+                <pagination :url="usersUrl" @updateItems="updateItems" @updateLoader="updateLoader"></pagination>
             </div>
 
             <div class="nav-overlay uk-navbar-right">
@@ -117,7 +117,8 @@
                 users: [],
                 tempUsers: [],
                 searchTableActive: false,
-                querySearch: ''
+                querySearch: '',
+                usersUrl: route('app.root.users.index')
             }
         },
         watch: {
@@ -140,7 +141,6 @@
                     });
 
                 } else if ( val.length < 2 ) {
-                    console.log('ok')
                     this.users              = this.tempUsers;
                     this.searchTableActive  = false;
                 }

@@ -4,7 +4,7 @@
 
         <div>
 
-            <pagination :url="route('app.finances.records.index')" @updateItems="updateItems" @updateLoader="updateLoader"></pagination>
+            <pagination :url="recordsUrl" @updateItems="updateItems" @updateLoader="updateLoader"></pagination>
 
         </div>
     
@@ -52,7 +52,7 @@
                                             <a :href="urlDocument(record.academic_profile.document)" target="_blank"><span class="uk-margin-small-right" uk-icon="download"></span> Descargar archivo</a>
                                         </li>
                                         <li v-if="record.academic_profile.is_student == null">
-                                            <a role="button" @click="validateDocument(record, true)"><span class="uk-margin-small-right" uk-icon="check"></span> Aprovar documento</a>
+                                            <a role="button" @click="validateDocument(record, true)"><span class="uk-margin-small-right" uk-icon="check"></span> Aprobar documento</a>
                                         </li>
                                         <li v-if="record.academic_profile.is_student == null">
                                             <a role="button" @click="validateDocument(record, false)"><span class="uk-margin-small-right" uk-icon="close"></span> Rechazar documento</a>
@@ -107,7 +107,8 @@
             return {
                 loader: true,
                 validation: true,
-                records: []
+                records: [],
+                recordsUrl: route('app.finances.records.index')
             }
         },
         methods: {
