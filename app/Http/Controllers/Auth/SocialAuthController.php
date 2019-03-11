@@ -11,7 +11,9 @@ use Illuminate\Http\Request;
 use App\Models\PersonalProfile;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Mail;
+use App\Notifications\RegisteredUser;
 use Illuminate\Support\Facades\Notification;
+use App\Mail\RegisteredUser as RegisteredUserMail;
 
 class SocialAuthController extends Controller
 {
@@ -37,7 +39,7 @@ class SocialAuthController extends Controller
         {  
             // En caso de que no exista creamos un nuevo usuario con sus datos.
 
-            $name = explode(' ', $data['name']);
+            $name = explode(' ', $social_user->getName());
 
             $roles = Role::select('id')->whereIn('key', ['congressman','professional'])->get();
 
