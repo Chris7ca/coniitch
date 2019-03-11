@@ -1,46 +1,49 @@
 <template>
     
-    <div class="uk-grid uk-grid-match uk-child-width-1-4@xl uk-child-width-1-3@m uk-child-width-1-2" uk-grid>
+    <div class="uk-grid-medium uk-flex-around uk-flex-middle" uk-grid>
+    
+        <div class="uk-text-center">
+            <h6>Agregar</h6>
+            <a href="#modal-sponsor" class="uk-button-primary uk-box-shadow-hover-large" uk-icon="plus" style="padding: 10px; border-radius: 50%; color: #fafafa;" uk-toggle></a>
+        </div>
 
-        <div>
-            <div class="uk-placeholder uk-flex uk-flex-middle uk-flex-center" style="min-height: 400px;">
-                
-                <div class="uk-text-center">
-                    <h6>Agregar</h6>
-                    <a href="#modal-sponsor" class="uk-button-primary uk-box-shadow-hover-large" uk-icon="plus" style="padding: 10px; border-radius: 50%; color: #fafafa;" uk-toggle></a>
-                </div>
 
+        <div class="uk-text-center" v-if="loader">
+            <div>
+                <h6>Cargando... <span uk-spinner="ratio: 0.8"></span></h6>
             </div>
         </div>
 
-        <div v-for="(sponsor, index) in sponsors" :key="index">
-            <div class="uk-card uk-card-body card-default uk-box-shadow-small uk-flex uk-flex-column uk-flex-around uk-flex-middle" style="min-height: 400px;">
-                
-                <div style="width: 90%; height: auto;">
-                    <img :src="image(sponsor.image)" alt="">
-                </div>
+        <div v-else>
 
-                <div class="uk-text-center uk-margin">
+            <div v-for="(sponsor, index) in sponsors" :key="index">
+
+                <a role="button">
+                    <img :data-src="sponsor.image.file.replace('public','/storage')" :width="sponsor.image.width" uk-img>
+                </a>
+    
+                <div uk-dropdown="mode: click">
 
                     <h6>{{ sponsor.display_name }}</h6>
                     
                     <ul class="uk-iconnav uk-flex uk-flex-center uk-margin-medium-top">
 
                         <li>
-                            <a href="#modal-sponsor" @click="editSponsor(sponsor.public_id)" uk-icon="file-edit" uk-toggle></a>
+                            <a href="#modal-sponsor" @click="editSponsor(sponsor)" uk-icon="file-edit" uk-toggle></a>
                         </li>
 
                         <li>
-                            <a role="button" @click="deleteSponsor(sponsor.public_id)" uk-icon="trash"></a>
+                            <a role="button" @click="deleteSponsor(sponsor)" uk-icon="trash"></a>
                         </li>
 
                     </ul>
-                    
+
                 </div>
 
             </div>
-        </div>
 
+        </div>
+    
     </div>
 
 </template>
@@ -54,6 +57,7 @@
         
         data () {
             return {
+                loader: false,
                 sponsors: []
             }
         },
@@ -61,22 +65,20 @@
             image: function(image) {
                 return image.replace('public', '/storage');
             },
-            editSponsor: function(id) {
+            editSponsor: function(sponsor) {
 
-                let url = route('app.sponsors.edit', { id : id });
-
-                EventBus.$emit('editSponsor', url);
+                EventBus.$emit('editSponsor', sponsor);
             },
-            deleteSponsor: function (id) {
+            deleteSponsor: function (sponsor) {
                 
                 UIkit.modal.confirm('¿Deseas eliminar a este patrocionador?').then( () => {
 
-                    let url = route('app.sponsors.delete', { id : id });
+                    let url = route('app.publicrelations.sponsors.delete', { id : sponsor.public_id });
 
                     axios.delete(url)
                     .then( response => {
                         
-                        let index = this.sponsors.findIndex( s => s.public_id = id);
+                        let index = this.sponsors.findIndex( s => s.public_id = sponsor.public_id);
 
                         this.sponsors.splice(index, 1);
                         UIkit.notification(response.data.message, 'success');
@@ -89,7 +91,7 @@
         },
         created () {
 
-            axios.post(route('app.sponsors.index'))
+            axios.post(route('app.publicrelations.sponsors.index'))
             .then( response => {
                 this.sponsors = response.data;
             })
@@ -105,8 +107,11 @@
 
                 let index = this.sponsors.findIndex( s => s.public_id == sponsor.public_id );
 
+                this.sponsors[index].url = sponsor.url;
+                this.sponsors[index].image.file = sponsor.image.file;
+                this.sponsors[index].image.width = sponsor.image.width;
                 this.sponsors[index].display_name = sponsor.display_name;
-                this.sponsors[index].image = sponsor.image.replace('public', '/storage');
+                this.sponsors[index].description = sponsor.description;
             });
         }
 
