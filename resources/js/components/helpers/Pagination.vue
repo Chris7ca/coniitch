@@ -24,6 +24,12 @@
                 currentPage: 1
             }
         },
+        watch: {
+            url: function (url) {
+
+                this.getItems(url);
+            }
+        },
         methods: {
             getPage: function(page) {
 
@@ -43,28 +49,29 @@
                     this.$emit('updateLoader', false);
                     showAxiosErrorMessage(error);
                 });
+            },
+            getItems: function (url) {
+
+                axios.post(url)
+                .then( response => {
+
+                    this.total      = response.data.total;
+                    this.perPage    = response.data.per_page;
+                    this.pages      = (Math.ceil(this.total / this.perPage) <= 1) ? 0 : Math.ceil(this.total / this.perPage);
+                    this.lastPage   = this.pages;
+                    
+                    this.$emit('updateLoader', false);
+                    this.$emit('updateItems', response.data.data);
+                })
+                .catch( error => {
+                    this.loader =  false;
+                    showAxiosErrorMessage(error);
+                });
             }
         },
         created () {
 
-            let url = this.url.template;
-
-            axios.post(url)
-            .then( response => {
-
-                this.total      = response.data.total;
-                this.perPage    = response.data.per_page;
-                this.pages      = (Math.ceil(this.total / this.perPage) <= 1) ? 0 : Math.ceil(this.total / this.perPage);
-                this.lastPage   = this.pages;
-                
-                this.$emit('updateLoader', false);
-                this.$emit('updateItems', response.data.data);
-            })
-            .catch( error => {
-                this.loader =  false;
-                showAxiosErrorMessage(error);
-            });
-            
+            this.getItems(this.url);
         }
     }
 
