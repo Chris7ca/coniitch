@@ -39,12 +39,12 @@
         <link href="https://fonts.googleapis.com/css?family=Quicksand|Work+Sans:300,400" rel="stylesheet">
 
         <!-- Styles -->
-        <link rel="stylesheet" href="{{ asset('css/site.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/app.css') }}">
         <style>
             html, body {
                 background-color: #f9f9fb !important;
             }
-            #preloader-page{
+            #preloader-page {
                 overflow: hidden;
                 position: absolute;
                 height: inherit;
@@ -52,6 +52,9 @@
                 height: 100vh;
                 width: 100%;
                 z-index: 10000 !important;
+            }
+            #app {
+                margin-bottom: 100px;
             }
         </style>
     </head>
@@ -96,7 +99,7 @@
 
                                 @elseif ( Auth::user()->isPublicRelations() )
                                     <li class="uk-visible@m item-light">
-                                        <a href="{{ route('app.sponsors.view') }}">Patrocinadores</a>
+                                        <a href="{{ route('app.publicrelations.sponsors.view') }}">Patrocinadores</a>
                                     </li>
 
                                 @elseif ( Auth::user()->isAdmin() )
@@ -146,7 +149,9 @@
                 
                         <div class="uk-navbar-right">
                             <ul class="uk-navbar-nav">
+
                                 <widget-notifications></widget-notifications>
+                                
                                 <li class="item-light">
                                     <a role="button"> 
 
@@ -183,7 +188,7 @@
                         <div class="uk-grid uk-grid-divider" uk-grid>
                             <div>
                                 <a href="{{ route('app.index') }}">
-                                    <img data-src="{{ asset('images/coniitch.png') }}" width="50px" uk-img>
+                                    <img data-src="{{ asset('logos/coniitch.png') }}" width="50px" uk-img>
                                 </a>
                             </div>
                             <div>
@@ -228,7 +233,7 @@
 
                                 @elseif ( Auth::user()->isPublicRelations() )
                                     <li>
-                                        <a href="{{ route('app.sponsors.view') }}">Patrocinadores</a>
+                                        <a href="{{ route('app.publicrelations.sponsors.view') }}">Patrocinadores</a>
                                     </li>
 
                                 @elseif ( Auth::user()->isAdmin() )

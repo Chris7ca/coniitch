@@ -37,7 +37,7 @@
         <link href="https://fonts.googleapis.com/css?family=Quicksand|Work+Sans:300,400" rel="stylesheet">
 
         <!-- Styles -->
-        <link rel="stylesheet" href="{{ asset('css/site.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 
         {{-- @include('analytics') --}}
        
@@ -52,10 +52,10 @@
     
                 <div class="uk-flex uk-flex-middle">
                     <div uk-scrollspy="cls:uk-animation-fade; delay: 400">
-                        <img data-src="{{ asset('images/uaem-white.png') }}" width="100px" alt="Logo UAEM" uk-img>
+                        <img data-src="{{ asset('logos/uaem-white.png') }}" width="100px" alt="Logo UAEM" uk-img>
                     </div>
                     <div class="uk-margin-medium-left" uk-scrollspy="cls:uk-animation-fade; delay: 400">
-                        <img data-src="{{ asset('images/citpsi-white.png') }}" width="150px" alt="Logo CITPSI" uk-img>
+                        <img data-src="{{ asset('logos/citpsi-white.png') }}" width="150px" alt="Logo CITPSI" uk-img>
                     </div>
                 </div>
     
