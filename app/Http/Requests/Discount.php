@@ -27,7 +27,7 @@ class Discount extends FormRequest
             'name'      => 'required',
             'discount'  => 'required|numeric',
             'details'   => 'required',
-            'end_date'  => 'after:today',
+            'end_date'  => 'after_or_equal:today',
             'for'       => 'required'
         ];
     }
