@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Discount extends Model
 {
     
-    use HashId, SoftDeletes;
+    use HashId;
 
     protected $guarded = ['id'];
 
@@ -17,7 +17,7 @@ class Discount extends Model
 
     protected $hidden  = ['id','service_id'];
 
-    protected $dates   = ['end_date','deleted_at'];
+    protected $dates   = ['end_date'];
 
     /**
      * Relationships
