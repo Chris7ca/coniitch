@@ -23,8 +23,9 @@
                 </div>
 
                 <div class="uk-margin">
-                    <button type="submit" class="uk-button uk-button-primary uk-box-shadow-hover-large">
+                    <button type="submit" class="uk-button uk-button-primary uk-box-shadow-hover-large" :disabled="loader">
                         {{ (mode == 'CREATE') ? 'Añadir documento' : 'Actualizar documento' }}
+                        <span uk-spinner="ratio: 0.8" v-if="loader"></span>
                     </button>
                     <a href="#modal-documents" class="uk-button uk-button-default" uk-toggle>Cancelar</a>
                 </div>
