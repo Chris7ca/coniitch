@@ -16,10 +16,10 @@
                             <a role="button" class="uk-link-reset" @click="filter(null)">Todos</a>
                         </li>
                         <li>
-                            <a role="button" class="uk-link-reset" @click="filter(1)">Aprovados</a>
+                            <a role="button" class="uk-link-reset" @click="filter(1)">Aprobados</a>
                         </li>
                         <li>
-                            <a role="button" class="uk-link-reset" @click="filter(0)">No aprovados</a>
+                            <a role="button" class="uk-link-reset" @click="filter(0)">No aprobados</a>
                         </li>
                         <li>
                             <a role="button" class="uk-link-reset" @click="filter(2)">Pendientes</a>
@@ -191,7 +191,10 @@
             },
             finalNote: function (work) {
 
-                if ( work.reviews.length == work.revisors.length ) {
+                let reviews  = work.reviews.length;
+                let revisors = work.revisors.length;
+
+                if ( reviews == revisors ) {
 
                     let finalNote = undefined;
                     let obj = {
@@ -225,8 +228,18 @@
 
                     return ( finalNote == 2 && work.version == 2 ) ? 3 : finalNote; 
 
-                } else  {
-                    return 0;
+                } 
+                
+                else if ( reviews < revisors ) {
+                    
+                    let rejected = 0;
+
+                    work.revisors.forEach( revisor => {
+                        rejected = (revisor.confirmation.status == 0) ? rejected + 1 : rejected;
+                    });
+
+                    return  ( rejected == (revisors - reviews) ) ? null : 0;
+
                 }
             },
             isAssignable: function(work) {
@@ -245,7 +258,7 @@
                         }
                     });
 
-                    return ( assignments < 2 || (work.reviews.length > 1 && this.finalNote(work) == null) ); 
+                    return ( assignments < 2 || (this.finalNote(work) == null) ); 
                 }
             },
             assignRevisors: function (id) {
