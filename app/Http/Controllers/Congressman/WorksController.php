@@ -21,7 +21,7 @@ class WorksController extends Controller
     public function __construct()
     {
         $this->middleware('hasRoles:congressman')->except('show');
-        $this->middleware('hasRoles:admin,revisors')->only('show');
+        $this->middleware('hasRoles:admin,revisor')->only('show');
     }
     
     public function view()

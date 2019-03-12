@@ -19,7 +19,7 @@ class WorksController extends Controller
 
     public function __construct()
     {
-        $this->middleware('hasRoles:revisors');
+        $this->middleware('hasRoles:revisor');
     }
     
     public function view()
