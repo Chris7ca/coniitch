@@ -2393,7 +2393,10 @@ __webpack_require__.r(__webpack_exports__);
       }
     },
     finalNote: function finalNote(work) {
-      if (work.reviews.length == work.revisors.length) {
+      var reviews = work.reviews.length;
+      var revisors = work.revisors.length;
+
+      if (reviews == revisors) {
         var finalNote = undefined;
         var obj = {
           aproved: 0,
@@ -2406,8 +2409,12 @@ __webpack_require__.r(__webpack_exports__);
         });
         if (obj.aproved >= 2) finalNote = 1;else if (obj.changes >= 2 || obj.aproved == 1 && obj.changes == 1) finalNote = 2;else if (obj.rejected >= 2) finalNote = 3;else if (obj.awaiting >= 1) finalNote = 0;else finalNote = null;
         return finalNote == 2 && work.version == 2 ? 3 : finalNote;
-      } else {
-        return 0;
+      } else if (reviews < revisors) {
+        var rejected = 0;
+        work.revisors.forEach(function (revisor) {
+          rejected = revisor.confirmation.status == 0 ? rejected + 1 : rejected;
+        });
+        return rejected == revisors - reviews ? null : 0;
       }
     },
     isAssignable: function isAssignable(work) {
@@ -2420,7 +2427,7 @@ __webpack_require__.r(__webpack_exports__);
             assignments += 1;
           }
         });
-        return assignments < 2 || work.reviews.length > 1 && this.finalNote(work) == null;
+        return assignments < 2 || this.finalNote(work) == null;
       }
     },
     assignRevisors: function assignRevisors(id) {
@@ -4534,7 +4541,7 @@ var render = function() {
                       }
                     }
                   },
-                  [_vm._v("Aprovados")]
+                  [_vm._v("Aprobados")]
                 )
               ]),
               _vm._v(" "),
@@ -4550,7 +4557,7 @@ var render = function() {
                       }
                     }
                   },
-                  [_vm._v("No aprovados")]
+                  [_vm._v("No aprobados")]
                 )
               ]),
               _vm._v(" "),
