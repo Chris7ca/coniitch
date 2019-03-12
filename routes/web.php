@@ -13,7 +13,7 @@
 
 Route::get('/',                                 'SiteController@index')->name('site.index');
 Route::get('contacto',                          'SiteController@contact')->name('site.contact');
-Route::get('convocatoria',                      'SiteController@call')->name('site.call');
+Route::get('convocatoria',                      'SiteController@announcement')->name('site.announcement');
 Route::get('costos',                            'SiteController@pricing')->name('site.pricing');
 Route::get('directorio',                        'SiteController@directory')->name('site.directory');
 Route::get('nosotros',                          'SiteController@aboutus')->name('site.aboutus');
