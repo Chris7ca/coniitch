@@ -109,6 +109,11 @@
                                     <li class="uk-visible@m item-light">
                                         <a href="{{ route('app.admin.works.view') }}">Trabajos</a>
                                     </li>
+                                    @if ( Auth::user()->isRevisor() )
+                                        <li class="uk-visible@m item-light">
+                                            <a href="{{ route('app.revisors.works.view') }}">Evaluaciones</a>
+                                        </li> 
+                                    @endif
 
                                 @elseif ( Auth::user()->isCongressman() )
                                     <li class="uk-visible@m item-light">
@@ -243,6 +248,11 @@
                                     <li>
                                         <a href="{{ route('app.admin.works.view') }}">Trabajos</a>
                                     </li>
+                                    @if ( Auth::user()->isRevisor() )
+                                        <li>
+                                            <a href="{{ route('app.revisors.works.view') }}">Evaluaciones</a>
+                                        </li> 
+                                    @endif
 
                                 @elseif ( Auth::user()->isCongressman() )
                                     <li>
