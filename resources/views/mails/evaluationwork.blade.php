@@ -336,7 +336,14 @@
                         <li style="font-size: 14px; line-height: 21px;"><span style="font-size: 14px; line-height: 21px;">Texto en un rango de 24 a 48 pts.</span></li>
                         <li style="font-size: 14px; line-height: 21px;"><span style="font-size: 14px; line-height: 21px;">Se deberá colocar la ficha de identificación (título del trabajo, nombre de autor(es) y correo electrónico del autor de correspondencia en la parte superior).</span></li>
                     </ul>
-                @endif                
+                @endif   
+                @if ( $work->evaluation == 1 )
+                    <p style="margin: 0;font-size: 14px;line-height: 21px">&#160;</p><p style="margin: 0;font-size: 14px;line-height: 21px"><span style="font-size: 14px; line-height: 21px;">
+                      Los trabajos aceptados serán incluidos en el programa de sesiones y publicados en línea en la página del CITPsi y del congreso, siempre y cuando al menos uno de los autores haya realizado su pago de inscripción al congreso, teniendo como <b>fecha límite el sábado 4 de mayo de 2019</b>.
+                      Recuerde que dentro de los métodos de pago están disponibles depósito bancario, transferencia electrónica o pago con Paypal <a href="https://coniitch.mx/costos" target="_blank">https://coniitch.mx/costos</a>, en caso de haber realizado el pago en el banco o por transferencia electrónica, deberá escanear el comprobante y adjuntarlo en la sección “Pagos” para que su recibo sea validado y reciba un correo con la confirmación de que su inscripción fue acreditada. Si no recibe el correo le pedimos se comunique al teléfono +52-777-3297970 en la Ext.3756 para reportar su caso.
+                      En caso de requerir factura o tener dudas respecto al pago envíe un correo electrónico a <b>finanzas.coniitch@uaem.mx</b> y con gusto le responderemos.
+                    </p>
+                @endif             
                 <p style="margin: 0;font-size: 12px;line-height: 18px">&#160;</p><p style="margin: 0;font-size: 12px;line-height: 18px">&#160;</p><p style="margin: 0;font-size: 12px;line-height: 18px"><span style="font-size: 14px; line-height: 21px;"><span style="line-height: 21px; font-size: 14px;">Esperamos saludarle muy pronto en nuestro Congreso CONIITCH 2019.</span></span></p></div>	
         </div>
         <!--[if mso]></td></tr></table><![endif]-->

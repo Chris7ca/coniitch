@@ -30,9 +30,9 @@ class SiteController extends Controller
         return view('website.contact');
     }
 
-    public function call()
+    public function announcement()
     {
-        return view('website.call');
+        return view('website.announcement');
     }
 
     public function pricing()
