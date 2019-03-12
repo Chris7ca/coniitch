@@ -58,19 +58,15 @@
             <div class="uk-width-2-3@m uk-flex-first@m" uk-scrollspy="cls:uk-animation-slide-right-medium; delay: 200">
                 <article class="uk-padding uk-padding-remove-horizontal">
 
-                    <h4 class="uk-text-muted">Especificaciones</h4>
+                    <h4 class="uk-text-muted">Tipos de trabajos</h4>
                     <hr class="uk-divider-small">
 
-                    <p class="uk-margin-medium-top">Los trabajos libres podrán ser: investigaciones, trabajos teóricos, epistemológicos, informes técnicos o experiencias 
-                    documentadas en general. La extensión de los resúmenes deberá ser de un <b>mínimo de 250 palabras</b> y un <b>máximo de 300 palabras</b>, sin  imágenes y sin tablas. 
-                    Los resúmenes serán publicados en línea en la página del CITPsi y del congreso.</p>
-                    <p>Los trabajos aceptados para la sesión de carteles deberán ajustarse a las siguientes especificaciones técnicas:</p>
-                    <ul>
-                        <li>Dimensión del cartel: 120 cm. de alto por 90 cm. de ancho.</li>
-                        <li>Título: tamaño de letra en un rango de 100 a 130 pts.</li>
-                        <li>Texto en un rango de 24 a 48 pts.</li>
-                        <li>Se deberá colocar la ficha de identificación (título del trabajo, nombre de autor(es), correo electrónico del autor de correspondencia) en la parte superior.</li>
-                    </ul>
+                    <p class="uk-margin-medium-top">Los trabajos libres tendrán dos categorías de presentación: <b>ponencias orales</b> o <b>carteles</b>. La categoría será elegida por el 
+                    presentador en el sistema de envío de trabajos, aunque el comité científico se reserva la posibilidad de sugerir un formato de presentación diferente al 
+                    elegido por cuestiones temáticas y/o volumen de trabajos recibidos.</p>
+
+                    <p>Con la finalidad de promover una cultura que distinga la importancia y contribución de los carteles, el comité científico ha decidido otorgar un reconocimiento a la 
+                    calidad de los mejores carteles durante la conclusión del evento, distinguiendo al primero, segundo y tercer lugar.</p>
 
                 </article>
             </div>
@@ -88,12 +84,19 @@
             <div class="uk-width-2-3@m" uk-scrollspy="cls:uk-animation-slide-right-medium; delay: 200">
                 <article class="uk-padding uk-padding-remove-horizontal">
 
-                    <h4 class="uk-text-muted">Tipos de trabajos</h4>
+                    <h4 class="uk-text-muted">Especificaciones</h4>
                     <hr class="uk-divider-small">
 
-                    <p class="uk-margin-medium-top">Los trabajos libres tendrán dos categorías de presentación: <b>ponencias orales</b> o <b>carteles</b>. La categoría será elegida por el 
-                    presentador en el sistema de envío de trabajos, aunque el comité científico se reserva la posibilidad de sugerir un formato de presentación diferente al 
-                    elegido por cuestiones temáticas y/o volumen de trabajos recibidos.</p>
+                    <p class="uk-margin-medium-top">Los trabajos libres podrán ser: investigaciones, trabajos teóricos, epistemológicos, informes técnicos o experiencias 
+                    documentadas en general. La extensión de los resúmenes deberá ser de un <b>mínimo de 250 palabras</b> y un <b>máximo de 300 palabras</b>, sin  imágenes y sin tablas. 
+                    Los resúmenes serán publicados en línea en la página del CITPsi y del congreso.</p>
+                    <p>Los trabajos aceptados para la sesión de carteles deberán ajustarse a las siguientes especificaciones técnicas:</p>
+                    <ul>
+                        <li>Dimensión del cartel: 120 cm. de alto por 90 cm. de ancho.</li>
+                        <li>Título: tamaño de letra en un rango de 100 a 130 pts.</li>
+                        <li>Texto en un rango de 24 a 48 pts.</li>
+                        <li>Se deberá colocar la ficha de identificación (título del trabajo, nombre de autor(es), correo electrónico del autor de correspondencia) en la parte superior.</li>
+                    </ul>
 
                 </article>
             </div>
@@ -119,7 +122,7 @@
                     <p>Los resúmenes de trabajos (tanto orales como carteles) deberán pasar por el dictamen del Comité Científico. Los resultados serán enviados vía correo electrónico 
                     a más tardar el día<b> domingo 14 de abril de 2019</b>.</p>
                     <p>Los trabajos aceptados serán incluidos en el programa de sesiones y publicados en línea en la página del CITPsi y del congreso, siempre y cuando al menos uno 
-                    de los autores hayan realizado su pago de inscripción al congreso, teniendo como fecha límite el <b>sábado 4 de mayo de 2017</b>.</p>
+                    de los autores hayan realizado su pago de inscripción al congreso, teniendo como fecha límite el <b>sábado 4 de mayo de 2019</b>.</p>
 
                 </article>
             </div>
