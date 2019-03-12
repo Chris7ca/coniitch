@@ -37,7 +37,7 @@
         <link href="https://fonts.googleapis.com/css?family=Quicksand|Work+Sans:300,400" rel="stylesheet">
 
         <!-- Styles -->
-        <link rel="stylesheet" href="{{ asset('css/site.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 
         {{-- @include('analytics') --}}
        
