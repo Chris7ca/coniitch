@@ -60,6 +60,10 @@
                 </div>
 
                 <div class="uk-margin">
+                    <label><input class="uk-checkbox" type="checkbox" v-model="service.required_translate"> ¿Requiere de traducción?</label>
+                </div>
+
+                <div class="uk-margin">
                     <button type="submit" class="uk-button uk-button-primary uk-box-shadow-hover-large" :disabled="loader">
                         {{ txtBtnSubmit }} <span class="uk-margin-small-right" uk-spinner="ratio: 0.8" v-if="loader"></span>
                     </button>
@@ -92,7 +96,8 @@
                     price     : '',
                     images    : [],
                     discounts : [],
-                    for       : []
+                    for       : [],
+                    required_translate : false
                 },
                 files: [],
                 deleteImages: [],
@@ -133,6 +138,7 @@
                 data.append('concept', this.service.concept);
                 data.append('details', this.service.details);
                 data.append('price', this.service.price);
+                data.append('required_translate', (this.service.required_translate) ? 1 : 0);
                 
                 this.service.for.forEach( role => { data.append('for[]', JSON.stringify(role)) });
                 this.files.forEach( file => { data.append('images[]', file) });

@@ -46,6 +46,12 @@
                     </label>
                 </div>
 
+                <div class="uk-margin uk-width-1-1" v-if="service.required_translate">
+                    <label uk-tooltip="Este servicio incluye contenido que está completa o parcialmente en inglés, ¿requieres de un dispositivo de traduccion simultanea?">
+                        <input type="checkbox" class="uk-checkbox" v-model="required_translate"> Dispositivo de traducción 
+                    </label>
+                </div>
+
                 <div class="uk-margin-medium uk-width-1-1">
                     <button type="submit" class="uk-button uk-button-default">Enviar comprobante</button>
                 </div>
@@ -66,11 +72,13 @@
             return {
                 service: {
                     concept: '',
+                    required_translate: false
                 },
                 loader: false,
                 reference: '',
                 method: '',
                 amount: '',
+                required_translate: false,
                 invoice: false
             }
         },
@@ -107,6 +115,7 @@
                 data.append('method',    this.method);
                 data.append('amount',    this.amount);
                 data.append('invoice',   this.invoice);
+                data.append('required_translate',   this.required_translate);
                 data.append('voucher',   document.getElementById('input-voucher').files[0]);
 
                 axios.post(url, data, {

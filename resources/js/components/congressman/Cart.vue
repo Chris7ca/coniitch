@@ -38,9 +38,15 @@
 
         </ul>
 
-        <div class="uk-margin-medium uk-width-1-1" v-if="cart.length > 0">
+        <div class="uk-margin uk-width-1-1" v-if="cart.length > 0">
             <label uk-tooltip="Deberá haber completado sus datos fiscales en el menú EDITAR PEFIL">
                 <input type="checkbox" class="uk-checkbox" id="invoiceInput"> Requiero factura
+            </label>
+        </div>
+        
+        <div class="uk-margin uk-width-1-1" v-if="requiredTranslate">
+            <label uk-tooltip="Algunos de tus servicios están completa o parcialmente en inglés, ¿requieres de un dispositivo de traduccion simultanea?">
+                <input type="checkbox" class="uk-checkbox" id="translate"> Traducción
             </label>
         </div>
 
@@ -79,6 +85,12 @@
                 });
 
                 return total.toFixed(2);
+            },
+            requiredTranslate: function () {
+
+                let index = this.cart.findIndex( item => item.service.required_translate == true );
+
+                return (index >= 0) ? true : false;
             }
         },
         methods: {
@@ -110,7 +122,7 @@
                 } 
 
                 return price.toFixed(2);
-            },
+            }
         },
         created () {
 
@@ -168,7 +180,7 @@
                     })
                     .then(function(res) {
                         // 3. Return res.id from the response
-                        console.log(res);
+                        // console.log(res);
                         return res.id;
                     });
                 },
@@ -185,7 +197,8 @@
                         json: {
                             paymentID: data.paymentID,
                             payerID:   data.payerID,
-                            invoice: document.getElementById('invoiceInput').checked
+                            invoice: document.getElementById('invoiceInput').checked,
+                            translate: document.getElementById('translate').checked
                         }
                     })
                     .then(function(res) {
@@ -193,7 +206,7 @@
                         if (res.error === 'INSTRUMENT_DECLINED') {
                             return actions.restart();
                         }
-                        console.log(res);
+                        // console.log(res);
                         UIkit.notification('Se ha realizado el pago de manera satisfactoria', 'success');
                         setTimeout(() => {
                             window.location = route('app.congressman.payments.view');
@@ -204,7 +217,7 @@
                     UIkit.notification('Ha cancelado el pago', 'warning');
                 },
                 onError: function (err) {
-                    console.log(err)
+                    // console.log(err)
                     UIkit.notification('Ocurrio un error en el servidor, por favor contacte al administrador', 'danger');
                 }
             }, '#paypal-button');

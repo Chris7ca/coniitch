@@ -20,6 +20,7 @@
                 <li>Monto: <b>$ {{ payment.amount.toFixed(2) }}</b></li>
                 <li>Método de pago: <b>{{ payment.method.toUpperCase() }}</b></li>
                 <li>Requiere factura: <b>{{ (payment.required_invoice) ? 'Sí' : 'No' }}</b></li>
+                <li v-if="payment.required_translate"><b>Requiere equipo de traducción</b></li>
             </ul>
 
             <ul uk-accordion v-if="payment.required_invoice">
