@@ -15,34 +15,34 @@ class RolesTableSeeder extends Seeder
         
         $roles = [
             [
-                'key' => 'root', 'display_name' => 'Web Master', 'description' => 'lorem ipsum dolor is attem' // 1
+                'key' => 'root', 'display_name' => 'Web Master', 'description' => 'Administrador de la aplicación' // 1
             ],
             [
-                'key' => 'admin', 'display_name' => 'Administradores', 'description' => 'lorem ipsum dolor is attem' // 2
+                'key' => 'admin', 'display_name' => 'Administradores', 'description' => 'Gestores de los trabajos de congreso' // 2
             ],
             [
-                'key' => 'revisor', 'display_name' => 'Revisores', 'description' => 'lorem ipsum dolor is attem' // 3
+                'key' => 'revisor', 'display_name' => 'Revisores', 'description' => 'Evaluadores de los trabajos del congreso' // 3
             ],
             [
-                'key' => 'finances', 'display_name' => 'Finanzas', 'description' => 'lorem ipsum dolor is attem' // 4
+                'key' => 'finances', 'display_name' => 'Finanzas', 'description' => 'Gestores de la finanzas del congreso' // 4
             ],
             [
-                'key' => 'staff', 'display_name' => 'Staff', 'description' => 'lorem ipsum dolor is attem' // 5 
+                'key' => 'staff', 'display_name' => 'Staff', 'description' => 'Becarios de apoyo a las coordinaciones del congreso' // 5 
             ],
             [
-                'key' => 'congressman', 'display_name' => 'Congresistas', 'description' => 'lorem ipsum dolor is attem' // 6
+                'key' => 'congressman', 'display_name' => 'Congresistas', 'description' => 'Congresistas' // 6
             ],
             [
-                'key' => 'speaker', 'display_name' => 'Oradores', 'description' => 'lorem ipsum dolor is attem' // 7
+                'key' => 'speaker', 'display_name' => 'Ponentes', 'description' => 'Ponentes del congreso' // 7
             ],
             [
-                'key' => 'student', 'display_name' => 'Estudiantes', 'description' => 'lorem ipsum dolor is attem' // 8
+                'key' => 'student', 'display_name' => 'Estudiantes', 'description' => 'Estudiantes acreditados y asistentes al congreo' // 8
             ],
             [
-                'key' => 'public-relations', 'display_name' => 'Relaciones públicas', 'description' => 'lorem ipsum dolor is attem' // 9
+                'key' => 'public-relations', 'display_name' => 'Relaciones públicas', 'description' => 'Gestores de relaciones públicas' // 9
             ],
             [
-                'key' => 'professional', 'display_name' => 'Profesionistas', 'description' => 'lorem ipsum dolor is attem' // 10
+                'key' => 'professional', 'display_name' => 'Profesionistas', 'description' => 'Profesionistas asistentes al congreso' // 10
             ],
 
         ];
