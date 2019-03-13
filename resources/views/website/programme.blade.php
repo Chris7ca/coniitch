@@ -316,7 +316,7 @@
             </li>
             <li class="uk-margin">
                 <span class="uk-text-meta">13:00 - 14:00 horas</span>
-                <h5 class="uk-margin-remove">Conferencia Magistral - Dra. Paulina Rivero Weber</h5>
+                <h5 class="uk-margin-remove">Conferencia Magistral: “Libertad y responabilidad ante la crisis ecológica actual” - Dra. Paulina Rivero Weber</h5>
             </li>
             <li class="uk-margin">
                 <span class="uk-text-meta">14:00 - 16:00 horas</span>
