@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use PayPal\Api\Item;
 use PayPal\Api\Payer;
 use PayPal\Api\Amount;
+use App\Models\Service;
 use PayPal\Api\Details;
 use PayPal\Api\Payment;
 use PayPal\Api\ItemList;
@@ -153,16 +154,19 @@ class PaypalController extends Controller
             $notifiables_users = getUsersByRole('finances');
 
             foreach ( $result->transactions[0]->item_list->items as $itemPaid ) {
+                
+                $service = Service::select(['id','required_translate'])->findOrFail(decode_id($itemPaid->sku));
 
                 $transaction = PaymentModel::create([
-                    'user_id'           => Auth()->user()->id,
-                    'service_id'        => decode_id($itemPaid->sku),
-                    'method'            => ucfirst($result->payer->payment_method),
-                    'transaction_id'    => $result->id,
-                    'currency_code'     => $result->transactions[0]->amount->currency,
-                    'amount'            => $itemPaid->price,
-                    'required_invoice'  => (filter_var($request->invoice, FILTER_VALIDATE_BOOLEAN)) ? 1 : 0,
-                    'status'            => 1,
+                    'user_id'               => Auth()->user()->id,
+                    'service_id'            => decode_id($itemPaid->sku),
+                    'method'                => ucfirst($result->payer->payment_method),
+                    'transaction_id'        => $result->id,
+                    'currency_code'         => $result->transactions[0]->amount->currency,
+                    'amount'                => $itemPaid->price,
+                    'required_invoice'      => (filter_var($request->invoice, FILTER_VALIDATE_BOOLEAN)) ? 1 : 0,
+                    'required_translate'    => ($service->required_translate) ? ((filter_var($request->translate, FILTER_VALIDATE_BOOLEAN)) ? 1 : 0) : 0,
+                    'status'                => 1,
                 ]);
 
                 $transaction->service();
