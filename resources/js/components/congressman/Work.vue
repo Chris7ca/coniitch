@@ -2,35 +2,35 @@
     
     <div class="uk-form-stacked uk-grid uk-margin-large" uk-grid>
 
-       <div class="uk-width-1-2@m">
+       <div class="uk-margin uk-width-1-2@m">
             <label class="uk-form-label">Titulo del trabajo</label>
             <input type="text" v-model="title" class="uk-input" placeholder="Campo requerido" required>
         </div>
 
-        <div class="uk-width-1-2@m">
+        <div class="uk-margin uk-width-1-2@m">
             <label class="uk-form-label">Adscripción</label>
             <input type="text" v-model="adscription" class="uk-input" placeholder="Campo requerido" required>
         </div>
 
-        <div class="uk-width-1-3@m">
+        <div class="uk-margin uk-width-1-3@m">
             <label class="uk-form-label">Tema del trabajo</label>
             <multiselect v-model="theme" :searchable="false" label="name" track-by="value" :options="themes" 
             required placeholder="Selecciona un tema"></multiselect>
         </div>
 
-        <div class="uk-width-1-3@m">
+        <div class="uk-margin uk-width-1-3@m">
             <label class="uk-form-label">Modalidad</label>
             <multiselect v-model="type" :searchable="false" label="name" track-by="value" :options="types" 
             required placeholder="Selecciona una modalidad"></multiselect>
         </div>
 
-        <div class="uk-width-1-3@m">
+        <div class="uk-margin uk-width-1-3@m">
             <label class="uk-form-label">Eje</label>
             <multiselect v-model="axis" :searchable="false" label="name" track-by="value" :options="axes" 
             required placeholder="Selecciona un eje"></multiselect>
         </div>
 
-        <div class="uk-width-1-1">
+        <div class="uk-margin uk-width-1-1">
             <ul uk-accordion>
                 <li>
                     <a role="button" class="uk-accordion-title">Autoría <small>(si desea agregar coautores)</small></a>
@@ -98,7 +98,7 @@
             </ul>
         </div>
 
-        <div class="uk-width-1-1">
+        <div class="uk-margin uk-width-1-1">
             <label class="uk-form-label">Resumen <span uk-icon="info" uk-tooltip="Para habilitar la edición especial, solo selecciona el texto."></span></label>
             <editor :id="'editor_register_work'" v-model="content" :value="''" :count-words="true" :limit-words="300" @limit-words="limitWordsReached"></editor>
         </div>
