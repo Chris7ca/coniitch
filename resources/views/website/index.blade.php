@@ -323,16 +323,16 @@
                     @foreach ($sponsors as $sponsor)
                         <div>
 
-                            @if ( $sponsor->image->url )
-                                <a href="{{ $sponsor->image->url }}" target="_blank" role="link">
-                                    <img data-src="{{ Storage::url($sponsor->image->file) }}" width="{{ $sponsor->image->width }}" alt="{{ $sponsor->display_name }}" uk-img>
+                            @if ( $sponsor->url )
+                                <a href="{{ $sponsor->url }}" target="_blank" role="link">
+                                    <img data-src="{{ Storage::url($sponsor->image['file']) }}" width="{{ $sponsor->image['width'] }}" alt="{{ $sponsor->display_name }}" uk-img>
                                 </a>
                             @else
                                 <a role="button">
-                                    <img data-src="{{ Storage::url($sponsor->image->file) }}" width="{{ $sponsor->image->width }}" alt="{{ $sponsor->display_name }}" uk-img>
+                                    <img data-src="{{ Storage::url($sponsor->image['file']) }}" width="{{ $sponsor->image['width'] }}" alt="{{ $sponsor->display_name }}" uk-img>
                                 </a>
                                 <div uk-dropdown="mode: click">
-                                    {{ $sponsor->description }}
+                                    {!! $sponsor->description !!}
                                 </div>
                             @endif
                             
