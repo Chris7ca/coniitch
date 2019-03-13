@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
 use App\Models\Criteria;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\EvaluationCriteria;
 
@@ -41,7 +41,7 @@ class EvaluationCriteriaController extends Controller
         return $criteria;
     }
 
-    public function update(Criteria $request, $id)
+    public function update(EvaluationCriteria $request, $id)
     {
         $criteria = Criteria::findOrFail($id);
         $criteria->title = $request->title;
