@@ -18,6 +18,7 @@ class CreateServicesTable extends Migration
             $table->string('concept');
             $table->string('details');
             $table->float('price');
+            $table->boolean('required_translate')->default(false);
             $table->timestamps();
             $table->softDeletes();
         });

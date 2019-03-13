@@ -23,6 +23,7 @@ class CreatePaymentsTable extends Migration
             $table->float('amount');
             $table->string('voucher')->nullable();
             $table->boolean('required_invoice')->default(false);
+            $table->boolean('required_translate')->default(false);
             $table->boolean('status')->nullable();
             $table->timestamps();
 
