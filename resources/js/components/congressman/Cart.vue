@@ -159,7 +159,7 @@
             let token = document.head.querySelector('meta[name="csrf-token"]');
 
             paypal.Button.render({
-                env: 'sandbox', // Or 'production',
+                env: 'production', // Or 'production',
                 locale: 'es_MX',
                 style: {
                     size: 'medium',

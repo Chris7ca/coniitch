@@ -1,15 +1,3 @@
 {
-    "/js/admin.js": "/js/admin.js?id=c0369367237dbd9fcdd5",
-    "/js/announcement.js": "/js/announcement.js?id=8acd909b68a8bb263165",
-    "/js/app.js": "/js/app.js?id=634acd31c174d6f6f220",
-    "/js/auth.js": "/js/auth.js?id=7d2688e88dc3a5f0b8a5",
-    "/css/app.css": "/css/app.css?id=a84e4f6d2731294b13a0",
-    "/js/finances.js": "/js/finances.js?id=d90bc382100f6c89addc",
-    "/js/notifications.js": "/js/notifications.js?id=e451961f84876c005f42",
-    "/js/payments.js": "/js/payments.js?id=44efb9031b21c8098c20",
-    "/js/profiles.js": "/js/profiles.js?id=d750d8d1c250a43bfb26",
-    "/js/revisors.js": "/js/revisors.js?id=9b8f0cbece0b53dbbd09",
-    "/js/root.js": "/js/root.js?id=5fcc019f0820d095f914",
-    "/js/sponsors.js": "/js/sponsors.js?id=200847e908d110dea65c",
-    "/js/staff.js": "/js/staff.js?id=6d0ce89788fbd7b224c7"
+    "/js/payments.js": "/js/payments.js?id=248c0ed99fd5bdaf2f14"
 }
