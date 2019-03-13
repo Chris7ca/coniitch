@@ -42,12 +42,12 @@ trait VerifyRoles
 
     public function hasRole($role)
     {
-
+        return Auth()->user()->keyRoles->contains('key', $role);
     }
 
     public function hasRoles(Array $roles)
     {
-
+        return count(Auth()->user()->keyRoles->whereIn('key', $roles)) > 0; 
     }
 
 }
