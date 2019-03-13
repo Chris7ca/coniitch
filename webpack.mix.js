@@ -24,3 +24,7 @@ mix.js('resources/js/finances.js', 'public/js')
 mix.js('resources/js/payments.js', 'public/js')
 mix.js('resources/js/staff.js', 'public/js')
 mix.less('resources/less/site/app.less', 'public/css');
+
+if ( mix.inProduction() ) {
+    mix.version();
+}
