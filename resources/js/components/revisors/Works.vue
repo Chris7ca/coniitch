@@ -52,10 +52,10 @@
                             <a :href="route('app.congressman.announcement.works.show', { id : work.public_id })" uk-icon="eye" uk-tooltip="Ver trabajo"></a>
                         </li>
                         <li v-if="work.confirmation.status == null">
-                            <a role="button" @click="responseRequest(work.public_id, true)" uk-icon="check" uk-tooltip="Aceptar trabajo"></a>
+                            <a role="button" @click="responseRequest(work.public_id, true)" uk-icon="check" uk-tooltip="Aceptar evaluar el trabajo"></a>
                         </li>
                         <li v-if="work.confirmation.status == null">
-                            <a role="button" @click="responseRequest(work.public_id, false)" uk-icon="close" uk-tooltip="Rechazar trabajo"></a>
+                            <a role="button" @click="responseRequest(work.public_id, false)" uk-icon="close" uk-tooltip="No evaluar el trabajo"></a>
                         </li>
                         <li v-if="work.confirmation.status == 1">
                             <a href="#modal-evaluation" @click="evaluateWork(work)" uk-icon="file-edit" uk-tooltip="Evaluar" uk-toggle></a>
