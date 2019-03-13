@@ -9,7 +9,12 @@
 
     <p class="uk-margin-medium">{{ __('Sorry, you are not authorized to access this page.') }}</p>
 
-    <a href="/" class="uk-button uk-button-default uk-margin-medium uk-box-shadow-hover-large">Regresar</a>
+    @auth
+        <a href="{{ route('app.index') }}" class="uk-button uk-button-default uk-margin-medium uk-box-shadow-hover-large">Regresar</a>
+    @endauth
 
+    @guest
+        <a href="{{ route('site.index') }}" class="uk-button uk-button-default uk-margin-medium uk-box-shadow-hover-large">Regresar</a>
+    @endguest
 
 @endsection
