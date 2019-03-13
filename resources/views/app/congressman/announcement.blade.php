@@ -14,7 +14,7 @@
             <hr class="uk-divider-small">
 
             <p><small>Si desea participar en el 3<sup>er</sup> Congreso Internacional de Investigación en Ciencias Humanas 2019. Por favor registra tu trabajo conforme a los líneamientos
-            establecidos en la <a class="text-secondary uk-text-bold" href="{{ route('site.call') }}">convocatoria</a>. Tiene hasta el <b>domingo 31 de marzo del 2019 a las 23:59 horas</b> 
+            establecidos en la <a class="text-secondary uk-text-bold" href="{{ route('site.announcement') }}">convocatoria</a>. Tiene hasta el <b>domingo 31 de marzo del 2019 a las 23:59 horas</b> 
             para registrar su trabajo.</small></p>
 
             <p><small><strong>Nota I.</strong> Puede guardar su trabajo y suspender su edición para retomarlo en el mismo punto donde lo dejó, únicamente debe asegurarse oprimir el botón 
