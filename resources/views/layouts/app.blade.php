@@ -82,10 +82,6 @@
                                     <a href="#menu-mobile" uk-icon="icon: menu; ratio: 1.5" uk-toggle></a>
                                 </li>
 
-                                <li class="uk-visible@m item-light">
-                                    <a href="{{ route('app.index') }}">Inicio</a>
-                                </li>
-
                                 @if ( Auth::user()->isRoot() )
                                     <li class="uk-visible@m item-light">
                                         <a href="{{ route('app.root.users.view') }}">Usuarios</a>
@@ -96,26 +92,30 @@
                                     <li class="uk-visible@m item-light">
                                         <a href="{{ route('app.root.events.view') }}">Actividades</a>
                                     </li>
+                                @endif
 
-                                @elseif ( Auth::user()->isPublicRelations() )
+                                @if ( Auth::user()->isPublicRelations() )
                                     <li class="uk-visible@m item-light">
                                         <a href="{{ route('app.publicrelations.sponsors.view') }}">Patrocinadores</a>
                                     </li>
+                                @endif
 
-                                @elseif ( Auth::user()->isAdmin() )
+                                @if ( Auth::user()->isAdmin() )
                                     <li class="uk-visible@m item-light">
                                         <a href="{{ route('app.admin.criterias.view') }}">Criterios</a>
                                     </li>
                                     <li class="uk-visible@m item-light">
                                         <a href="{{ route('app.admin.works.view') }}">Trabajos</a>
                                     </li>
-                                    @if ( Auth::user()->isRevisor() )
-                                        <li class="uk-visible@m item-light">
-                                            <a href="{{ route('app.revisors.works.view') }}">Evaluaciones</a>
-                                        </li> 
-                                    @endif
+                                @endif
 
-                                @elseif ( Auth::user()->isCongressman() )
+                                @if ( Auth::user()->isRevisor() )
+                                    <li class="uk-visible@m item-light">
+                                        <a href="{{ route('app.revisors.works.view') }}">Evaluaciones</a>
+                                    </li> 
+                                @endif
+
+                                @if ( Auth::user()->isCongressman() )
                                     <li class="uk-visible@m item-light">
                                         <a href="{{ route('app.congressman.announcement.view') }}">Convocatoria</a>
                                     </li>
@@ -125,13 +125,9 @@
                                     <li class="uk-visible@m item-light">
                                         <a href="{{ route('app.users.documents.view') }}">Documentos</a>
                                     </li>
+                                @endif
                                 
-                                @elseif ( Auth::user()->isRevisor() )
-                                    <li class="uk-visible@m item-light">
-                                        <a href="{{ route('app.revisors.works.view') }}">Trabajos</a>
-                                    </li>   
-                                
-                                @elseif ( Auth::user()->isFinances() )
+                                @if ( Auth::user()->isFinances() )
                                     <li class="uk-visible@m item-light">
                                         <a href="{{ route('app.finances.records.view') }}">Registros</a>
                                     </li>
@@ -141,8 +137,9 @@
                                     <li class="uk-visible@m item-light">
                                         <a href="{{ route('app.finances.payments.view') }}">Pagos</a>
                                     </li>
+                                @endif
 
-                                @elseif ( Auth::user()->isStaff() )
+                                @if ( Auth::user()->isStaff() )
                                     <li class="uk-visible@m item-light">
                                         <a href="{{ route('app.staff.attendances.view') }}">Asistencias</a>
                                     </li>
@@ -235,26 +232,30 @@
                                     <li>
                                         <a href="{{ route('app.root.events.view') }}">Actividades</a>
                                     </li>
+                                @endif
 
-                                @elseif ( Auth::user()->isPublicRelations() )
+                                @if ( Auth::user()->isPublicRelations() )
                                     <li>
                                         <a href="{{ route('app.publicrelations.sponsors.view') }}">Patrocinadores</a>
                                     </li>
+                                @endif
 
-                                @elseif ( Auth::user()->isAdmin() )
+                                @if ( Auth::user()->isAdmin() )
                                     <li>
                                         <a href="{{ route('app.admin.criterias.view') }}">Criterios</a>
                                     </li>
                                     <li>
                                         <a href="{{ route('app.admin.works.view') }}">Trabajos</a>
                                     </li>
-                                    @if ( Auth::user()->isRevisor() )
-                                        <li>
-                                            <a href="{{ route('app.revisors.works.view') }}">Evaluaciones</a>
-                                        </li> 
-                                    @endif
+                                @endif
 
-                                @elseif ( Auth::user()->isCongressman() )
+                                @if ( Auth::user()->isRevisor() )
+                                    <li>
+                                        <a href="{{ route('app.revisors.works.view') }}">Evaluaciones</a>
+                                    </li> 
+                                @endif
+
+                                @if ( Auth::user()->isCongressman() )
                                     <li>
                                         <a href="{{ route('app.congressman.announcement.view') }}">Convocatoria</a>
                                     </li>
@@ -264,13 +265,9 @@
                                     <li>
                                         <a href="{{ route('app.users.documents.view') }}">Documentos</a>
                                     </li>
-
-                                @elseif ( Auth::user()->isRevisor() )
-                                    <li>
-                                        <a href="{{ route('app.revisors.works.view') }}">Trabajos</a>
-                                    </li>
-
-                                @elseif ( Auth::user()->isFinances() )
+                                @endif
+                                
+                                @if ( Auth::user()->isFinances() )
                                     <li>
                                         <a href="{{ route('app.finances.records.view') }}">Registros</a>
                                     </li>
@@ -280,12 +277,13 @@
                                     <li>
                                         <a href="{{ route('app.finances.payments.view') }}">Pagos</a>
                                     </li>
-                                
-                                @elseif ( Auth::user()->isStaff() )
+                                @endif
+
+                                @if ( Auth::user()->isStaff() )
                                     <li>
                                         <a href="{{ route('app.staff.attendances.view') }}">Asistencias</a>
                                     </li>
-                                @endif 
+                                @endif
 
                             </ul>
         
