@@ -38,7 +38,8 @@ class ServicesController extends Controller
         [
             'concept' => $request->concept,
             'price'   => $request->price,
-            'details' => $request->details
+            'details' => $request->details,
+            'required_translate' => $request->required_translate
         ]);
 
         if ( $request->has('images') ) {

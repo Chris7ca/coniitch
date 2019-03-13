@@ -61,7 +61,7 @@ class PaymentsController extends Controller
 
         return $cart = ShoppingCart::where('user_id', Auth()->user()->id)
             ->with([
-                'service:id,concept,price', 
+                'service:id,concept,price,required_translate', 
                 'service.discounts' => function ($query) use ($roles) {
                     $query->where('end_date', '>=', now())
                     ->whereHas('for', function ($q) use ($roles) {
@@ -95,14 +95,15 @@ class PaymentsController extends Controller
         $service = Service::select(['id','concept'])->findOrFail($id);
 
         $payment = Payment::create([
-            'user_id'           => Auth()->user()->id,
-            'service_id'        => $id,
-            'method'            => $request->method,
-            'transaction_id'    => $request->reference,
-            'currency_code'     => 'MXN',
-            'amount'            => $request->amount,
-            'voucher'           => $voucher,
-            'required_invoice'  => (filter_var($request->invoice, FILTER_VALIDATE_BOOLEAN)) ? 1 : 0
+            'user_id'               => Auth()->user()->id,
+            'service_id'            => $id,
+            'method'                => $request->method,
+            'transaction_id'        => $request->reference,
+            'currency_code'         => 'MXN',
+            'amount'                => $request->amount,
+            'voucher'               => $voucher,
+            'required_invoice'      => (filter_var($request->invoice, FILTER_VALIDATE_BOOLEAN)) ? 1 : 0,
+            'required_translate'    => (filter_var($request->required_translate, FILTER_VALIDATE_BOOLEAN)) ? 1 : 0
         ]);
 
         $notifiables_users = getUsersByRole('finances');

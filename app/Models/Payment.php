@@ -19,8 +19,9 @@ class Payment extends Model
     protected $dates    = ['created_at'];
 
     protected $casts    = [
-        'status'            => 'boolean',
-        'required_invoice'  => 'boolean'
+        'status'                => 'boolean',
+        'required_invoice'      => 'boolean',
+        'required_translate'    => 'boolean'
     ];
 
     /**

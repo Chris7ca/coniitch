@@ -11,13 +11,17 @@ class Service extends Model
     
     use HashId, SoftDeletes;
 
-    protected $guarded = ['id'];
+    protected $guarded  = ['id'];
 
-    protected $appends = ['public_id'];
+    protected $appends  = ['public_id'];
 
-    protected $hidden  = ['id'];
+    protected $hidden   = ['id'];
 
-    protected $dates = ['deleted_at'];
+    protected $dates    = ['deleted_at'];
+
+    protected $casts    = [
+        'required_translate' => 'boolean',
+    ];
 
     /**
      * Mutators
