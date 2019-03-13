@@ -3843,10 +3843,9 @@ var render = function() {
       _vm._v(" "),
       _vm.loader
         ? _c("div", { staticClass: "uk-text-center" }, [_vm._m(1)])
-        : _c(
-            "div",
-            _vm._l(_vm.sponsors, function(sponsor, index) {
-              return _c("div", { key: index }, [
+        : _vm._l(_vm.sponsors, function(sponsor, index) {
+            return _c("div", { key: index }, [
+              _c("div", [
                 _c("a", { attrs: { role: "button" } }, [
                   _c("img", {
                     attrs: {
@@ -3899,10 +3898,10 @@ var render = function() {
                   )
                 ])
               ])
-            }),
-            0
-          )
-    ]
+            ])
+          })
+    ],
+    2
   )
 }
 var staticRenderFns = [

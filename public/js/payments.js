@@ -1816,6 +1816,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -1837,6 +1843,12 @@ __webpack_require__.r(__webpack_exports__);
         }
       });
       return total.toFixed(2);
+    },
+    requiredTranslate: function requiredTranslate() {
+      var index = this.cart.findIndex(function (item) {
+        return item.service.required_translate == true;
+      });
+      return index >= 0 ? true : false;
     }
   },
   methods: {
@@ -1917,7 +1929,7 @@ __webpack_require__.r(__webpack_exports__);
           }
         }).then(function (res) {
           // 3. Return res.id from the response
-          console.log(res);
+          // console.log(res);
           return res.id;
         });
       },
@@ -1934,15 +1946,16 @@ __webpack_require__.r(__webpack_exports__);
           json: {
             paymentID: data.paymentID,
             payerID: data.payerID,
-            invoice: document.getElementById('invoiceInput').checked
+            invoice: document.getElementById('invoiceInput').checked,
+            translate: document.getElementById('translate').checked
           }
         }).then(function (res) {
           // 3. Check if exists errors
           if (res.error === 'INSTRUMENT_DECLINED') {
             return actions.restart();
-          }
+          } // console.log(res);
 
-          console.log(res);
+
           UIkit.notification('Se ha realizado el pago de manera satisfactoria', 'success');
           setTimeout(function () {
             window.location = route('app.congressman.payments.view');
@@ -1953,7 +1966,7 @@ __webpack_require__.r(__webpack_exports__);
         UIkit.notification('Ha cancelado el pago', 'warning');
       },
       onError: function onError(err) {
-        console.log(err);
+        // console.log(err)
         UIkit.notification('Ocurrio un error en el servidor, por favor contacte al administrador', 'danger');
       }
     }, '#paypal-button');
@@ -2213,17 +2226,25 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       service: {
-        concept: ''
+        concept: '',
+        required_translate: false
       },
       loader: false,
       reference: '',
       method: '',
       amount: '',
+      required_translate: false,
       invoice: false
     };
   },
@@ -2259,6 +2280,7 @@ __webpack_require__.r(__webpack_exports__);
       data.append('method', this.method);
       data.append('amount', this.amount);
       data.append('invoice', this.invoice);
+      data.append('required_translate', this.required_translate);
       data.append('voucher', document.getElementById('input-voucher').files[0]);
       axios.post(url, data, {
         headers: {
@@ -2996,7 +3018,11 @@ var render = function() {
           ),
     _vm._v(" "),
     _vm.cart.length > 0
-      ? _c("div", { staticClass: "uk-margin-medium uk-width-1-1" }, [_vm._m(0)])
+      ? _c("div", { staticClass: "uk-margin uk-width-1-1" }, [_vm._m(0)])
+      : _vm._e(),
+    _vm._v(" "),
+    _vm.requiredTranslate
+      ? _c("div", { staticClass: "uk-margin uk-width-1-1" }, [_vm._m(1)])
       : _vm._e(),
     _vm._v(" "),
     _c("div", {
@@ -3031,6 +3057,27 @@ var staticRenderFns = [
           attrs: { type: "checkbox", id: "invoiceInput" }
         }),
         _vm._v(" Requiero factura\n        ")
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "label",
+      {
+        attrs: {
+          "uk-tooltip":
+            "Algunos de tus servicios están completa o parcialmente en inglés, ¿requieres de un dispositivo de traduccion simultanea?"
+        }
+      },
+      [
+        _c("input", {
+          staticClass: "uk-checkbox",
+          attrs: { type: "checkbox", id: "translate" }
+        }),
+        _vm._v(" Traducción\n        ")
       ]
     )
   }
@@ -3629,6 +3676,62 @@ var render = function() {
                   ]
                 )
               ]),
+              _vm._v(" "),
+              _vm.service.required_translate
+                ? _c("div", { staticClass: "uk-margin uk-width-1-1" }, [
+                    _c(
+                      "label",
+                      {
+                        attrs: {
+                          "uk-tooltip":
+                            "Este servicio incluye contenido que está completa o parcialmente en inglés, ¿requieres de un dispositivo de traduccion simultanea?"
+                        }
+                      },
+                      [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.required_translate,
+                              expression: "required_translate"
+                            }
+                          ],
+                          staticClass: "uk-checkbox",
+                          attrs: { type: "checkbox" },
+                          domProps: {
+                            checked: Array.isArray(_vm.required_translate)
+                              ? _vm._i(_vm.required_translate, null) > -1
+                              : _vm.required_translate
+                          },
+                          on: {
+                            change: function($event) {
+                              var $$a = _vm.required_translate,
+                                $$el = $event.target,
+                                $$c = $$el.checked ? true : false
+                              if (Array.isArray($$a)) {
+                                var $$v = null,
+                                  $$i = _vm._i($$a, $$v)
+                                if ($$el.checked) {
+                                  $$i < 0 &&
+                                    (_vm.required_translate = $$a.concat([$$v]))
+                                } else {
+                                  $$i > -1 &&
+                                    (_vm.required_translate = $$a
+                                      .slice(0, $$i)
+                                      .concat($$a.slice($$i + 1)))
+                                }
+                              } else {
+                                _vm.required_translate = $$c
+                              }
+                            }
+                          }
+                        }),
+                        _vm._v(" Dispositivo de traducción \n                ")
+                      ]
+                    )
+                  ])
+                : _vm._e(),
               _vm._v(" "),
               _vm._m(2)
             ]

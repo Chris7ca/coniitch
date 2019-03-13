@@ -2006,6 +2006,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -2463,6 +2464,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -2480,7 +2485,8 @@ __webpack_require__.r(__webpack_exports__);
         price: '',
         images: [],
         discounts: [],
-        for: []
+        for: [],
+        required_translate: false
       },
       files: [],
       deleteImages: [],
@@ -2524,6 +2530,7 @@ __webpack_require__.r(__webpack_exports__);
       data.append('concept', this.service.concept);
       data.append('details', this.service.details);
       data.append('price', this.service.price);
+      data.append('required_translate', this.service.required_translate ? 1 : 0);
       this.service.for.forEach(function (role) {
         data.append('for[]', JSON.stringify(role));
       });
@@ -7019,7 +7026,11 @@ var render = function() {
               _c("b", [
                 _vm._v(_vm._s(_vm.payment.required_invoice ? "Sí" : "No"))
               ])
-            ])
+            ]),
+            _vm._v(" "),
+            _vm.payment.required_translate
+              ? _c("li", [_c("b", [_vm._v("Requiere equipo de traducción")])])
+              : _vm._e()
           ]),
           _vm._v(" "),
           _vm.payment.required_invoice
@@ -7889,6 +7900,57 @@ var render = function() {
                     )
                   ]
                 )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "uk-margin" }, [
+                _c("label", [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.service.required_translate,
+                        expression: "service.required_translate"
+                      }
+                    ],
+                    staticClass: "uk-checkbox",
+                    attrs: { type: "checkbox" },
+                    domProps: {
+                      checked: Array.isArray(_vm.service.required_translate)
+                        ? _vm._i(_vm.service.required_translate, null) > -1
+                        : _vm.service.required_translate
+                    },
+                    on: {
+                      change: function($event) {
+                        var $$a = _vm.service.required_translate,
+                          $$el = $event.target,
+                          $$c = $$el.checked ? true : false
+                        if (Array.isArray($$a)) {
+                          var $$v = null,
+                            $$i = _vm._i($$a, $$v)
+                          if ($$el.checked) {
+                            $$i < 0 &&
+                              _vm.$set(
+                                _vm.service,
+                                "required_translate",
+                                $$a.concat([$$v])
+                              )
+                          } else {
+                            $$i > -1 &&
+                              _vm.$set(
+                                _vm.service,
+                                "required_translate",
+                                $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                              )
+                          }
+                        } else {
+                          _vm.$set(_vm.service, "required_translate", $$c)
+                        }
+                      }
+                    }
+                  }),
+                  _vm._v(" ¿Requiere de traducción?")
+                ])
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "uk-margin" }, [

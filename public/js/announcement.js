@@ -3451,7 +3451,7 @@ var render = function() {
       attrs: { "uk-grid": "" }
     },
     [
-      _c("div", { staticClass: "uk-width-1-2@m" }, [
+      _c("div", { staticClass: "uk-margin uk-width-1-2@m" }, [
         _c("label", { staticClass: "uk-form-label" }, [
           _vm._v("Titulo del trabajo")
         ]),
@@ -3479,7 +3479,7 @@ var render = function() {
         })
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "uk-width-1-2@m" }, [
+      _c("div", { staticClass: "uk-margin uk-width-1-2@m" }, [
         _c("label", { staticClass: "uk-form-label" }, [_vm._v("Adscripción")]),
         _vm._v(" "),
         _c("input", {
@@ -3507,7 +3507,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "div",
-        { staticClass: "uk-width-1-3@m" },
+        { staticClass: "uk-margin uk-width-1-3@m" },
         [
           _c("label", { staticClass: "uk-form-label" }, [
             _vm._v("Tema del trabajo")
@@ -3536,7 +3536,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "div",
-        { staticClass: "uk-width-1-3@m" },
+        { staticClass: "uk-margin uk-width-1-3@m" },
         [
           _c("label", { staticClass: "uk-form-label" }, [_vm._v("Modalidad")]),
           _vm._v(" "),
@@ -3563,7 +3563,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "div",
-        { staticClass: "uk-width-1-3@m" },
+        { staticClass: "uk-margin uk-width-1-3@m" },
         [
           _c("label", { staticClass: "uk-form-label" }, [_vm._v("Eje")]),
           _vm._v(" "),
@@ -3588,7 +3588,7 @@ var render = function() {
         1
       ),
       _vm._v(" "),
-      _c("div", { staticClass: "uk-width-1-1" }, [
+      _c("div", { staticClass: "uk-margin uk-width-1-1" }, [
         _c("ul", { attrs: { "uk-accordion": "" } }, [
           _c("li", [
             _vm._m(0),
@@ -3831,7 +3831,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "div",
-        { staticClass: "uk-width-1-1" },
+        { staticClass: "uk-margin uk-width-1-1" },
         [
           _vm._m(2),
           _vm._v(" "),
