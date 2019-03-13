@@ -14,9 +14,9 @@
             </div>
         </div>
 
-        <div v-else>
+        <div  v-for="(sponsor, index) in sponsors" :key="index" v-else>
 
-            <div v-for="(sponsor, index) in sponsors" :key="index">
+            <div>
 
                 <a role="button">
                     <img :data-src="sponsor.image.file.replace('public','/storage')" :width="sponsor.image.width" uk-img>
