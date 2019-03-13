@@ -69,7 +69,7 @@
                                 <a href="{{ route('site.programme') }}" role="link">Programa</a>
                             </li>
                             <li class="uk-visible@m {{ activeLink('convocatoria') }}">
-                                <a href="{{ route('site.call') }}" role="link">Convocatoria</a>
+                                <a href="{{ route('site.announcement') }}" role="link">Convocatoria</a>
                             </li>
                             <li class="uk-visible@m {{ activeLink('costos') }}">
                                 <a href="{{ route('site.pricing') }}" role="link">Costos</a>
@@ -135,7 +135,7 @@
                                 <a href="{{ route('site.programme') }}" role="link">Programa</a>
                             </li>
                             <li>
-                                <a href="{{ route('site.call') }}" role="link">Convocatoria</a>
+                                <a href="{{ route('site.announcement') }}" role="link">Convocatoria</a>
                             </li>
                             <li>
                                 <a href="{{ route('site.pricing') }}" role="link">Costos</a>
