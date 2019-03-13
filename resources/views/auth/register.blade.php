@@ -81,5 +81,5 @@
 @endsection
 
 @push('js')
-    <script src="{{ asset('js/auth.js') }}" defer></script>
+    <script src="{{ mix('js/auth.js') }}" defer></script>
 @endpush

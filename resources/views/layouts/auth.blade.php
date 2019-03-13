@@ -37,9 +37,9 @@
         <link href="https://fonts.googleapis.com/css?family=Quicksand|Work+Sans:300,400" rel="stylesheet">
 
         <!-- Styles -->
-        <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+        <link rel="stylesheet" href="{{ mix('css/app.css') }}">
 
-        {{-- @include('analytics') --}}
+        @include('analytics')
        
     </head>
     <body>
@@ -54,7 +54,7 @@
                         <ul class="uk-navbar-nav" uk-scrollspy="target: > li; cls:uk-animation-fade; delay: 400">
                             <li class="uk-active">
                                 <a href="{{ route('site.index') }}" role="link" title="Inicio">
-                                    <img data-src="{{ asset('images/coniitch.png') }}" width="40" uk-img>
+                                    <img data-src="{{ asset('logos/coniitch.png') }}" width="40" uk-img>
                                 </a>
                             </li>
                         </ul>

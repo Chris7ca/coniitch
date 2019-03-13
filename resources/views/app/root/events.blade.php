@@ -44,5 +44,5 @@
 @endsection
 
 @push('js')
-    <script src="{{ asset('js/root.js') }}" defer></script>
+    <script src="{{ mix('js/root.js') }}" defer></script>
 @endpush

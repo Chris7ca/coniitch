@@ -17,5 +17,5 @@
 @endsection
 
 @push('js')
-    <script src="{{ asset('js/staff.js') }}" defer></script>
+    <script src="{{ mix('js/staff.js') }}" defer></script>
 @endpush

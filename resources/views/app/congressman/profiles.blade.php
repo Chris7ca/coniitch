@@ -113,5 +113,5 @@
 @endsection
 
 @push('js')
-    <script src="{{ asset('js/profiles.js') }}" defer></script>
+    <script src="{{ mix('js/profiles.js') }}" defer></script>
 @endpush

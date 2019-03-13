@@ -134,5 +134,5 @@
 
 @push('js')
 <script src="https://www.paypalobjects.com/api/checkout.js"></script>
-<script src="{{ asset('js/payments.js') }}" defer></script>
+<script src="{{ mix('js/payments.js') }}" defer></script>
 @endpush

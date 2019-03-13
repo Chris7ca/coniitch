@@ -25,5 +25,5 @@
 @endsection
 
 @push('js')
-    <script src="{{ asset('js/admin.js') }}" defer></script>
+    <script src="{{ mix('js/admin.js') }}" defer></script>
 @endpush

@@ -90,5 +90,5 @@
 
 @push('js')
     <script src="{{ asset('editor/ckeditor.js') }}" defer></script>
-    <script src="{{ asset('js/sponsors.js') }}" defer></script>
+    <script src="{{ mix('js/sponsors.js') }}" defer></script>
 @endpush

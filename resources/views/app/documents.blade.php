@@ -49,7 +49,7 @@
 
         </div>
 
-        @if ( sizeof($documents) == 0 )
+        @if ( count($documents) == 0 )
             <div class="uk-text-center">
                 <h5>Aún no dispones de documentos ...</h5>
             </div>
@@ -60,5 +60,5 @@
 @endsection
 
 @push('js')
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ mix('js/app.js') }}" defer></script>
 @endpush
