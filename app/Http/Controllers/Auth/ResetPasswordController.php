@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Rules\Password;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ResetsPasswords;
 
@@ -47,7 +48,7 @@ class ResetPasswordController extends Controller
         return [
             'token' => 'required',
             'email' => 'required|email',
-            'password' => 'required|regex:/^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,}$/|confirmed',
+            'password' => ['required', new Password, 'confirmed'],
         ];
     }
 
@@ -59,7 +60,7 @@ class ResetPasswordController extends Controller
     protected function validationErrorMessages()
     {
         return [
-            'regex' => 'La contraseña debe de tener mínimo 8 caracteres, una letra mayúscula, una letra minúscula y un dígito'
+        
         ];
     }
 

@@ -4,7 +4,7 @@
 
 @section('content')
 
-    <h3>Reestablece tu contraseña</h3>
+    <h3>Restablece tu contraseña</h3>
     <p>Cambia tu contraseña para que vuelvas a iniciar sesión en la plataforma</p>
 
     <form id="form-auth" method="POST" action="{{ route('password.update') }}" class="uk-form-stacked uk-margin-medium">
