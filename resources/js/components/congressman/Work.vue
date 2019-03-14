@@ -7,7 +7,7 @@
             <input type="text" v-model="title" class="uk-input" placeholder="Campo requerido" required>
         </div>
 
-        <div class="uk-margin uk-width-1-2@m">
+        <div class="uk-margin uk-margin-remove-top uk-width-1-2@m">
             <label class="uk-form-label">Adscripción</label>
             <input type="text" v-model="adscription" class="uk-input" placeholder="Campo requerido" required>
         </div>
@@ -100,7 +100,7 @@
 
         <div class="uk-margin uk-width-1-1">
             <label class="uk-form-label">Resumen <span uk-icon="info" uk-tooltip="Para habilitar la edición especial, solo selecciona el texto."></span></label>
-            <editor :id="'editor_register_work'" v-model="content" :value="''" :count-words="true" :limit-words="300" @limit-words="limitWordsReached"></editor>
+            <editor :id="'editor_register_work'" v-model="content" :value="''" :count-words="true" :limit-words="310" @limit-words="limitWordsReached"></editor>
         </div>
 
         <div class="uk-margin">
