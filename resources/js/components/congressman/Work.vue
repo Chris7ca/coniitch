@@ -305,7 +305,7 @@
             if ( this.work ) {
                 
                 this.title       = (this.work.title) ? this.work.title : '';
-                this.adscription = (this.work.adscription_work) ? this.work.adscription : '';     
+                this.adscription = (this.work.adscription) ? this.work.adscription : '';     
                 this.content     = (this.work.content) ? this.work.content : '';    
                 this.axis        = (this.work.axis) ? this.axes.filter( a => a.value == this.work.axis )[0] : '';
                 this.type        = (this.work.type) ? this.types.filter( t => t.value == this.work.type )[0] : '';
