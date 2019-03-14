@@ -56,7 +56,11 @@ class UsersController extends Controller
             'password' => Hash::make($request->password)
         ]);
 
-        $roles = array_map(create_function('$value', 'return decode_id($value);'), $request->roles);
+        $roles = [];
+
+        foreach ( $request->roles as $role ) {
+            array_push($roles, decode_id($role));
+        }
         
         $user->roles()->attach($roles);
 
@@ -79,12 +83,18 @@ class UsersController extends Controller
         $user->first_name = $request->first_name;
         $user->last_name = $request->last_name;
         $user->email = $request->email;
+
         if ( $request->filled('password') ) {
             $user->password = Hash::make($request->password);
         }
+        
         $user->save();
 
-        $roles = array_map(create_function('$value', 'return decode_id($value);'), $request->roles);
+        $roles = [];
+
+        foreach ( $request->roles as $role ) {
+            array_push($roles, decode_id($role));
+        }
 
         $user->roles()->sync($roles);
 
