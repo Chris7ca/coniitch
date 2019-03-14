@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Users;
 
 use App\Models\Document;
 use Illuminate\Http\Request;
+use App\Http\Requests\Password;
 use App\Http\Controllers\Controller;
 
 class UsersController extends Controller

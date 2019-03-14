@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\Password as PasswordRule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class Password extends FormRequest
@@ -24,7 +25,7 @@ class Password extends FormRequest
     public function rules()
     {
         return [
-            'password' => 'required|regex:/^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,}$/|confirmed',
+            'password' => ['required', new PasswordRule, 'confirmed'],
         ];
     }
 }
