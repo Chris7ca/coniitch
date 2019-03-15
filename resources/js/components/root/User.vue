@@ -113,8 +113,8 @@
             },
             clearData: function () {
                 this.mode = 'create';
-                this.first_name = '';
-                this.last_name = '';
+                this.firstName = '';
+                this.lastName = '';
                 this.email = '';
                 this.password = '';
                 this.roles = [];
