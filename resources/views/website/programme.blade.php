@@ -261,7 +261,7 @@
             </li>
             <li class="uk-margin">
                 <span class="uk-text-meta">13:00 - 14:00 horas</span>
-                <h5 class="uk-margin-remove">Mesa de trabajos libres / Simposio</h5>
+                <h5 class="uk-margin-remove">Simposio: "Salud y Transdisciplina en la UAEM" - Moderadora: Dra. Bernarda Téllez</h5>
             </li>
             <li class="uk-margin">
                 <span class="uk-text-meta">14:00 - 16:00 horas</span>
@@ -304,7 +304,7 @@
             </li>
             <li class="uk-margin">
                 <span class="uk-text-meta">10:30 - 11:30 horas</span>
-                <h5 class="uk-margin-remove">Mesa de trabajos libres / Simposio</h5>
+                <h5 class="uk-margin-remove">Simposio: "La Transdisciplinariedad - Problemáticas y Retos Analíticos" - Moderadora: Dra. Julieta Hidar</h5>
             </li>
             <li class="uk-margin">
                 <span class="uk-text-meta">11:30 - 12:00 horas</span>
