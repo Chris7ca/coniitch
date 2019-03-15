@@ -30,7 +30,7 @@
         
         <div class="uk-card uk-card-default uk-card-body uk-box-shadow-large">
 
-            <h3 class="uk-margin-large uk-text-center">¡Ya solo faltan!</h3>
+            <h3 class="uk-margin-large uk-text-center">¡Ya sólo faltan!</h3>
 
             <div class="uk-grid-small uk-child-width-auto uk-flex-center text-secondary" uk-grid uk-countdown="date: 2019-05-22T02:50:18+00:00">
                 <div>
@@ -114,6 +114,12 @@
                 <div>
                     <div class="uk-card uk-box-shadow-small uk-box-shadow-hover-xlarge video-invitacion">
                         <iframe src="https://player.vimeo.com/video/321136394" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen uk-video="autoplay: false"></iframe>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="uk-card uk-box-shadow-small uk-box-shadow-hover-xlarge video-invitacion">
+                        <iframe src="https://player.vimeo.com/video/324250789" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen uk-video="autoplay: false"></iframe>
                     </div>
                 </div>
                 
