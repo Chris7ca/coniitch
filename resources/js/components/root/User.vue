@@ -76,12 +76,20 @@
                 selectedRoles: [],
                 password: '',
                 passwordIsValid: null,
-                regex: /^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,}$/
+                oneUppercaseLetter: /[A-Z]/,
+                oneLowercaseLetter: /[a-z]/,
+                oneNumber: /[0-9]/
             }
         },
         watch: {
             password: function (val) {
-                this.passwordIsValid = (this.regex.test(val));
+                
+                this.passwordIsValid = false;
+
+                if ( val.length > 8 && this.oneLowercaseLetter.test(val) && this.oneUppercaseLetter.test(val) && this.oneNumber.test(val) ) {
+
+                    this.passwordIsValid = true;
+                }
             }
         },
         computed: {
@@ -103,6 +111,15 @@
                     roles: finallyRoles
                 }
             },
+            clearData: function () {
+                this.mode = 'create';
+                this.first_name = '';
+                this.last_name = '';
+                this.email = '';
+                this.password = '';
+                this.roles = [];
+                this.selectedRoles = [];
+            },
             handleSubmit: function() {
 
                 let data = this.getData();
@@ -119,6 +136,7 @@
                 axios.post(route('app.root.users.store'), data)
                 .then( response => {
                     this.dataLoaded = true;
+                    this.clearData();
                     UIkit.notification(response.data.message, 'success');
                 })
                 .catch( error => {
@@ -134,6 +152,7 @@
                 .then( user => {
                     this.dataLoaded = true;
                     EventBus.$emit('userUpdated', user.data);
+                    this.clearData();
                     UIkit.notification('Usuario actualizado','success');
                 })
                 .catch( error => {
