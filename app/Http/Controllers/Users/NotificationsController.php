@@ -44,7 +44,7 @@ class NotificationsController extends Controller
         ->where([
             ['notifiable_type', 'App\Models\User'],
             ['notifiable_id', Auth()->user()->id]
-        ])->take(3)->orderBy('created_at','desc')->get();
+        ])->orderBy('created_at','desc')->get();
 
         foreach ($notifications as $notification) {
             $created_at = new Carbon($notification->created_at);
