@@ -116,9 +116,9 @@
             fullName: function () {
 
                 let firstName       = this.profile.first_name;
-                let secondName      = (this.profile.personal_profile) ? this.profile.personal_profile.second_name : '';
+                let secondName      = (this.profile.personal_profile.second_name) ? this.profile.personal_profile.second_name : '';
                 let lastName        = this.profile.last_name;
-                let secondLastName  = (this.profile.personal_profile) ? this.profile.personal_profile.second_last_name : '';
+                let secondLastName  = (this.profile.personal_profile.second_last_name) ? this.profile.personal_profile.second_last_name : '';
 
                 return firstName + ' ' + secondName + ' ' + lastName + ' ' + secondLastName;
             },
