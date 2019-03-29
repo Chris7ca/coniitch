@@ -41,6 +41,8 @@
 
                     <p class="uk-margin-medium-top">Para ser considerados, los resúmenes de los trabajos orales y carteles deberán <a href="{{ route('site.register') }}" class="text-secondary">registrarse</a> 
                     a más tardar el día <b>domingo 31 de marzo del 2019 a las 23:59 horas</b>, hora del centro de México.</p>
+                    <p>Una vez se haya registrado y completado la información solicitada por la plataforma, deberá ir a la pestaña <b>Convocatoria</b> y leer cuidadosamente las 
+                    instrucciones para enviar su trabajo.</p>
 
                 </article>
             </div>
