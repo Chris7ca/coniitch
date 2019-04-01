@@ -10,7 +10,7 @@
 
         @if ( empty($work) || !$work->ready )
         
-            <h3>Registro de trabajos</h3>
+            {{-- <h3>Registro de trabajos</h3>
             <hr class="uk-divider-small">
 
             <p><small>Si desea participar en el 3<sup>er</sup> Congreso Internacional de Investigación en Ciencias Humanas 2019. Por favor registra tu trabajo conforme a los líneamientos
@@ -24,7 +24,9 @@
 
             <p><small><strong>Nota II.</strong> Si no asigna un autor principal (en caso de que aplique) se entiende que usted es el autor principal.</small></p>
 
-            <work :org-work="{{ json_encode($work) }}" :mode="'register'"></work>
+            <work :org-work="{{ json_encode($work) }}" :mode="'register'"></work> --}}
+
+            <h2 class="uk-text-center">Se ha cerrado la convocatoria para recibir trabajos, muchas gracias por su interés</h2>
 
         @elseif ( $work->evaluation == 1 || $work->evaluation == 2 )
 
