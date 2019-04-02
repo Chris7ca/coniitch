@@ -22,38 +22,42 @@
                         <li><span>Registrado {{ $work->created_at->diffForHumans() }}</span></li>
                     </ul>
 
-                    <h6 class="text-secondary">Autores</h6>
+                    @if ( Auth::user()->isRevisor() )
 
-                    <table class="uk-table uk-table-middle uk-table-divider">
-                        <thead>
-                            <tr>
-                                <th>Nombre</th>
-                                <th>Adscripción</th>
-                                <th>Correo</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($work->coauthors as $coauthor)
+                        <h6 class="text-secondary">Autores</h6>
+
+                        <table class="uk-table uk-table-middle uk-table-divider">
+                            <thead>
+                                <tr>
+                                    <th>Nombre</th>
+                                    <th>Adscripción</th>
+                                    <th>Correo</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($work->coauthors as $coauthor)
+                                    <tr>
+                                        <td>
+                                            {{ $coauthor->full_name }}
+                                            @if ( $coauthor->is_first_author )
+                                                <br> <span class="uk-label uk-text-small">Autor principal</span>
+                                            @endif
+                                        </td>
+                                        <td>{{ $coauthor->adscription }}</td>
+                                        <td>{{ $coauthor->email }}</td>
+                                    </tr>
+                                @endforeach
                                 <tr>
                                     <td>
-                                        {{ $coauthor->full_name }}
-                                        @if ( $coauthor->is_first_author )
-                                            <br> <span class="uk-label uk-text-small">Autor principal</span>
-                                        @endif
+                                        {{ $work->registered_user->first_name . ' ' . $work->registered_user->personal_profile->second_name . ' ' . $work->registered_user->last_name . ' ' . $work->registered_user->personal_profile->second_last_name }}
                                     </td>
-                                    <td>{{ $coauthor->adscription }}</td>
-                                    <td>{{ $coauthor->email }}</td>
+                                    <td>{{ $work->adscription }}</td>
+                                    <td>{{ $work->registered_user->email }}</td>
                                 </tr>
-                            @endforeach
-                            <tr>
-                                <td>
-                                    {{ $work->registered_user->first_name . ' ' . $work->registered_user->personal_profile->second_name . ' ' . $work->registered_user->last_name . ' ' . $work->registered_user->personal_profile->second_last_name }}
-                                </td>
-                                <td>{{ $work->adscription }}</td>
-                                <td>{{ $work->registered_user->email }}</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                            </tbody>
+                        </table>
+
+                    @endif
 
                     <h6 class="text-secondary">Resumen del trabajo</h6>
 
