@@ -22,7 +22,7 @@
 
                 <div class="uk-margin uk-width-1-1">
                     <label class="uk-form-label">Monto</label>
-                    <input type="text" class="uk-input" v-model="amount" placeholder="00.00" required>
+                    <input type="number" class="uk-input" v-model="amount" placeholder="00.00" required>
                 </div>
 
                 <div class="uk-margin uk-width-1-1">
