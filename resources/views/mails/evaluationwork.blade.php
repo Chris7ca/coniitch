@@ -317,7 +317,7 @@
         <div style="color:#71777D;font-family:'Lato', Tahoma, Verdana, Segoe, sans-serif;line-height:150%; padding-right: 10px; padding-left: 10px; padding-top: 10px; padding-bottom: 30px;">	
             <div style="font-size:12px;line-height:18px;color:#71777D;font-family:'Lato', Tahoma, Verdana, Segoe, sans-serif;text-align:left;"><p style="margin: 0;font-size: 14px;line-height: 21px"><span style="color: rgb(0, 0, 0); font-size: 14px; line-height: 21px;"><strong>Estimado(a)&#160;<span style="font-size: 14px; line-height: 21px;">{{ $work->registered_user->first_name .' '. $work->registered_user->last_name }}</span></strong></span>.</p>
                 <p style="margin: 0;font-size: 14px;line-height: 21px">&#160;</p><p style="margin: 0;font-size: 14px;line-height: 21px"><span style="font-size: 14px; line-height: 21px;">Por este medio le notificamos que la comisión evaluadora del CONIITCH ha resuelto que su trabajo titulado: <strong><span style="color: rgb(0, 0, 0); line-height: 21px; font-size: 14px;">{{ $work->title }}</span></strong></span></p><p style="margin: 0;font-size: 14px;line-height: 21px">&#160;</p>
-                <p style="margin: 0;font-size: 12px;line-height: 18px"><span style="font-size: 14px; line-height: 21px;">Ha sido <span style="color: rgb(0, 0, 0); line-height: 21px; font-size: 14px;"><strong>{{ ($work->evaluation == 3) ? 'considerado como no aceptado' : 'aceptado' }}</strong></span> por la Comisión Científica para ser presentado en la modalidad de <strong><span style="color: rgb(0, 0, 0); line-height: 21px; font-size: 14px;">{{ ($work->type == 'Banner') ? 'Cartel' : 'Trabajo Oral' }}</span></strong> en el 3er Congreso de Investigación Transdisciplinar en Ciencias Humanas 2019.</span></p>
+                <p style="margin: 0;font-size: 12px;line-height: 18px"><span style="font-size: 14px; line-height: 21px;">Ha sido <span style="color: rgb(0, 0, 0); line-height: 21px; font-size: 14px;"><strong>{{ ($work->evaluation == 3) ? 'considerado como no aceptado' : 'aceptado' }}</strong></span> por la Comisión Científica en el 3er Congreso de Investigación Transdisciplinar en Ciencias Humanas 2019.</span></p>
                 @if ( $work->evaluation == 2 )
                     <p style="margin: 0;font-size: 12px;line-height: 18px">&#160;</p><p style="margin: 0;font-size: 12px;line-height: 18px"><span style="font-size: 14px; line-height: 21px;">Únicamente deberás realizar algunas modificaciones menores que la Comisión Científica te hizo, puedes tomar en cuenta algunas de sus observaciones.</span></p>
                 @endif
@@ -327,15 +327,6 @@
                 @endforeach
                 @if ( $work->evaluation == 3 )                    
                     <p style="margin: 0;font-size: 14px;line-height: 21px">&#160;</p><p style="margin: 0;font-size: 14px;line-height: 21px"><span style="font-size: 14px; line-height: 21px;">Le reiteramos nuestro agradecimiento y esperamos pueda acompañarnos en el congreso para que pueda disfrutar tanto de los Talleres pre-cogreso como del programa en general.</span></p>
-                @endif
-                @if ( $work->type == 'Banner' )
-                    <p style="margin: 0;font-size: 14px;line-height: 21px">&#160;</p><p style="margin: 0;font-size: 14px;line-height: 21px"><span style="font-size: 14px; line-height: 21px;">Recuerda que los carteles deberán ajustarse a las siguientes especificaciones técnicas:</span></p><p style="margin: 0;font-size: 14px;line-height: 21px">&#160;</p>
-                    <ul>
-                        <li style="font-size: 14px; line-height: 21px;"><span style="font-size: 14px; line-height: 21px;">Dimensión del cartel: 120 cm. de alto por 90 cm. de ancho.</span></li>
-                        <li style="font-size: 14px; line-height: 21px;"><span style="font-size: 14px; line-height: 21px;">Título: tamaño de letra en un rango de 100 a 130 pts.</span></li>
-                        <li style="font-size: 14px; line-height: 21px;"><span style="font-size: 14px; line-height: 21px;">Texto en un rango de 24 a 48 pts.</span></li>
-                        <li style="font-size: 14px; line-height: 21px;"><span style="font-size: 14px; line-height: 21px;">Se deberá colocar la ficha de identificación (título del trabajo, nombre de autor(es) y correo electrónico del autor de correspondencia en la parte superior).</span></li>
-                    </ul>
                 @endif   
                 @if ( $work->evaluation == 1 )
                     <p style="margin: 0;font-size: 14px;line-height: 21px">&#160;</p><p style="margin: 0;font-size: 14px;line-height: 21px"><span style="font-size: 14px; line-height: 21px;">
@@ -343,7 +334,11 @@
                       Recuerde que dentro de los métodos de pago están disponibles depósito bancario, transferencia electrónica o pago con Paypal <a href="https://coniitch.mx/costos" target="_blank">https://coniitch.mx/costos</a>, en caso de haber realizado el pago en el banco o por transferencia electrónica, deberá escanear el comprobante y adjuntarlo en la sección “Pagos” para que su recibo sea validado y reciba un correo con la confirmación de que su inscripción fue acreditada. Si no recibe el correo le pedimos se comunique al teléfono +52-777-3297970 en la Ext.3756 para reportar su caso.
                       En caso de requerir factura o tener dudas respecto al pago envíe un correo electrónico a <b>finanzas.coniitch@uaem.mx</b> y con gusto le responderemos.
                       Es importante aclarar que solo se emitirá un constancia por trabajo y en caso de que todos los autores se presenten el día del congreso, deberán de haberse registrado de manera individual y realizar el pago correspondiente a la inscripción. 
-                      <b>No hay necesidad de registrar nuevamente el trabajo.</b>
+                      <b>No hay necesidad de registrar nuevamente el trabajo.</b> <br>
+                      <b>Sobre la selección de trabajos y asignación de la modalidad de presentación:<br>
+                        Debido a la alta demanda de trabajos y al número limitado de espacios, el comité Científico le notificará vía correo electrónico la modalidad de presentación (oral o póster) sobre su participación en nuestro programa del congreso.<br>
+                        La presentación se realizará en el día, horario y orden señalado en la carta de aceptación que se le enviará a su correo posterior al dictamen de Aprobado. En caso de que el resumen sea aceptado en formato de cartel se le harán llegar el formato e instrucciones para la presentación del mismo.<br>
+                        En caso de que el autor corresponsal no acepte la modalidad elegida deberá notificarlo por correo electrónico al Comité Científico (<b>trabajos.coniitch.mx</b>).
                     </p>
                 @endif             
                 <p style="margin: 0;font-size: 12px;line-height: 18px">&#160;</p><p style="margin: 0;font-size: 12px;line-height: 18px">&#160;</p><p style="margin: 0;font-size: 12px;line-height: 18px"><span style="font-size: 14px; line-height: 21px;"><span style="line-height: 21px; font-size: 14px;">Esperamos saludarle muy pronto en nuestro Congreso CONIITCH 2019.</span></span></p></div>	

@@ -353,3 +353,23 @@
     </section>
 
 @endsection
+
+@push('js')
+    <script defer>
+
+    window.addEventListener("load", function() {
+
+            UIkit.modal.dialog(`
+                <div class="uk-modal-body">
+                    <button class="uk-modal-close-default" type="button" uk-close></button> 
+                    <h2 class="uk-text-center text-secondary">¡Se extiende convocatoria!</h2>
+                    <p class="uk-text-center uk-h5">El 3er Congreso Internacional de Investigación Transdisciplinar en Ciencias Humanas tiene el agrado de comunicar que se amplió el plazo 
+                    de recepción de resúmenes hasta el 8 de abril.
+                    Recuerde que para acceder a la convocatoria y poder subir tu trabajo debe llenar todos sus datos de registro, incluyendo número de emergencias.</p>
+                </div>
+            `);
+
+        });
+
+    </script>
+@endpush

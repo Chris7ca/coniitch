@@ -44,6 +44,8 @@
                     <p>Una vez se haya registrado y completado la información solicitada por la plataforma, deberá ir a la pestaña <b>Convocatoria</b> y leer cuidadosamente las 
                     instrucciones para enviar su trabajo.</p>
 
+                    <p>Así mismo le recordamos que el sistema solo permite recibir un trabajo por autor/persona. Si usted requiere enviar más de un trabajo, sus co-autores podrán registrarlo. Si tiene dudas contáctenos al correo <b class="text-secondary">trabajos.coniitch@uaem.mx</b></p>
+
                 </article>
             </div>
 
@@ -151,3 +153,23 @@
     </section>
 
 @endsection
+
+@push('js')
+    <script defer>
+
+    window.addEventListener("load", function() {
+
+            UIkit.modal.dialog(`
+                <div class="uk-modal-body">
+                    <button class="uk-modal-close-default" type="button" uk-close></button>
+                    <h2 class="uk-text-center text-secondary">¡Se extiende convocatoria!</h2>
+                    <p class="uk-text-center uk-h5">El 3er Congreso Internacional de Investigación Transdisciplinar en Ciencias Humanas tiene el agrado de comunicar que se amplió el plazo 
+                    de recepción de resúmenes hasta el 8 de abril.
+                    Recuerde que para acceder a la convocatoria y poder subir tu trabajo debe llenar todos sus datos de registro, incluyendo número de emergencias.</p>
+                </div>
+            `);
+
+        });
+
+    </script>
+@endpush

@@ -10,7 +10,7 @@
 
         @if ( empty($work) || !$work->ready )
         
-            {{-- <h3>Registro de trabajos</h3>
+            <h3>Registro de trabajos</h3>
             <hr class="uk-divider-small">
 
             <p><small>Si desea participar en el 3<sup>er</sup> Congreso Internacional de Investigación en Ciencias Humanas 2019. Por favor registra tu trabajo conforme a los líneamientos
@@ -24,20 +24,26 @@
 
             <p><small><strong>Nota II.</strong> Si no asigna un autor principal (en caso de que aplique) se entiende que usted es el autor principal.</small></p>
 
-            <work :org-work="{{ json_encode($work) }}" :mode="'register'"></work> --}}
+            <p><small><strong>Nota III.</strong> Le recordamos que el sistema solo permite recibir un trabajo por autor/persona. 
+            Si usted requiere enviar más de un trabajo, sus co-autores podrán registrarlo. Si tiene dudas contáctenos al correo <b class="text-secondary">trabajos.coniitch@uaem.mx</b></small></p>
 
-            <h2 class="uk-text-center">Se ha cerrado la convocatoria para recibir trabajos, muchas gracias por su interés</h2>
+            <work :org-work="{{ json_encode($work) }}" :mode="'register'"></work>
 
         @elseif ( $work->evaluation == 1 || $work->evaluation == 2 )
 
             <h3 class="text-secondary">¡Buenas noticias!</h3>
 
             <p>Le notificamos que la comisión evaluadora del CONIITCH ha resuelto que su trabajo titulado <b>"{{ $work->title }}"</b> ha sido <b>aceptado</b>
-            por la Comisión Científica para ser presentado en la modalidad de {{ ($work->type == 'Banner') ? 'Cartel' : 'Trabajo Oral' }} en el 3er Congreso de Investigación 
-            Transdisciplinar en Ciencias Humanas 2019.</p>
+            por la Comisión Científica para ser presentado en el 3er Congreso de Investigación Transdisciplinar en Ciencias Humanas 2019.</p>
 
             @if ( $work->evaluation == 2 )
                 <p>Únicamente deberá realizar algunas modificaciones menores que la Comisión Científica le hizo, tome en cuenta sus observaciones.</p>
+
+            @elseif ( $work->evaluation == 1 )
+                <p>Sobre la selección de trabajos y asignación de la modalidad de presentación:</p>
+                <p>Debido a la alta demanda de trabajos y al número limitado de espacios, el comité Científico le notificará vía correo electrónico la modalidad de presentación (oral o póster) sobre su participación en nuestro programa del congreso.
+                La presentación se realizará en el día, horario y orden señalado en la carta de aceptación que se le enviará a su correo posterior al dictamen de Aprobado. En caso de que el resumen sea aceptado en formato de cartel se le harán llegar el formato e instrucciones para la presentación del mismo.
+                En caso de que el autor corresponsal no acepte la modalidad elegida deberá notificarlo por correo electrónico al Comité Científico (<b>congreso.coniitch@uaem.mx</b>)</p>
             @endif
 
             <p>Las observaciones que hicieron a su trabajo fueron las siguientes:</p>
@@ -45,19 +51,6 @@
             @foreach ($work->reviews as $review)
                 <p><i>"{{ $review->feedback }}"</i></p>
             @endforeach
-
-            @if ( $work->type == 'Banner' )
-                
-                <p>Recuerde que los carteles deberán ajustarse a las siguientes especificaciones técnicas:</p>
-
-                <ul>
-                    <li>Dimensión del cartel: 120 cm. de alto por 90 cm. de ancho.</li>
-                    <li>Título: tamaño de letra en un rango de 100 a 130 pts.</li>
-                    <li>Texto en un rango de 24 a 48 pts.</li>
-                    <li>Se deberá colocar la ficha de identificación (título del trabajo, nombre de autor(es) y correo electrónico del autor de correspondencia en la parte superior).</li>
-                </ul>
-
-            @endif
 
             @if ( $work->evaluation == 2 )
                 <work :org-work="{{ json_encode($work) }}" :mode="'update'"></work>

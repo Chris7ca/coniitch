@@ -29,7 +29,7 @@ class AssignWorkToEvaluate extends Notification implements ShouldQueue
             'icon' => 'search',
             'title' => 'Te ha sido asignado un trabajo a evaluar',
             'description' => 'El titulo del trabajo es "' . $this->work->title . '". Por favor responde los más pronto posible y recuerda que en caso de aceptar 
-            el trabajo a evaluar, cuentas con 5 días para hacerlo.',
+            el trabajo a evaluar, cuentas con 3 días para hacerlo.',
             'route' => route('app.revisors.works.view')
         ];
     }
