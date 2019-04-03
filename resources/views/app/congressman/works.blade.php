@@ -22,7 +22,7 @@
                         <li><span>Registrado {{ $work->created_at->diffForHumans() }}</span></li>
                     </ul>
 
-                    @if ( Auth::user()->isRevisor() )
+                    @if ( Auth::user()->isAdmin() )
 
                         <h6 class="text-secondary">Autores</h6>
 
