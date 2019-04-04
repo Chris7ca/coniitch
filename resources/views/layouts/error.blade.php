@@ -39,7 +39,11 @@
         <!-- Styles -->
         <link rel="stylesheet" href="{{ mix('css/app.css') }}" type="text/css">
 
-        @include('analytics')
+        @env('production')
+            
+            @include('analytics')
+
+        @endenv('testing')
        
     </head>
     <body>
