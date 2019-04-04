@@ -57,7 +57,7 @@
             },
             deleteCriteria: function (id) {
                 
-                let url = route('app.criterias.delete', { id : id });
+                let url = route('app.admin.criterias.delete', { id : id });
 
                 UIkit.modal.confirm(`¿Estás seguro que deseas elimiar este criterio? 
                 Ten en cuenta que si ya se ha evaluado un trabajo con él, se eliminará todo registro de dicha evaluación`).then( () => {
