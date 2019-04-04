@@ -36,14 +36,14 @@
                         {{ record.email }}
                     </td>
                     <td class="uk-text-center">
-                        <small v-if="record.email_verified_at">Congresista verificado</small>
-                        <small class="uk-text-warning" v-else>Congresista no verificado</small>
+                        <small v-if="record.email_verified_at">Correo verificado</small>
+                        <small class="uk-text-warning" v-else>Correo no verificado</small>
                     </td>
                     <td>
                         <ul class="uk-iconnav uk-flex uk-flex-center">
                             <li v-if="record.academic_profile && record.academic_profile.document">
                                 
-                                <a role="button" uk-icon="folder" uk-tooltip="Este congresista ha adjuntado un archivo probatorio de su estatus académico"></a>
+                                <a role="button" :class="{ 'uk-text-warning' : record.academic_profile.is_student == null }" uk-icon="folder" uk-tooltip="Este congresista ha adjuntado un archivo probatorio de su estatus académico"></a>
                                 
                                 <div uk-dropdown="mode: click">
                                     
@@ -55,7 +55,22 @@
                                             <a role="button" @click="validateDocument(record, true)"><span class="uk-margin-small-right" uk-icon="check"></span> Aprobar documento</a>
                                         </li>
                                         <li v-if="record.academic_profile.is_student == null">
-                                            <a role="button" @click="validateDocument(record, false)"><span class="uk-margin-small-right" uk-icon="close"></span> Rechazar documento</a>
+                                            <a role="button" @click="validateDocument(record, false, 'La credencial de estudiante ha expirado')"><span class="uk-margin-small-right" uk-icon="close"></span> La credencial de estudiante ha expirado</a>
+                                        </li>
+                                        <li v-if="record.academic_profile.is_student == null">
+                                            <a role="button" @click="validateDocument(record, false, 'La credencial de estudiante no indica vigencia')"><span class="uk-margin-small-right" uk-icon="close"></span> La credencial de estudiante no indica vigencia</a>
+                                        </li>
+                                        <li v-if="record.academic_profile.is_student == null">
+                                            <a role="button" @click="validateDocument(record, false, 'La credencial de estudiante no tiene vigencia')"><span class="uk-margin-small-right" uk-icon="close"></span> La credencial de estudiante no tiene vigencia</a>
+                                        </li>
+                                        <li v-if="record.academic_profile.is_student == null">
+                                            <a role="button" @click="validateDocument(record, false, 'Recibo de pago no vigente')"><span class="uk-margin-small-right" uk-icon="close"></span> Recibo de pago no vigente</a>
+                                        </li>
+                                        <li v-if="record.academic_profile.is_student == null">
+                                            <a role="button" @click="validateDocument(record, false, 'Constancia de estudio no es actual')"><span class="uk-margin-small-right" uk-icon="close"></span> Constancia de estudio no es actual</a>
+                                        </li>
+                                        <li v-if="record.academic_profile.is_student == null">
+                                            <a role="button" @click="validateDocument(record, false, 'El documento no cuenta con sello de la institución')"><span class="uk-margin-small-right" uk-icon="close"></span> El documento no cuenta con sello de la institución</a>
                                         </li>
                                     </ul>
 
@@ -133,12 +148,12 @@
 
                 return url.replace('public','/storage');
             },
-            validateDocument: function (record, status) {
+            validateDocument: function (record, status, reason = '') {
 
                 let url = route('app.finances.records.documents.validation', { id : record.public_id });
                 this.validation = false;
 
-                axios.post(url, { validation : status })
+                axios.post(url, { validation : status, reason: reason })
                 .then( response => {
                     
                     this.validation = true;
