@@ -34,6 +34,7 @@ class AcademicProfileController extends Controller
             $user->academic_profile->country = $request->country;
             $user->academic_profile->state = $request->state;
             $user->academic_profile->document = ($request->hasFile('document')) ? $request->document->store('public/files/academicdocuments') : null;
+            $user->academic_profile->is_student = ($request->hasFile('document')) ? null : $user->academic_profile->is_student;
             $user->academic_profile->save();
         } 
         else 
