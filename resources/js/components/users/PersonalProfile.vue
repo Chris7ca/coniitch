@@ -10,67 +10,67 @@
         </content-placeholders>
 
         <form @submit.prevent="handleSubmit" class="uk-grid uk-form-stacked uk-margin-medium-top" v-if="dataLoaded" uk-grid>
-            <div class="uk-width-1-2@m">
+            <div class="uk-margin-top uk-width-1-2@m">
                 <label class="uk-form-label">Primer Nombre</label>
                 <div class="uk-form-controls">
                     <input type="text" class="uk-input" v-model="firstName" required placeholder="Requerido">
                 </div>
             </div>
-            <div class="uk-width-1-2@m">
+            <div class="uk-margin uk-width-1-2@m">
                 <label class="uk-form-label">Segundo Nombre</label>
                 <div class="uk-form-controls">
                     <input type="text" class="uk-input" v-model="secondName" placeholder="Opcional">
                 </div>
             </div>
-            <div class="uk-width-1-2@m">
+            <div class="uk-margin uk-width-1-2@m">
                 <label class="uk-form-label">Primer Apellido</label>
                 <div class="uk-form-controls">
                     <input type="text" class="uk-input" v-model="lastName" required placeholder="Requerido">
                 </div>
             </div>
-            <div class="uk-width-1-2@m">
+            <div class="uk-margin uk-width-1-2@m">
                 <label class="uk-form-label">Segundo Apellido</label>
                 <div class="uk-form-controls">
                     <input type="text" class="uk-input" v-model="secondLastName" placeholder="Opcional">
                 </div>
             </div>
-            <div class="uk-width-1-2@m">
+            <div class="uk-margin uk-width-1-2@m">
                 <label class="uk-form-label">Correo electrónico</label>
                 <div class="uk-form-controls">
                     <input type="email" class="uk-input" v-model="email" required placeholder="Requerido">
                 </div>
             </div>
-            <div class="uk-width-1-2@m">
+            <div class="uk-margin uk-width-1-2@m">
                 <label class="uk-form-label">Número de teléfono</label>
                 <div class="uk-form-controls">
                     <input type="text" class="uk-input" v-model="phoneNumber" required placeholder="Requerido">
                 </div>
             </div>
-            <div class="uk-width-1-2@m">
+            <div class="uk-margin uk-width-1-2@m">
                 <label class="uk-form-label">Sexo</label>
                 <div class="uk-form-controls">
                     <multiselect v-model="gender" :searchable="false" label="name" track-by="value" :options="genders" required placeholder="Selecciona una opción"></multiselect>
                 </div>
             </div>
-            <div class="uk-width-1-2@m">
+            <div class="uk-margin uk-width-1-2@m">
                 <label class="uk-form-label">Fecha de nacimiento</label>
                 <div class="uk-form-controls">
                     <flat-pickr class="uk-input" v-model="birthdate" required placeholder="Requerido"></flat-pickr>
                 </div>
             </div>
-            <div class="uk-width-1-2@m">
+            <div class="uk-margin uk-width-1-2@m">
                 <label class="uk-form-label">País</label>
                 <div class="uk-form-controls">
                     <input type="text" class="uk-input" v-model="country" required placeholder="Requerido">
                 </div>
             </div>
-            <div class="uk-width-1-2@m">
+            <div class="uk-margin uk-width-1-2@m">
                 <label class="uk-form-label">Estado</label>
                 <div class="uk-form-controls">
                     <input type="text" class="uk-input" v-model="state" required placeholder="Requerido">
                 </div>
             </div>
-            <div class="uk-width-1-1">
+            <div class="uk-margin uk-width-1-1">
                 <button class="uk-button uk-button-default rounded-button" type="submit">Actualizar Información</button>
             </div>
         </form>
