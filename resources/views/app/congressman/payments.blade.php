@@ -99,11 +99,11 @@
 
                     <p>
                         Para realizar pagos con Paypal deberá poseer una cuenta con dicho servicio de pagos en línea. Una vez Paypal nos notifique el correcto procesamiento del pago, recibirá 
-                        el comprobante del mismo y el el estado del pago se verá reflejado de inmediato. Para agregar un producto o servicio a la cesata de pago en Paypal, deberá seleccionar
+                        el comprobante del mismo y el estado del pago se verá reflejado de inmediato. Para agregar un producto o servicio a la cesta de pago en Paypal, deberá seleccionar
                         "Agregar" en cada producto o servicio.
                     </p>
                     <p>
-                        <b>NOTA.</b> Para su mayor seguridad, el Centro de Investigación Transdisciplinar en Psicología no alamacena datos relacionados a sus tarjetas de crédito o débito.
+                        <b>NOTA.</b> Para su mayor seguridad, el Centro de Investigación Transdisciplinar en Psicología no almacena datos relacionados a sus tarjetas de crédito o débito.
                     </p>
 
                 </li>
