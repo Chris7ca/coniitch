@@ -3,7 +3,7 @@
     <div>
 
         <p class="uk-text-meta">Grado actual o último grado de estudios.</p>
-        <p class="uk-text-meta"><b>NOTA:</b> Si actualmente se encuentra estudiando y acredita su estatus académico con algun documento (creadencial vigente, 
+        <p class="uk-text-meta"><b class="text-secondary">NOTA:</b> Si actualmente se encuentra estudiando y acredita su estatus académico con algun documento (credencial vigente, 
         historial académico, constancia, etc.) recibirá un descuento al momento de realizar su pago para asistir al congreso. Una vez que adjunte 
         el documento escanedo se realizará la verificación del mismo y le notificaremos si se le otorgará dicho descuento.</p>
 
@@ -34,13 +34,14 @@
                 <input type="text" class="uk-input" v-model="state" required placeholder="Requerido">
             </div>
             <div class="uk-width-1-2@m">
-                <label class="uk-form-label">Estatus académico 
+                <label class="uk-form-label text-secondary">Comprobante de estudios
                     <span class="uk-margin-small-left" uk-tooltip="En cualquier momento puedes adjuntar el documento escanedo. Solo asegúrate hacerlo antes de realizar el pago para que se pueda validar tu información." uk-icon="question"></span>
                 </label>
                 <div class="uk-width-1-1" uk-form-custom="target: true">
-                    <input type="file" ref="document" accept="application/pdf" v-if="document == null">
-                    <input class="uk-input" type="text" :placeholder="hasAttachDocument" disabled>
+                    <input type="file" ref="document" accept="application/pdf" v-if="document == null || is_student == false">
+                    <input class="uk-input" :placeholder="(document == null || is_student == false) ? 'Click para adjuntar documento' : 'Documento adjuntado correctamente'" type="text" disabled>
                 </div>
+                <span v-html="statusDocument"></span>
             </div>
             <div class="uk-width-1-1">
                 <button class="uk-button uk-button-default rounded-button" type="submit">Actualizar Información</button>
@@ -69,18 +70,18 @@
             }
         },
         computed: {
-            hasAttachDocument: function () {
+            statusDocument: function () {
                 if ( this.document == null ) {
-                    return 'No has adjuntado ningún documento';
+                    return '<small>No has adjuntado ningún documento</small>';
                 } 
                 else if ( this.document && this.is_student == null ) {
-                    return 'Se está revisando tu estatus académico';
+                    return `<small class="uk-text-warning">Se está revisando tu estatus académico</small>`;
                 }
                 else if ( this.document && this.is_student == false ) {
-                    return 'No se ha podido comprobar la validez del documento';
-                } 
+                    return `<small class="uk-text-danger">No se ha podido comprobar la validez del documento, por favor vuelve a adjuntar un documento válido</small>`;
+                }
                 else {
-                    return 'Documento válidado';
+                    return `<small class="uk-text-primary">Documento validado</small>`;
                 }
             }
         },
