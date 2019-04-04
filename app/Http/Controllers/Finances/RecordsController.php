@@ -51,11 +51,10 @@ class RecordsController extends Controller
         $roles = Role::select('id')->whereIn('key', ['student','professional'])->get();
 
         if ( $request->validation ) {
-            
             $congressman->roles()->toggle($roles);
         }
 
-        Notification::send($congressman, new ValidateAcademicDocument($congressman, $request->validation));
+        Notification::send($congressman, new ValidateAcademicDocument($congressman, $request->validation, $request->reason));
 
         return response()->json(['message' => 'Haz validado el documento y se notificará al congesista sobre dicha validación']);
     }

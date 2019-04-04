@@ -13,20 +13,19 @@ class ValidateAcademicDocument extends Notification implements ShouldQueue
 
     protected $user;
 
-    protected $status;
+    protected $message;
 
-    protected $accepted = 'Hemos recibido el documento probatorio de su actual estado académico, y debido
+    protected $accepted = 'Hemos recibido el documento probatorio de su actual estado académico y lo hemos validado, debido
     a ello, le otorgamos un descuento al momento de realizar su pago de inscripción al congreso.
     Acceda al siguiente enlace abriendo esta notificación';
 
     protected $rejected = 'Hemos recibido el documento probatorio de
-    su actual estado académico, lamentablemente no podemos otorgarle un descuento para inscripción al congreso,
-    de todas formas esperamos verlo muy pronto, si desea realizar su pago de inscripción, abra esta notificación';
+    su actual estado académico, lamentablemente no podemos comprobar la válidez del mismo por la siguiente razón: ';
     
-    public function __construct($user, $status)
+    public function __construct($user, $status, $reason)
     {
         $this->user = $user;
-        $this->status = ($status) ? $this->accepted : $this->rejected ;
+        $this->message = ($status) ? $this->accepted : $this->rejected . $reason;
     }
 
     
@@ -45,7 +44,7 @@ class ValidateAcademicDocument extends Notification implements ShouldQueue
             ->view(
                 'mails.default', [
                     'notification' => 'Estimado(a) '. $this->user->first_name .' '. $this->user->last_name .',',
-                    'subject' => $this->status,
+                    'subject' => $this->message,
                     'url' => route('app.congressman.payments.view')
                     ]
             );
@@ -57,7 +56,7 @@ class ValidateAcademicDocument extends Notification implements ShouldQueue
         return [
             'icon' => 'file-text',
             'title' => 'Validación de documentos académicos',
-            'description' => $this->status,
+            'description' => $this->message,
             'route' => route('app.congressman.payments.view')
         ];
     }
