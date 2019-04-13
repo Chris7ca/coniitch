@@ -29,6 +29,7 @@
                         <table class="uk-table uk-table-middle uk-table-divider">
                             <thead>
                                 <tr>
+                                    <th></th>
                                     <th>Nombre</th>
                                     <th>Adscripción</th>
                                     <th>Correo</th>
@@ -38,16 +39,21 @@
                                 @foreach ($work->coauthors as $coauthor)
                                     <tr>
                                         <td>
-                                            {{ $coauthor->full_name }}
                                             @if ( $coauthor->is_first_author )
-                                                <br> <span class="uk-label uk-text-small">Autor principal</span>
+                                                <span class="uk-label uk-text-small">Autor principal</span>
                                             @endif
                                         </td>
+                                        <td>{{ $coauthor->full_name }}</td>
                                         <td>{{ $coauthor->adscription }}</td>
                                         <td>{{ $coauthor->email }}</td>
                                     </tr>
                                 @endforeach
                                 <tr>
+                                    <td>
+                                        @if ( $work->coauthors->contains('is_first_author', true) )
+                                            <span class="uk-label uk-text-small">Autor principal</span>
+                                        @endif
+                                    </td>
                                     <td>
                                         {{ $work->registered_user->first_name . ' ' . $work->registered_user->personal_profile->second_name . ' ' . $work->registered_user->last_name . ' ' . $work->registered_user->personal_profile->second_last_name }}
                                     </td>
