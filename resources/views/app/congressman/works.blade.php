@@ -50,7 +50,7 @@
                                 @endforeach
                                 <tr>
                                     <td>
-                                        @if ( $work->coauthors->contains('is_first_author', true) )
+                                        @if ( ! $work->coauthors->contains('is_first_author', true) )
                                             <span class="uk-label uk-text-small">Autor principal</span>
                                         @endif
                                     </td>
