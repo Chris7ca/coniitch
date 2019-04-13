@@ -19,7 +19,7 @@
                             <a role="button" class="uk-link-reset" @click="filter(1)">Aprobados</a>
                         </li>
                         <li>
-                            <a role="button" class="uk-link-reset" @click="filter(0)">No aprobados</a>
+                            <a role="button" class="uk-link-reset" @click="filter(3)">No aprobados</a>
                         </li>
                         <li>
                             <a role="button" class="uk-link-reset" @click="filter(2)">Pendientes</a>
