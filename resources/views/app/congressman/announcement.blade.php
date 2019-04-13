@@ -9,8 +9,11 @@
     <section class="uk-container uk-margin-large-bottom">
 
         @if ( empty($work) || !$work->ready )
+
+            <h3 class="uk-text-center">El tiempo para la recepción de trabajos ha finalizado.</h3>
+            <h4 class="uk-text-center">¡Muchas gracias!</h4>
         
-            <h3>Registro de trabajos</h3>
+            {{-- <h3>Registro de trabajos</h3>
             <hr class="uk-divider-small">
 
             <p><small>Si desea participar en el 3<sup>er</sup> Congreso Internacional de Investigación en Ciencias Humanas 2019. Por favor registra tu trabajo conforme a los líneamientos
@@ -27,7 +30,7 @@
             <p><small><strong>Nota III.</strong> Le recordamos que el sistema solo permite recibir un trabajo por autor/persona. 
             Si usted requiere enviar más de un trabajo, sus co-autores podrán registrarlo. Si tiene dudas contáctenos al correo <b class="text-secondary">trabajos.coniitch@uaem.mx</b></small></p>
 
-            <work :org-work="{{ json_encode($work) }}" :mode="'register'"></work>
+            <work :org-work="{{ json_encode($work) }}" :mode="'register'"></work> --}}
 
         @elseif ( $work->evaluation == 1 || $work->evaluation == 2 )
 
