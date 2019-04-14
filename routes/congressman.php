@@ -20,11 +20,11 @@ Route::post('facturacion/actualizar',                               'Congressman
  * Convocatoria 
  */
 
-// Route::get('convocatoria',                                          'Congressman\WorksController@view')->name('announcement.view');
-// Route::post('convocatoria/trabajos/guardar',                        'Congressman\WorksController@save')->name('announcement.save');
-// Route::post('convocatoria/trabajos/{id}/confirmar',                 'Congressman\WorksController@confirm')->name('announcement.confirm');
+Route::get('convocatoria',                                          'Congressman\WorksController@view')->name('announcement.view');
+Route::post('convocatoria/trabajos/guardar',                        'Congressman\WorksController@save')->name('announcement.save');
+Route::post('convocatoria/trabajos/{id}/confirmar',                 'Congressman\WorksController@confirm')->name('announcement.confirm');
 
-// Route::get('convocatoria/coautoria',                                'Congressman\WorksController@confirmCoauthor')->name('announcement.coauthor.confirm');
+Route::get('convocatoria/coautoria',                                'Congressman\WorksController@confirmCoauthor')->name('announcement.coauthor.confirm');
 
 Route::get('convocatoria/trabajos/{id}/ver',                        'Congressman\WorksController@show')->name('announcement.works.show');
 
