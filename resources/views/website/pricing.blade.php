@@ -33,11 +33,8 @@
                 <article class="uk-card uk-card-default uk-card-body uk-box-shadow-hover-large uk-text-center uk-flex uk-flex-column uk-flex-between">
 
                     <div>
-                        <h3 class="text-secondary">$730.00 MXN</h3>
+                        <h3 class="text-secondary">$930.00 MXN</h3>
                         <h5>Estudiantes</h5>
-
-                        <p class="uk-text-meta uk-margin-medium-top">Solo estudiantes que comprueben su estatus académico</p>
-                        <p class="uk-text-meta">A partir del 1° de abril y hasta la fecha del congreso: $930.00 MXN</p>
                     </div>
 
                     <div class="uk-margin-medium">
@@ -51,10 +48,8 @@
                 <article class="uk-card uk-card-default uk-card-body uk-box-shadow-hover-large uk-text-center uk-flex uk-flex-column uk-flex-between">
 
                     <div>
-                        <h3 class="text-secondary">$1,130.00 MXN</h3>
+                        <h3 class="text-secondary">$1,680.00 MXN</h3>
                         <h5>Profesionistas</h5>
-
-                        <p class="uk-text-meta uk-margin-medium-top">A partir del 1° de abril y hasta la fecha del congreso: $1,680.00 MXN</p>
                     </div>
 
                     <div class="uk-margin-medium">
